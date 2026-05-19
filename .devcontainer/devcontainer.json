@@ -1,0 +1,37 @@
+{
+  "name": "AL Sidr Natural Honey Dev",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.eol": "\n",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot",
+        "GitHub.vscode-pull-request-github"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install",
+  "remoteUser": "node",
+  "updateContentCommand": "",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Web app",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
