@@ -1,0 +1,47 @@
+{
+  "brand": "Al Sidr Natural Honey",
+  "established": 1986,
+  "home_market": "Abu Dhabi, UAE",
+  "positioning": "Premium raw, unheated honey rooted in family heritage, distinctive origin, and refined presentation.",
+  "voice": ["premium", "confident", "authentic", "warm", "culturally elegant", "educational"],
+  "primary_ctas": [
+    "Explore the collection online",
+    "Ask the Abu Dhabi team for a recommendation",
+    "Discover the gift selection",
+    "Request the B2B catalogue",
+    "Visit us in Abu Dhabi"
+  ],
+  "channels": {
+    "website": "https://alsidrnaturalhoney.com",
+    "arabic_path": "https://alsidrnaturalhoney.com/ar",
+    "whatsapp": "https://wa.me/message/GL7KBRRYQQAPN1",
+    "phone": "0529830095"
+  },
+  "colors": {
+    "honey": "#C88A24",
+    "honeyLight": "#E6B85C",
+    "honeyDark": "#8A5A14",
+    "sidrGreen": "#3F5137",
+    "sidrDeep": "#263522",
+    "sand": "#F3E8D2",
+    "cream": "#FBF7EF",
+    "charcoal": "#24221E",
+    "muted": "#756F65",
+    "border": "#DCCEB6"
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "Inter",
+    "arabic": "Noto Kufi Arabic"
+  },
+  "hard_bans": [
+    "medical claims",
+    "diagnosis",
+    "cure or treatment promises",
+    "unsupported certifications or awards",
+    "invented stock, prices, promotions, or delivery times",
+    "aggressive discount language",
+    "scientific purity claims based on informal home tests"
+  ],
+  "workflow": ["input", "processing", "output", "optimization", "human_review"]
+}

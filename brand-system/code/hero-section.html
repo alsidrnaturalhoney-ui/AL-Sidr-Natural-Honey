@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Al Sidr Natural Honey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../design-system/tokens.css" />
+  <style>
+    body { margin: 0; }
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; max-width: var(--container); margin: auto; padding: 7rem 1.5rem; align-items: center; }
+    .eyebrow { color: var(--alsidr-honey-dark); font-size: var(--text-sm); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .hero h1 { font-size: var(--text-2xl); margin: .75rem 0 1.25rem; }
+    .hero p { color: var(--color-text-muted); font-size: var(--text-lg); max-width: 38rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+    .button-secondary { background: transparent; border-color: var(--alsidr-sidr-green); color: var(--alsidr-sidr-green); }
+    .honey-art { min-height: 22rem; border-radius: 45% 45% 18% 18%; background: radial-gradient(circle at 50% 30%, var(--alsidr-honey-light), var(--alsidr-honey) 44%, var(--alsidr-honey-dark) 100%); box-shadow: var(--shadow-soft); position: relative; overflow: hidden; }
+    .honey-art::after { content: ""; position: absolute; inset: 18% 25%; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; transform: rotate(-16deg); }
+    @media (max-width: 720px) { .hero { grid-template-columns: 1fr; padding: 4rem 1.25rem; } .honey-art { min-height: 14rem; } }
+  </style>
+</head>
+<body class="alsidr-brand">
+  <main class="hero" aria-labelledby="hero-title">
+    <section>
+      <div class="eyebrow">Pure traditions since 1986</div>
+      <h1>Distinctive honey, thoughtfully brought to your table.</h1>
+      <p>Explore carefully selected raw, unheated honey with rich character, refined presentation, and a heritage rooted in Abu Dhabi.</p>
+      <div class="actions">
+        <a class="alsidr-button" href="https://alsidrnaturalhoney.com">Explore the collection</a>
+        <a class="alsidr-button button-secondary" href="https://wa.me/message/GL7KBRRYQQAPN1">Ask for a recommendation</a>
+      </div>
+    </section>
+    <div class="honey-art" role="img" aria-label="Abstract golden honey texture illustration"></div>
+  </main>
+</body>
+</html>
