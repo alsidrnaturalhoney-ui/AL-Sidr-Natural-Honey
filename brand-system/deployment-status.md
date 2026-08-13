@@ -8,6 +8,8 @@ The canonical brand core was uploaded and converted to a Google Doc titled **Al 
 
 The validated local skill packages remain available under `/home/ubuntu/skills/` for use by Manus: the master orchestrator, bilingual copy, support copilot, and social growth planner.
 
+The full system was applied to the selected GitHub repository `alsidrnaturalhoney-ui/AL-Sidr-Natural-Honey` and published to its `main` branch in commit `19d6d47` (`Apply Al Sidr brand operating system`).
+
 ## Available but not automatically applied
 
 The current session has connectors for several AI and business applications, including OpenAI, Anthropic, Google Workspace, Canva, Notion, Airtable, Asana, Close, Instagram, Meta Ads Manager, Linear, Slack, Vercel, Wix, Zapier, and Cloudflare Worker Bindings. These connectors do not share one universal “publish brand system everywhere” instruction endpoint. Each application requires an app-specific destination, such as a Notion page, an Airtable base, a Slack channel, a project wiki, a brand kit, an ad account, or a content scheduler.
