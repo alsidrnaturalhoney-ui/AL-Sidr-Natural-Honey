@@ -1,0 +1,33 @@
+version: 1
+policy:
+  prefer_official_servers: true
+  require_source_verification: true
+  require_explicit_allowlist: true
+  secrets_in_repo: false
+
+servers:
+  github:
+    source: official
+    transport: streamable-http
+    endpoint: https://api.githubcopilot.com/mcp/
+    status: configured-as-reference
+    purpose: repositories, issues, pull requests, actions and code intelligence
+  model-context-protocol:
+    source: official
+    purpose: MCP specification, SDKs and registry references
+    status: reference-only
+
+vendor_connectors:
+  openai: enabled-in-chat
+  descope: connected-capability-when-authorized
+  apixel: connected-capability-when-authorized
+  adobe: connected-capability-when-authorized
+  netlify: connected-capability-when-authorized
+  truffle-journal: connected-capability-when-authorized
+  toolcheck: connected-capability-when-authorized
+  linear: connected-capability-when-authorized
+  shopify: connected-capability-when-authorized
+  conductor: connected-capability-when-authorized
+  chronos-codex: environment-dependent
+
+rule: a vendor name in this registry is not proof of an active credential, deployment, or server. Verify before execution.
