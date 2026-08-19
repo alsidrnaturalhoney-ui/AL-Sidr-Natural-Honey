@@ -1,0 +1,31 @@
+version: 1
+capabilities:
+  knowledge:
+    abilities: [retrieve, synthesize, deduplicate, tag, version]
+  agents:
+    abilities: [delegate, handoff, parallelize, supervise, verify]
+  mcp:
+    abilities: [discover, inspect, allowlist, invoke, health-check]
+  engineering:
+    abilities: [inspect-code, edit, test, review, release]
+  commerce:
+    abilities: [catalog, storefront, shipping, checkout, order-workflows]
+  growth:
+    abilities: [technical-seo, bilingual-content, analytics, experiments]
+  creative:
+    abilities: [image-generation, asset-briefing, brand-consistency, media-QA]
+  security:
+    abilities: [secret-hygiene, least-privilege, permission-review, audit]
+  executive:
+    abilities: [prioritize, summarize, score-risk, track-KPI, recommend]
+  self-healing:
+    abilities: [detect-regression, isolate-failure, retry-safe-action, verify-fix]
+
+superpowers:
+  - cross-system context fusion
+  - autonomous gap hunting
+  - duplicate prevention
+  - verification-first execution
+  - reversible-change preference
+  - failure-aware orchestration
+  - CEO-ready reporting
