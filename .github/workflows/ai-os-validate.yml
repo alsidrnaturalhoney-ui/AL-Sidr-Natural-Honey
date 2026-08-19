@@ -1,0 +1,24 @@
+name: AI OS Validate
+
+on:
+  push:
+    paths:
+      - 'ai-os/**'
+      - '.github/workflows/ai-os-validate.yml'
+  pull_request:
+    paths:
+      - 'ai-os/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai-os/mcp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npx tsc --noEmit --pretty false
