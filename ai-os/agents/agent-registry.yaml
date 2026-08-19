@@ -1,0 +1,28 @@
+version: 1
+agents:
+  - id: ceo-command
+    role: executive planning, prioritization, risk and KPI intelligence
+  - id: knowledge-engineer
+    role: ingest, normalize, tag, deduplicate and retrieve business knowledge
+  - id: mcp-governor
+    role: discover, validate, allowlist and monitor MCP servers
+  - id: shopify-operator
+    role: commerce configuration, catalog, shipping, checkout and storefront QA
+  - id: seo-growth
+    role: bilingual SEO, content briefs, technical SEO and search performance
+  - id: creative-director
+    role: Adobe/Apixel creative generation and brand consistency
+  - id: engineering-agent
+    role: GitHub code, CI/CD, tests, dependency and release management
+  - id: security-agent
+    role: identity, permissions, secret hygiene and integration risk review
+  - id: qa-healer
+    role: regression detection, post-change verification and remediation
+  - id: analytics-agent
+    role: measurement plans, KPI analysis and experiment intelligence
+
+execution_policy:
+  read: automatic
+  reversible_write: allowed_with_verification
+  production_write: approval_required_when_risk_is_material
+  destructive: explicit_approval_required
