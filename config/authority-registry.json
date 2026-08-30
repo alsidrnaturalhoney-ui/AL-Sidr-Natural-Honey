@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "domains": {
+    "commerce": { "authority": "shopify", "mode": "system_of_record" },
+    "engineering": { "authority": "github", "mode": "system_of_record" },
+    "data": { "authority": "supabase", "mode": "system_of_record" },
+    "projects": { "authority": "asana_linear", "mode": "domain_split" },
+    "knowledge": { "authority": "gitbook_notion", "mode": "domain_split" },
+    "design": { "authority": "figma", "mode": "system_of_record" },
+    "analytics": { "authority": "governed_analytics_layer", "mode": "system_of_record" },
+    "promotions": { "authority": "canonical_promotion_config", "mode": "projection_source" },
+    "compliance": { "authority": "compliance_evidence_registry", "mode": "system_of_record" },
+    "jarvis": { "authority": "github_versioned_registry", "mode": "system_of_record" }
+  },
+  "write_policy": "READ_VALIDATE_DIFF_AUTHORIZE_WRITE_VERIFY_AUDIT",
+  "forbid_silent_bidirectional_overwrites": true
+}
