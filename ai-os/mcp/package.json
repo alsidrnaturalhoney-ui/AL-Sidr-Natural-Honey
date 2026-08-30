@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "tsx src/server.ts"
+    "start": "tsx src/server.ts",
+    "test:market-sentinel": "tsx src/market-sentinel.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "latest",
