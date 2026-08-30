@@ -1,0 +1,15 @@
+{
+  "system": "AL SIDR JARVIS V6 OMEGA",
+  "version": "2.0",
+  "buildOrder": ["constitution","contracts","runtime","data","agents","skills","mcps","execution","experience","learning"],
+  "riskClasses": ["R0","R1","R2","R3","R4","R5"],
+  "decisionStates": ["ALLOW","REVIEW","BLOCK"],
+  "skills": ["AuditRemediation","PromotionsSync","LiquidSectionGen","MetafieldManager","ADAFSAComplianceCheck","FlowAutomationBuilder","InventoryRebalancer","StructuredDataInjector","CartDrawerArchitect","PricingEngine","KlaviyoFlowSync","JudgeMeReviewSync","MCPServerScaffolder","ZodContractGen","NextStorefrontGen","BigQueryETLStream","VertexPredictor","ASMRStoryboarder","WhatsAppBotRouter","CompetitorScraper","GitOpsOrchestrator","RAGKnowledgeBase","SpeedOptimizer","FullMonorepoScaffold"],
+  "agentClasses": ["Governance","Commerce","Content","SEO_AEO","Compliance","Analytics","CX","Engineering","Creative","Hospitality_B2B","DevOps","Research"],
+  "requiredSkillArtifacts": ["manifest","zod_input","zod_output","handler","tests","permissions","evidence","risk","rollback","audit_events"],
+  "requiredAgentArtifacts": ["mission","skills","tools","authority_domains","risk_ceiling","escalation","memory_scope","observability"],
+  "mcpActivationRequirements": ["authentication","scopes","health_check","contract_tests","audit_behavior"],
+  "executionPipeline": ["REQUEST","AUTHORITY","CAPABILITY","RISK","EVIDENCE","VALIDATE","APPROVE","EXECUTE","VERIFY","AUDIT","LEARN"],
+  "secretPolicy": "runtime_secret_store_only",
+  "productionPolicy": "no_unverified_mutation"
+}
