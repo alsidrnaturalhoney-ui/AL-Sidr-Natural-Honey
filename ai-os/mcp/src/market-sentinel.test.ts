@@ -1,5 +1,8 @@
-import assert from 'node:assert/strict';
 import { calculateResult, handler } from './market-sentinel.js';
+
+function assert(condition: boolean, message: string): void {
+  if (!condition) throw new Error(message);
+}
 
 const base = {
   sourceUrl: 'https://example.com/evidence',
@@ -36,46 +39,42 @@ const benchmark = {
 };
 
 const first = calculateResult(balqees, benchmark);
-assert.equal(first.pricePremiumPercent, 56.7);
-assert.equal(first.luxuryArbitrage, true);
-assert.equal(first.heatedPriceDeficitPercent, 0);
-assert.equal(first.competitorQualityStatus, 'DISCLOSED');
+assert(first.pricePremiumPercent === 56.7, `Expected 56.7 premium, got ${first.pricePremiumPercent}`);
+assert(first.luxuryArbitrage === true, 'Expected luxury arbitrage');
+assert(first.heatedPriceDeficitPercent === 0, 'Expected zero heated deficit');
+assert(first.competitorQualityStatus === 'DISCLOSED', 'Expected disclosed evidence status');
 
 const second = calculateResult(shifa, benchmark);
-assert.equal(second.heatedPriceVariancePercent,  -82.9);
-assert.equal(second.heatedPriceDeficitPercent, -82.9);
-assert.equal(second.moistureVariance, null);
-assert.equal(second.evidence.moisture, 'UNDISCLOSED');
+assert(second.heatedPriceVariancePercent === -82.9, `Expected -82.9 variance, got ${second.heatedPriceVariancePercent}`);
+assert(second.heatedPriceDeficitPercent === -82.9, 'Expected heated deficit');
+assert(second.moistureVariance === null, 'Expected unknown moisture variance');
+assert(second.evidence.moisture === 'UNDISCLOSED', 'Expected undisclosed moisture');
 
 const output = await handler({ trigger: 'MANUAL', competitors: [balqees] }, { now: () => new Date('2026-08-30T01:02:03.000Z') });
-assert.equal(output.status, 'SUCCESS');
-assert.equal(output.summary.maxPremiumBrand, 'Balqees Honey');
-assert.equal(output.summary.avgPricePremiumPercent, 56.7);
-assert.equal(output.benchmark.grade, 'ADAFSA Grade A');
+assert(output.status === 'SUCCESS', 'Expected success');
+assert(output.summary.maxPremiumBrand === 'Balqees Honey', 'Expected Balqees as max premium');
+assert(output.summary.avgPricePremiumPercent === 56.7, 'Expected average premium');
+assert(output.benchmark.grade === 'ADAFSA Grade A', 'Expected ADAFSA benchmark');
 
 let duplicateDetected = false;
 try {
   await handler({ trigger: 'MANUAL', competitors: [balqees] }, {
     now: () => new Date('2026-08-30T01:02:03.000Z'),
-    store: {
-      hasRun: async () => true,
-      appendRun: async () => undefined,
-    },
+    store: { hasRun: async () => true, appendRun: async () => undefined },
   });
 } catch (error) {
   duplicateDetected = String(error).includes('MARKET_SENTINEL_DUPLICATE');
 }
-assert.equal(duplicateDetected, true);
+assert(duplicateDetected, 'Expected duplicate detection');
 
-let partial: Awaited<ReturnType<typeof handler>>;
-partial = await handler({ trigger: 'MANUAL', competitors: [balqees] }, {
+const partial = await handler({ trigger: 'MANUAL', competitors: [balqees] }, {
   now: () => new Date('2026-08-30T01:02:04.000Z'),
   store: {
     hasRun: async () => false,
     appendRun: async () => { throw new Error('persistence unavailable'); },
   },
 });
-assert.equal(partial.status, 'PARTIAL');
-assert.equal(partial.failures[0]?.subsystem, 'BIGQUERY');
+assert(partial.status === 'PARTIAL', 'Expected partial status after persistence failure');
+assert(partial.failures[0]?.subsystem === 'BIGQUERY', 'Expected BigQuery failure classification');
 
 console.log('Skill-25 MarketSentinel tests passed');
