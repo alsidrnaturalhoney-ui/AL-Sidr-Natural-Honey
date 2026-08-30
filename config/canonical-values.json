@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "brand": {
+    "name": "AL SIDR Natural Honey",
+    "origin": "UAE",
+    "established": 1986,
+    "visual": {
+      "luxury_black": "#0D0D0D",
+      "gold": "#C9A84C",
+      "white": "#FFFFFF",
+      "texture": "honeycomb emboss and gold foil",
+      "heritage_marker": "EST. 1986"
+    }
+  },
+  "commerce": {
+    "portfolio_skus": 58,
+    "product_families": 14,
+    "hero_sku": "Yemen Sidr Osaimy 250g",
+    "hero_price_aed": 125,
+    "target_aov_aed": 450,
+    "free_delivery_threshold_aed": 250
+  },
+  "revenue": {
+    "monthly_target_aed": 1000000,
+    "channel_mix_percent": { "dtc": 40, "wholesale": 40, "b2b": 20 },
+    "pos_target": 1100
+  },
+  "governance": {
+    "claim_model": "evidence_backed_three_tier",
+    "production_lifecycle": ["generate", "validate", "diff", "approve", "execute"],
+    "canonical_promotion_source": "config/promotions.json"
+  }
+}
