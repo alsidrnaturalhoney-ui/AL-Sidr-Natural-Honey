@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "levels": {
+    "R0": { "description": "read-only observation", "approval": "none" },
+    "R1": { "description": "draft or reversible low-impact action", "approval": "none" },
+    "R2": { "description": "non-critical content or configuration change", "approval": "validated_execution" },
+    "R3": { "description": "product, pricing, promotion, customer-impacting or material operational change", "approval": "explicit" },
+    "R4": { "description": "production, infrastructure, security, credentials or broad synchronization", "approval": "explicit" },
+    "R5": { "description": "legal, regulatory, financial authority, sensitive-data or irreversible high-impact action", "approval": "human_controlled" }
+  },
+  "mandatory_controls": ["schema_validation", "authority_check", "audit_event", "rollback_metadata"],
+  "secret_policy": "never_store_credentials_in_source_prompts_docs_or_logs"
+}
