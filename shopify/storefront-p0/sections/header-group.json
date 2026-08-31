@@ -1,0 +1,68 @@
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement_bar_mVQT3c": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_Q3EgPY": {
+          "type": "announcement",
+          "settings": {
+            "text": "Limited: Buy One Get One Free on Fruit Honey Collection — Shop Offer",
+            "link": "/collections/fruit-honey-collection"
+          }
+        },
+        "announcement_Y6yJBc": {
+          "type": "announcement",
+          "settings": {
+            "text": "FREE UAE DELIVERY OVER AED 250 | FLAT AED 20 BELOW • EST. 1986 • ADAFSA",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_Q3EgPY",
+        "announcement_Y6yJBc"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "color_scheme": "scheme-luxury-gold",
+        "show_line_separator": true,
+        "show_social": false,
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "top-center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "always",
+        "show_line_separator": true,
+        "color_scheme": "scheme-luxury-gold",
+        "menu_color_scheme": "scheme-luxury-gold",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "mobile_logo_position": "center",
+        "margin_bottom": 60,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "17809384336fe2c83f": {
+      "type": "apps",
+      "settings": {
+        "include_margins": false
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_mVQT3c",
+    "header",
+    "17809384336fe2c83f"
+  ]
+}
