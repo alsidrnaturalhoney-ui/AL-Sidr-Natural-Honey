@@ -1,0 +1,59 @@
+{%- comment -%}
+  AL SIDR governed trust row.
+
+  Always-safe signals are shown on every product.
+  Certification/testing labels are evidence-gated and render only when
+  the corresponding boolean product metafield is explicitly true.
+{%- endcomment -%}
+
+{%- liquid
+  assign adafsa_verified = false
+  assign lab_tested_verified = false
+
+  if product.metafields.custom.adafsa_grade_a.value == true
+    assign adafsa_verified = true
+  endif
+
+  if product.metafields.custom.lab_tested.value == true
+    assign lab_tested_verified = true
+  endif
+-%}
+
+<div class="alsidr-trust-row" role="list" aria-label="Purchase trust information">
+  <span class="alsidr-trust-row__item" role="listitem">EST. 1986</span>
+  <span class="alsidr-trust-row__item" role="listitem">Secure checkout</span>
+  <span class="alsidr-trust-row__item" role="listitem">Free UAE delivery over AED 250</span>
+
+  {%- if adafsa_verified -%}
+    <span class="alsidr-trust-row__item" role="listitem">ADAFSA Grade A</span>
+  {%- endif -%}
+
+  {%- if lab_tested_verified -%}
+    <span class="alsidr-trust-row__item" role="listitem">Lab tested</span>
+  {%- endif -%}
+</div>
+
+<style>
+  .alsidr-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.2rem;
+    margin: 1.2rem 0 0;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(var(--color-foreground), 0.12);
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.12);
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+
+  .alsidr-trust-row__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .alsidr-trust-row__item::before {
+    content: "✓";
+    font-weight: 700;
+  }
+</style>
