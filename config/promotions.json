@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "as_of": "2026-08-31",
+  "shipping": {
+    "country": "AE",
+    "currency": "AED",
+    "free_delivery_threshold_aed": 250,
+    "flat_delivery_below_threshold_aed": 20,
+    "canonical_storefront_copy": "Free UAE Delivery over AED 250 | Flat AED 20 below AED 250"
+  },
+  "promotions": [
+    {
+      "id": "SIDR15",
+      "type": "discount_code",
+      "status": "expired",
+      "ended_on": "2026-06-22",
+      "storefront_visible": false,
+      "notes": "Expired announcement must not appear in active storefront theme copy."
+    },
+    {
+      "id": "fruit-honey-bogo",
+      "type": "buy_x_get_y",
+      "status": "verify_in_shopify",
+      "storefront_visible": true,
+      "collection_handle": "fruit-honey-collection",
+      "notes": "Do not treat as a confirmed active discount until live Shopify discount configuration is verified."
+    }
+  ],
+  "governance": {
+    "source_of_truth": "config/promotions.json",
+    "expired_promotions_must_be_hidden": true,
+    "unverified_promotions_must_not_be_claimed_active_by_automation": true
+  }
+}
