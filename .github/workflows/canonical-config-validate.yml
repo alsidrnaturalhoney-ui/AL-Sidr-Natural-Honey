@@ -1,0 +1,33 @@
+name: Canonical Config Validation
+
+on:
+  pull_request:
+    paths:
+      - 'config/**'
+      - 'scripts/validate-canonical-config.mjs'
+      - '.github/workflows/canonical-config-validate.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'config/**'
+      - 'scripts/validate-canonical-config.mjs'
+      - '.github/workflows/canonical-config-validate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-canonical-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate canonical commerce rules
+        run: node scripts/validate-canonical-config.mjs
