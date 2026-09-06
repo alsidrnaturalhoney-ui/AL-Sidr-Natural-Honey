@@ -1,9 +1,11 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "brand": {
     "name": "AL SIDR Natural Honey",
     "origin": "UAE",
+    "location": "Abu Dhabi, UAE",
     "established": 1986,
+    "primary_domain": "https://alsidrnaturalhoney.com",
     "visual": {
       "luxury_black": "#0D0D0D",
       "gold": "#C9A84C",
@@ -13,21 +15,45 @@
     }
   },
   "commerce": {
+    "currency": "AED",
+    "primary_market": "United Arab Emirates",
     "portfolio_skus": 58,
     "product_families": 14,
     "hero_sku": "Yemen Sidr Osaimy 250g",
     "hero_price_aed": 125,
     "target_aov_aed": 450,
-    "free_delivery_threshold_aed": 250
+    "shipping": {
+      "market": "UAE",
+      "free_delivery_threshold_aed": 250,
+      "delivery_below_threshold_aed": 20
+    }
+  },
+  "localization": {
+    "default_locale": "en-AE",
+    "arabic_locale": "ar-AE",
+    "arabic_storefront_path": "/ar/",
+    "hreflang": ["en-ae", "ar-ae", "x-default"]
+  },
+  "compliance": {
+    "certification_name": "ADAFSA",
+    "certification_full_name": "Abu Dhabi Agriculture and Food Safety Authority",
+    "forbidden_certification_aliases": ["ADFCA"],
+    "medical_claims_policy": "No unsupported curative, treatment, prevention, immunity guarantee, or medicine-replacement claims.",
+    "infant_disclaimer": "Not suitable for infants under 12 months."
   },
   "revenue": {
     "monthly_target_aed": 1000000,
-    "channel_mix_percent": { "dtc": 40, "wholesale": 40, "b2b": 20 },
+    "channel_mix_percent": {
+      "dtc": 40,
+      "wholesale": 40,
+      "b2b": 20
+    },
     "pos_target": 1100
   },
   "governance": {
     "claim_model": "evidence_backed_three_tier",
-    "production_lifecycle": ["generate", "validate", "diff", "approve", "execute"],
-    "canonical_promotion_source": "config/promotions.json"
+    "production_lifecycle": ["generate", "validate", "diff", "approve", "execute", "verify"],
+    "canonical_promotion_source": "config/promotions.json",
+    "execution_method": ["audit", "consolidate", "prioritize", "execute", "verify", "record_blockers", "continue"]
   }
 }
