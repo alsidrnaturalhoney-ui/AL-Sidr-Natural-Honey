@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "active": false,
+  "campaign": null,
+  "announcement_only": true,
+  "hero_takeover_allowed": false,
+  "rules": {
+    "heritage_first_hero": true,
+    "no_hardcoded_promotions": true,
+    "requires_verified_offer_terms": true
+  }
+}
