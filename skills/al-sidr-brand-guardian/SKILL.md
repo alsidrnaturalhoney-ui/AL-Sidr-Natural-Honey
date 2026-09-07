@@ -55,7 +55,8 @@ aggressive discount language, excessive exclamation, pressure tactics.
 
 - No diagnosis, prescription, cure, or treatment language.
 - Informal water / matchstick / flow demos are entertainment or texture education, never laboratory proof.
-- Internal proof points (Urban Treasure 2025, UAE Business Awards, ADFCA Grade A) are for draft planning only until wording and logo usage are verified for that placement.
+- Internal proof points (Urban Treasure 2025, UAE Business Awards, ADAFSA Grade A) are for draft planning only until wording and logo usage are verified for that placement.
+- ADAFSA means Abu Dhabi Agriculture and Food Safety Authority; never substitute obsolete ADFCA naming.
 - Do not invent retailer availability. Internal names (Lulu, Grandiose, SPAR, co-ops) require confirmation before publishing.
 
 ## Approval
