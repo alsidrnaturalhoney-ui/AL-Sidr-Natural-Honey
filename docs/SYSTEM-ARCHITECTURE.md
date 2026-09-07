@@ -23,16 +23,22 @@ Execution truth: projects, tasks, dependencies, owners and delivery status.
 Engineering truth: code, configuration, AI skills, prompts, schemas, workflows and implementation documentation.
 
 ### Airtable
-Operational database truth only when the connected Airtable workspace is actually exposed and authorized.
+Operational database truth. Reuse the governed AL SIDR operational registry; do not create parallel operational bases for the same responsibility.
 
 ### Supabase
-Application database/auth/infrastructure truth only for connected applications and after the project is exposed and authorized.
+Canonical application/database/validation infrastructure. The `AL-Sidr-Natural-Honey` project is active and security-hardened. Schema changes use migrations; exposed objects require RLS/privilege review; security and performance advisors are part of the verification loop.
+
+### Linear
+Product and engineering planning/governance. Do not duplicate Asana execution tracking.
 
 ### Figma
 Canonical design source for visual system and UI decisions.
 
 ### Slack
 Coordination channel. Important decisions must be promoted to the canonical knowledge layer rather than living only in chat.
+
+### n8n
+Orchestration layer. Workflows must be inspectable, tested, auditable and explicitly activated; credentials remain in n8n credential storage.
 
 ### Manus
 Delegated execution layer when authorization is active. It must not become an ungoverned source of truth.
@@ -68,6 +74,14 @@ Purchase signal → education → usage reminder → reorder trigger → loyalty
 ### Linktree Conversion Engine
 Profile intent → focused landing experience → product/collection CTA → tracked click → Shopify conversion.
 
+## Locked Commerce / Brand Rules
+
+1. ADAFSA means Abu Dhabi Agriculture and Food Safety Authority; do not use obsolete ADFCA naming.
+2. UAE shipping copy is: Free UAE Delivery over AED 250 | Flat AED 20 below AED 250.
+3. English/Arabic customer-facing work must preserve meaning and brand quality.
+4. Curative or unsupported medical claims are prohibited.
+5. Promotions must not override heritage/trust positioning or bypass the governed promotion source of truth.
+
 ## Data Rules
 
 1. Live source beats cached assumptions.
@@ -77,6 +91,7 @@ Profile intent → focused landing experience → product/collection CTA → tra
 5. No customer PII in public repository files.
 6. Secrets belong in platform secret stores, never Git.
 7. Schemas and automation should be version controlled when appropriate.
+8. Material writes require auditability and post-change verification.
 
 ## Deployment Rule
 
