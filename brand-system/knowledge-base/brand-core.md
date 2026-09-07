@@ -1,14 +1,14 @@
 # Al Sidr Natural Honey — Brand Core Knowledge Base
 
-**Document status:** Internal working reference. **Owner:** Al Sidr Natural Honey. **Prepared by:** Manus AI. **Last assembled:** 13 August 2026.
+**Document status:** Internal working reference. **Owner:** Al Sidr Natural Honey. **Prepared by:** Manus AI. **Last reviewed:** 8 September 2026.
 
 ## Brand identity
 
 Al Sidr Natural Honey is a family business established in 1986 and based in Abu Dhabi, UAE. The brand brings raw, unheated honey from notable producing regions, including Yemen, to customers in the UAE. Its central promise is a refined experience built on heritage, authenticity, careful selection, and natural presentation.
 
-> **Brand essence:** Pure traditions since 1986; the golden standard of wellness and taste.
+> **Brand essence:** Pure traditions since 1986; premium honey presented with heritage, traceability, and care.
 
-The business is led by Ahmad Mohammad Younis Al Khdour, who combines family-business stewardship with digital marketing, SEO, Meta advertising, e-commerce, marketplace growth, automation, retail development, vending-machine concepts, and event kiosks. The long-term commercial ambition is to build a diversified retail and digital business capable of reaching AED 1,000,000 in monthly sales.
+The business is led by Ahmed Mohammad Younis Al Khdour, who combines family-business stewardship with digital marketing, SEO, e-commerce, marketplace growth, automation, retail development, and B2B expansion. The long-term commercial ambition is to build a diversified retail and digital business capable of reaching AED 1,000,000 in monthly sales.
 
 ## Brand pillars
 
@@ -25,7 +25,7 @@ The business is led by Ahmad Mohammad Younis Al Khdour, who combines family-busi
 
 Every customer-facing response should follow three movements. **Education** explains why the product or service is distinctive. **Personalization** asks or uses a relevant customer need, preference, occasion, budget, or delivery context. **Clear direction** gives the next action, preferably toward the official website, Linktree, WhatsApp, or Abu Dhabi location.
 
-A concise default pattern is: “Our Yemeni Sidr is valued for its distinctive origin and rich character. Are you choosing honey for everyday enjoyment, gifting, or a particular flavour profile? You can explore the collection at [Al Sidr Natural Honey](https://alsidrnaturalhoney.com) or contact the Abu Dhabi team on WhatsApp at 0529830095.”
+A concise default pattern is: “Our Yemeni Sidr is valued for its distinctive origin and rich character. Are you choosing honey for everyday enjoyment, gifting, or a particular flavour profile? You can explore the collection at [Al Sidr Natural Honey](https://alsidrnaturalhoney.com) or contact the Abu Dhabi team through the official WhatsApp link.”
 
 ## Voice and language
 
@@ -45,14 +45,14 @@ Do not invent stock, pricing, promotions, delivery timing, certifications, award
 |---|---|
 | Main website | https://alsidrnaturalhoney.com |
 | Arabic site path | https://alsidrnaturalhoney.com/ar |
-| Customer support | WhatsApp / phone: 0529830095 |
-| WhatsApp message link | https://wa.me/message/GL7KBRRYQQAPN1 |
+| Customer support | WhatsApp / phone: use the currently verified customer-service contact. |
+| WhatsApp message link | https://wa.me/message/GL7KBRRYQOAPN1 |
 | Physical direction | Abu Dhabi, UAE; provide the exact branch or map link only when confirmed. |
 | Retail context | Internal knowledge references Lulu Hypermarket, Grandiose, SPAR, Abu Dhabi Co-op, Baniyas Co-op, and Al Dhafra Co-op; confirm current availability before publishing. |
 
 ## Credentials and proof points
 
-Internal conversation context references recognition as an Abu Dhabi Department of Culture and Tourism “Urban Treasure” in 2025, “Best Premium Honey Retailer” at the 2025 UAE Business Awards, and ADFCA Grade A certification. Treat these as approved internal proof points for draft planning, but verify current wording, logos, dates, and permitted usage before placing them in public creative.
+Internal records reference Abu Dhabi Department of Culture and Tourism **Urban Treasure 2025**, separate award records, and **ADAFSA — Abu Dhabi Agriculture and Food Safety Authority** Grade A certification. Treat every proof point as draft-planning context until the exact source document, product or batch scope, permitted wording, logo usage, and validity period are verified for the intended placement. Never use the obsolete ADFCA name in public or canonical content.
 
 ## Product education framework
 
@@ -83,4 +83,4 @@ Use calm, direct CTAs such as “Explore the collection online,” “Ask the Ab
 ## References
 
 [1]: https://alsidrnaturalhoney.com "Al Sidr Natural Honey official website"
-[2]: https://wa.me/message/GL7KBRRYQQAPN1 "Al Sidr Natural Honey WhatsApp message link"
+[2]: https://wa.me/message/GL7KBRRYQOAPN1 "Al Sidr Natural Honey WhatsApp message link"
