@@ -1,0 +1,25 @@
+name: JARVIS Core Validate
+
+on:
+  push:
+    paths:
+      - 'packages/jarvis-core/**'
+      - '.github/workflows/jarvis-core-validate.yml'
+  pull_request:
+    paths:
+      - 'packages/jarvis-core/**'
+      - '.github/workflows/jarvis-core-validate.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/jarvis-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts --no-package-lock
+      - run: npm test
