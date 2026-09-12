@@ -1,28 +1,86 @@
-version: 1
+version: 2
+parent_prompt: ai-os/prompts/master-orchestrator.md
+
 agents:
   - id: ceo-command
-    role: executive planning, prioritization, risk and KPI intelligence
-  - id: knowledge-engineer
-    role: ingest, normalize, tag, deduplicate and retrieve business knowledge
-  - id: mcp-governor
-    role: discover, validate, allowlist and monitor MCP servers
+    name: Command Agent
+    core: true
+    role: route work, prioritize P0-P3, supervise completion and produce CEO-ready decisions
+    owns: [routing, prioritization, executive-intelligence, completion-control]
+
+  - id: procurement-agent
+    name: Procurement Agent
+    core: true
+    role: supplier onboarding, tender compliance, document readiness, fee-risk screening and follow-up
+    owns: [procurement, prequalification, tenders, supplier-document-qa, fee-risk]
+
   - id: shopify-operator
-    role: commerce configuration, catalog, shipping, checkout and storefront QA
+    name: Commerce Agent
+    core: true
+    role: Shopify, CRO, catalog, merchandising, channel listings and commerce QA
+    owns: [shopify, catalog, cro, merchandising, marketplace-syndication]
+
   - id: seo-growth
-    role: bilingual SEO, content briefs, technical SEO and search performance
-  - id: creative-director
-    role: Adobe/Apixel creative generation and brand consistency
-  - id: engineering-agent
-    role: GitHub code, CI/CD, tests, dependency and release management
-  - id: security-agent
-    role: identity, permissions, secret hygiene and integration risk review
-  - id: qa-healer
-    role: regression detection, post-change verification and remediation
+    name: SEO & Entity Agent
+    core: true
+    role: bilingual UAE search, entity, structured data, local SEO and content opportunity intelligence
+    owns: [technical-seo, bilingual-seo, schema, local-seo, entity-growth]
+
+  - id: content-agent
+    name: Content Agent
+    core: true
+    role: compliant bilingual Revenue Content OS, social repurposing and platform-native production
+    owns: [content, bilingual-copy, social, gbp, creative-briefs]
+
   - id: analytics-agent
-    role: measurement plans, KPI analysis and experiment intelligence
+    name: Data & Analytics Agent
+    core: true
+    role: KPI definitions, anomaly detection, experiments, attribution, CLV and profitability intelligence
+    owns: [analytics, anomalies, experiments, crm-retention, profitability]
+
+  - id: mcp-governor
+    name: Automation Agent
+    core: true
+    role: workflows, MCP, APIs, webhooks, connector health, retries, idempotency and orchestration
+    owns: [automation, mcp, connectors, webhooks, integration-health]
+
+  - id: engineering-agent
+    name: Engineering Agent
+    core: true
+    role: GitHub, Supabase, JARVIS, applications, CI/CD, testing and release engineering
+    owns: [github, supabase, jarvis, code, ci-cd, testing]
+
+  - id: security-agent
+    name: Compliance & QA Agent
+    core: true
+    role: claim governance, ADAFSA naming, security, permissions, lab evidence and verification gates
+    owns: [claims-compliance, quality-lab, security, permissions, qa]
+
+  - id: knowledge-engineer
+    name: Knowledge Curator
+    core: true
+    role: ingest, normalize, classify, deduplicate, version and retrieve canonical business knowledge
+    owns: [knowledge, documents, traceability, freshness, conflict-resolution]
+
+  - id: creative-director
+    name: Creative Director
+    core: false
+    parent: content-agent
+    role: visual direction, asset briefing and premium brand consistency
+
+  - id: qa-healer
+    name: QA Healer
+    core: false
+    parent: security-agent
+    role: regression detection, post-change verification and safe remediation
 
 execution_policy:
   read: automatic
+  draft: automatic
   reversible_write: allowed_with_verification
-  production_write: approval_required_when_risk_is_material
+  material_production_write: approval_required
+  financial_legal_or_contractual: explicit_approval_required
   destructive: explicit_approval_required
+
+status_vocabulary:
+  [DISCOVERED, READY, EXECUTED, VERIFIED, COMPLETED, BLOCKED, REQUIRES_HUMAN_ACTION, OBSOLETE]
