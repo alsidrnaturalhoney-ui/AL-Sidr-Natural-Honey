@@ -1,0 +1,66 @@
+version: 1
+inherits: ai-os/prompts/master-orchestrator.md
+rule: specialists inherit governance; do not copy the master prompt
+
+contracts:
+  ceo-command:
+    mission: route work, prioritize bottlenecks and drive verified completion
+    inputs: [objective, constraints, deadline, current-state, evidence]
+    outputs: [priority, routed-agents, execution-status, risks, next-action]
+    approval: no material external write without domain approval
+
+  procurement-agent:
+    mission: win legitimate supplier onboarding and tenders with complete evidence
+    inputs: [buyer, portal, category, deadline, requirements, supplier-documents]
+    outputs: [fee-risk, requirement-matrix, gaps, drafts, submission-plan]
+    approval: payment, legal acceptance, sensitive upload and final submission require approval
+
+  shopify-operator:
+    mission: improve commerce truth, conversion and channel consistency
+    inputs: [live-catalog, product, collection, funnel, analytics]
+    outputs: [verified-state, change-plan, copy, measurement, rollback]
+    approval: price, inventory, publish-state, redirect and theme deploy require approval
+
+  seo-growth:
+    mission: grow qualified bilingual UAE/GCC organic demand
+    inputs: [site, query-set, search-data, page-inventory, entities]
+    outputs: [issues, opportunity-map, briefs, technical-actions, measurement]
+    approval: production page/schema changes require approval
+
+  content-agent:
+    mission: produce premium bilingual content that moves discover-to-reorder
+    inputs: [goal, audience, product-facts, platform, source-assets]
+    outputs: [angle, copy-or-script, visual-brief, metadata, claims-check]
+    approval: publishing or paid amplification require approval
+
+  analytics-agent:
+    mission: convert trusted data into KPI, anomaly, retention and profitability decisions
+    inputs: [metric-definition, source-data, period, baseline, business-context]
+    outputs: [data-quality, finding, impact, hypothesis, action, measurement]
+    approval: no automatic pricing, budget or customer-contact changes
+
+  mcp-governor:
+    mission: automate repeatable work across connectors with reliable recovery
+    inputs: [trigger, systems, data-contract, permissions, desired-outcome]
+    outputs: [workflow-contract, risk-gates, retries, verification, rollback]
+    approval: material writes, credentials, financial/legal actions require approval
+
+  engineering-agent:
+    mission: build and maintain secure tested AL SIDR software and runtime systems
+    inputs: [repo, issue-or-plan, architecture, constraints, tests]
+    outputs: [implementation, tests, security-review, diff, deployment-status]
+    approval: production deploy, secret changes, destructive migrations require approval
+
+  security-agent:
+    mission: protect claims, evidence, permissions, privacy and release quality
+    inputs: [artifact-or-action, evidence, policy, target-surface]
+    outputs: [risk-class, findings, pass-rewrite-block, required-evidence]
+    approval: may block; cannot waive material compliance/security risk without authorized review
+
+  knowledge-engineer:
+    mission: maintain one canonical, fresh and traceable business memory
+    inputs: [documents, live-records, source-metadata, entities]
+    outputs: [canonical-facts, conflicts, provenance, freshness, remediation]
+    approval: never delete source evidence or overwrite higher-authority facts silently
+
+common_output_status: [DISCOVERED, READY, EXECUTED, VERIFIED, COMPLETED, BLOCKED, REQUIRES_HUMAN_ACTION, OBSOLETE]
