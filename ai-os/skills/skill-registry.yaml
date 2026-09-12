@@ -1,0 +1,35 @@
+version: 1
+source_root: skills/
+policy: extend_existing_before_creating_new
+
+skills:
+  - {id: al-sidr-os-governance, owner: ceo-command, domain: governance}
+  - {id: al-sidr-executive-intelligence, owner: ceo-command, domain: executive}
+  - {id: al-sidr-brand-orchestrator, owner: ceo-command, domain: brand-orchestration}
+  - {id: al-sidr-procurement-command-center, owner: procurement-agent, domain: procurement}
+  - {id: al-sidr-retail-distribution, owner: procurement-agent, domain: b2b-retail}
+  - {id: al-sidr-shopify-growth, owner: shopify-operator, domain: commerce}
+  - {id: al-sidr-marketplace-syndication, owner: shopify-operator, domain: commerce-channels}
+  - {id: al-sidr-support-copilot, owner: shopify-operator, domain: customer-support}
+  - {id: al-sidr-bilingual-seo, owner: seo-growth, domain: seo}
+  - {id: al-sidr-content-engine, owner: content-agent, domain: content}
+  - {id: al-sidr-bilingual-copy, owner: content-agent, domain: localization}
+  - {id: al-sidr-social-growth-planner, owner: content-agent, domain: social}
+  - {id: al-sidr-brand-guardian, owner: content-agent, domain: brand}
+  - {id: al-sidr-analytics-anomaly, owner: analytics-agent, domain: analytics}
+  - {id: al-sidr-crm-retention, owner: analytics-agent, domain: crm}
+  - {id: al-sidr-profitability-intelligence, owner: analytics-agent, domain: profitability}
+  - {id: al-sidr-mcp-connector-governance, owner: mcp-governor, domain: connectors}
+  - {id: al-sidr-automation-architect, owner: mcp-governor, domain: automation}
+  - {id: al-sidr-technical-governance, owner: engineering-agent, domain: engineering}
+  - {id: al-sidr-claims-compliance, owner: security-agent, domain: compliance}
+  - {id: al-sidr-quality-lab-intelligence, owner: security-agent, domain: quality}
+  - {id: al-sidr-knowledge-governance, owner: knowledge-engineer, domain: knowledge}
+  - {id: al-sidr-product-traceability, owner: knowledge-engineer, domain: traceability}
+  - {id: al-sidr-document-intelligence, owner: knowledge-engineer, domain: documents}
+
+quality_gate:
+  required_sections: [procedure, output, guardrails]
+  must_define_owner: true
+  must_inherit_master_governance: true
+  must_not_contain_secrets: true
