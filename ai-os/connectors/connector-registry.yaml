@@ -1,0 +1,119 @@
+version: 1
+policy:
+  connection_state_is_runtime_fact: true
+  default_state: needs_verification
+  prefer_official_api_or_mcp: true
+  least_privilege: true
+  secrets_in_registry: forbidden
+  destructive_actions: explicit_approval_required
+
+connectors:
+  - id: shopify
+    authority: live_commerce
+    priority: core
+    capabilities: [catalog, collections, orders, inventory, customer-events, storefront]
+    write_risk: high
+  - id: github
+    authority: code_and_machine_governance
+    priority: core
+    capabilities: [repos, branches, pull-requests, code, ci-cd]
+    write_risk: high
+  - id: supabase
+    authority: app_runtime_and_audit_state
+    priority: core
+    capabilities: [postgres, auth, rls, vector, edge-functions, runtime-registries]
+    write_risk: high
+  - id: gitbook
+    authority: human_readable_operating_knowledge
+    priority: core
+    capabilities: [documentation, sop, architecture, change-requests]
+    write_risk: medium
+  - id: asana
+    authority: execution_backlog
+    priority: core
+    capabilities: [projects, tasks, status, owners, deadlines]
+    write_risk: medium
+  - id: google-drive
+    authority: business_documents_and_assets
+    priority: core
+    capabilities: [files, docs, sheets, slides, sharing]
+    write_risk: high
+  - id: gmail
+    authority: business_email_threads
+    priority: core
+    capabilities: [search, read, draft, send, label]
+    write_risk: high
+  - id: google-calendar
+    authority: schedule_and_deadlines
+    priority: core
+    capabilities: [events, availability, create, update, rsvp]
+    write_risk: medium
+  - id: airtable
+    authority: structured_operational_data_when_designated
+    priority: core
+    capabilities: [records, views, operational-databases]
+    write_risk: high
+  - id: notion
+    authority: workspace_knowledge_when_designated
+    priority: core
+    capabilities: [pages, databases, knowledge, dashboards]
+    write_risk: medium
+  - id: slack
+    authority: team_coordination_and_alerts
+    priority: recommended
+    capabilities: [channels, messages, alerts, files]
+    write_risk: medium
+  - id: klaviyo
+    authority: lifecycle_marketing
+    priority: recommended
+    capabilities: [profiles, consent, segments, campaigns, flows, analytics]
+    write_risk: high
+  - id: semrush
+    authority: seo_intelligence
+    priority: recommended
+    capabilities: [keywords, domains, backlinks, rankings]
+    write_risk: low
+  - id: conductor
+    authority: search_visibility_intelligence
+    priority: recommended
+    capabilities: [rankings, visibility, sentiment]
+    write_risk: low
+  - id: soluvery
+    authority: drive_permission_audit
+    priority: recommended
+    capabilities: [public-sharing-audit, access-audit, ownership-audit]
+    write_risk: medium
+  - id: adobe
+    authority: document_and_creative_production
+    priority: recommended
+    capabilities: [pdf, creative-assets, document-workflows]
+    write_risk: medium
+  - id: figma
+    authority: design_source_when_designated
+    priority: recommended
+    capabilities: [design-files, components, review]
+    write_risk: medium
+  - id: canva
+    authority: creative_production
+    priority: recommended
+    capabilities: [designs, resizing, brand-assets]
+    write_risk: medium
+  - id: n8n
+    authority: workflow_runtime_when_deployed
+    priority: recommended
+    capabilities: [workflows, webhooks, schedules, integrations]
+    write_risk: high
+  - id: social-platform-apis
+    authority: owned_social_channels
+    priority: recommended
+    capabilities: [instagram, facebook, threads, x, pinterest, youtube]
+    write_risk: high
+  - id: marketplace-apis
+    authority: channel_specific_listing_state
+    priority: conditional
+    capabilities: [amazon, noon, deliveroo, talabat, instashop, careem]
+    write_risk: high
+
+connection_check:
+  required_before_use: [identity, authenticated_account, scopes, read_test, write_scope_if_needed, secret_storage, rollback_or_recovery]
+  statuses: [needs_verification, connected_read_only, connected_write_limited, connected, degraded, disconnected]
