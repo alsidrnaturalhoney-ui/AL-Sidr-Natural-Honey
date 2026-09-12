@@ -15,6 +15,8 @@ into one governed operating layer.
 - `agents/agent-registry.yaml` — 10 core business agents plus specialist workers.
 - `skills/skill-registry.yaml` — machine-readable ownership for the reusable skill pack.
 - `capabilities/capability-matrix.yaml` — what the system is allowed and designed to do.
+- `tools/tool-registry.yaml` — deterministic/hybrid AI tools and their risk contracts.
+- `plugins/plugin-policy.yaml` — plugin selection, permission tiers and lifecycle rules.
 - `prompts/master-orchestrator.md` — parent execution protocol.
 - `prompts/specialist-contracts.yaml` — concise inherited role contracts.
 - `connectors/connector-registry.yaml` — provider capability and risk map; connection state must be verified at runtime.
