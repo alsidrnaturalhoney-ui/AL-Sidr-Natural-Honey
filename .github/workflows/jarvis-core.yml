@@ -1,0 +1,39 @@
+name: JARVIS Core Validate
+
+on:
+  push:
+    paths:
+      - 'packages/jarvis-core/**'
+      - 'ai-os/capabilities/runtime-registry.json'
+      - 'supabase/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.base.json'
+      - '.github/workflows/jarvis-core.yml'
+  pull_request:
+    paths:
+      - 'packages/jarvis-core/**'
+      - 'ai-os/capabilities/runtime-registry.json'
+      - 'supabase/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.base.json'
+      - '.github/workflows/jarvis-core.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-package-lock
+          path: package-lock.json
+          if-no-files-found: error
