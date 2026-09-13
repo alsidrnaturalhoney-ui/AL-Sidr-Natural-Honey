@@ -25,6 +25,27 @@ describe("JARVIS Core v1 contracts", () => {
     expect(() => ExecutionRequest.parse({ requestId: "r1" })).toThrow();
   });
 
+  it("requires granted permissions on actor context", () => {
+    expect(() => ExecutionRequest.parse({
+      requestId: "r1",
+      correlationId: "c1",
+      actor: {
+        id: "user-1",
+        sessionId: "session-1",
+        authenticated: true,
+        authStrength: 1,
+      },
+      source: "chat",
+      requestedOutcome: "Read system health",
+      target: "system",
+      capability: "system.health.read",
+      operation: "read",
+      arguments: {},
+      confidence: 1,
+      timestamp: "2026-09-13T13:45:00.000Z",
+    })).toThrow();
+  });
+
   it("requires a verification strategy on capability manifests", () => {
     expect(() => CapabilityManifest.parse({
       name: "system.health.read",
