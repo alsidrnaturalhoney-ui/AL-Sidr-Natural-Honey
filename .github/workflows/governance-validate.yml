@@ -1,0 +1,25 @@
+name: Governance Validate
+
+on:
+  push:
+    paths:
+      - 'config/**'
+      - 'brand-system/knowledge-base/**'
+      - 'scripts/validate-governance.mjs'
+      - '.github/workflows/governance-validate.yml'
+  pull_request:
+    paths:
+      - 'config/**'
+      - 'brand-system/knowledge-base/**'
+      - 'scripts/validate-governance.mjs'
+      - '.github/workflows/governance-validate.yml'
+
+jobs:
+  validate-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/validate-governance.mjs

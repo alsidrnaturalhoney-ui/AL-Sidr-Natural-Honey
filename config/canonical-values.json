@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "brand": {
     "name": "AL SIDR Natural Honey",
     "origin": "UAE",
@@ -18,7 +18,15 @@
     "hero_sku": "Yemen Sidr Osaimy 250g",
     "hero_price_aed": 125,
     "target_aov_aed": 450,
-    "free_delivery_threshold_aed": 250
+    "free_delivery_threshold_aed": 250,
+    "flat_delivery_fee_below_threshold_aed": 20,
+    "delivery_rule": "Free UAE Delivery over AED 250 | Flat AED 20 below AED 250"
+  },
+  "localization": {
+    "primary_market": "UAE",
+    "currency": "AED",
+    "locales": ["en-AE", "ar-AE"],
+    "arabic_path_prefix": "/ar/"
   },
   "revenue": {
     "monthly_target_aed": 1000000,
@@ -27,7 +35,9 @@
   },
   "governance": {
     "claim_model": "evidence_backed_three_tier",
-    "production_lifecycle": ["generate", "validate", "diff", "approve", "execute"],
-    "canonical_promotion_source": "config/promotions.json"
+    "production_lifecycle": ["generate", "validate", "diff", "approve", "execute", "verify"],
+    "canonical_promotion_source": "config/promotions.json",
+    "medical_claims_allowed": false,
+    "obsolete_authority_names_allowed": false
   }
 }
