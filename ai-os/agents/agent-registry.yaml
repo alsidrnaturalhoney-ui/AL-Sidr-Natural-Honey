@@ -1,5 +1,6 @@
-version: 2
+version: 3
 parent_prompt: ai-os/prompts/master-orchestrator.md
+control_center: AL SIDR Business OS Control Center
 
 agents:
   - id: ceo-command
@@ -39,10 +40,10 @@ agents:
     owns: [analytics, anomalies, experiments, crm-retention, profitability]
 
   - id: mcp-governor
-    name: Automation Agent
+    name: Automation & Connector Agent
     core: true
-    role: workflows, MCP, APIs, webhooks, connector health, retries, idempotency and orchestration
-    owns: [automation, mcp, connectors, webhooks, integration-health]
+    role: workflows, MCP, APIs, webhooks, connector health, retries, idempotency, capability discovery and orchestration
+    owns: [automation, mcp, connectors, webhooks, integration-health, capability-registry, health-checks]
 
   - id: engineering-agent
     name: Engineering Agent
@@ -74,6 +75,74 @@ agents:
     parent: security-agent
     role: regression detection, post-change verification and safe remediation
 
+connector_registry:
+  - id: shopify
+    class: commerce
+    owner: shopify-operator
+    mode: governed-read-write
+    capabilities: [shop-info, catalog, inventory, orders, customers, metafields, metaobjects, admin-graphql, storefront-api, liquid, functions, webhooks, app-extensions, mcp]
+    health: connected
+
+  - id: github
+    class: engineering
+    owner: engineering-agent
+    mode: governed-read-write
+    capabilities: [repositories, branches, files, pull-requests, issues, workflows, releases, code-search]
+    health: connected
+
+  - id: supabase
+    class: data-runtime
+    owner: engineering-agent
+    mode: governed-read-write
+    capabilities: [postgres, auth, rls, storage, realtime, edge-functions, vectors, cron, queues, database-webhooks, mcp]
+    health: connected-security-hardening-required
+
+  - id: quicknode
+    class: blockchain-infrastructure
+    owner: mcp-governor
+    mode: discover-before-use
+    capabilities: [endpoints, chains, rpc, logs, usage, security, rate-limits, billing]
+    health: connected-limited
+    blocker: current credential cannot enable Tooling Access; administrator credential required
+
+  - id: shopify-app-builder
+    class: engineering-capability
+    owner: engineering-agent
+    mode: design-build-verify
+    capabilities: [admin-graphql, auth, app-bridge, polaris, storefront-api, liquid-themes, functions, webhooks, metafields-metaobjects, b2b-markets, performance, accessibility, mcp]
+    health: available
+
+  - id: codebase-design
+    class: architecture-capability
+    owner: engineering-agent
+    mode: review-before-refactor
+    capabilities: [architecture-scan, deep-modules, seams, adapters, locality, leverage, testability]
+    health: available
+
+capability_layers:
+  control_plane: [command-routing, approvals, execution-status, audit-trail, health-monitoring]
+  commerce: [shopify-admin, storefront, catalog, inventory, cro, b2b, markets, checkout-customization]
+  intelligence: [knowledge-retrieval, vector-search, analytics, anomaly-detection, experiments, recommendations]
+  automation: [mcp, webhooks, workflows, retries, idempotency, scheduled-jobs, queues]
+  engineering: [git, pull-requests, ci-cd, schema-migrations, testing, release-gates, architecture-review]
+  security: [rls, least-privilege, secret-isolation, approval-gates, audit-logs, regression-qa]
+  experience: [polaris, app-bridge, accessibility, performance, responsive-admin-ui, command-palette]
+
+control_center_features:
+  - connector-health-dashboard
+  - capability-discovery-and-registry
+  - agent-and-skill-registry
+  - approval-inbox
+  - execution-run-history
+  - audit-and-security-center
+  - Shopify-commerce-command-center
+  - workflow-and-webhook-monitor
+  - knowledge-search-and-source-traceability
+  - KPI-and-anomaly-center
+  - deployment-and-release-status
+  - bilingual-governance-checks
+  - safe-self-healing-queue
+
 execution_policy:
   read: automatic
   draft: automatic
@@ -81,6 +150,15 @@ execution_policy:
   material_production_write: approval_required
   financial_legal_or_contractual: explicit_approval_required
   destructive: explicit_approval_required
+
+security_policy:
+  secrets: never_commit_or_log
+  scopes: least_privilege
+  exposed_database_tables: rls_required
+  authorization_metadata: app_metadata_only
+  service_role: server_side_only
+  webhook_signatures: verify_raw_body
+  external_connector_actions: verify_result
 
 status_vocabulary:
   [DISCOVERED, READY, EXECUTED, VERIFIED, COMPLETED, BLOCKED, REQUIRES_HUMAN_ACTION, OBSOLETE]
