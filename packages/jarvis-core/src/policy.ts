@@ -1,30 +1,102 @@
-import { LegacyActionRequest, LegacyPolicyDecision } from "./contracts.js";
+import {
+  ActionPlanStep,
+  CapabilityManifest,
+  ExecutionRequest,
+  PolicyDecision,
+} from "./contracts.js";
 
-const rank: Record<LegacyActionRequest["risk"], number> = {
-  R0: 0,
-  R1: 1,
-  R2: 2,
-  R3: 3,
-};
+function deny(requestId: string, stepId: string, reason: string): PolicyDecision {
+  return { requestId, stepId, decision: "DENY", reason };
+}
 
-export function evaluatePolicy(input: LegacyActionRequest): LegacyPolicyDecision {
+export function evaluatePolicy(
+  inputRequest: ExecutionRequest,
+  inputStep: ActionPlanStep,
+  inputCapability: CapabilityManifest,
+): PolicyDecision {
+  let requestId = "unknown";
+  let stepId = "unknown";
+
   try {
-    const request = LegacyActionRequest.parse(input);
-    const missingPermission = request.risk !== "R0" && request.permissions.length === 0;
-    const missingEvidence = request.risk !== "R0" && request.evidence.length === 0;
-    const riskRank = rank[request.risk];
-    const highRisk = riskRank >= 3;
-    const missingApproval = highRisk && !request.approvalReference;
-    const missingRollback = highRisk && !request.rollbackReference;
+    const request = ExecutionRequest.parse(inputRequest);
+    const step = ActionPlanStep.parse(inputStep);
+    const capability = CapabilityManifest.parse(inputCapability);
+    requestId = request.requestId;
+    stepId = step.stepId;
 
-    if (missingPermission) return { decision: "BLOCK", reason: "Missing permission", requestId: request.requestId };
-    if (missingEvidence) return { decision: "REVIEW", reason: "Required evidence is missing", requestId: request.requestId };
-    if (missingApproval) return { decision: "REVIEW", reason: "Explicit approval is required", requestId: request.requestId };
-    if (missingRollback) return { decision: "BLOCK", reason: "Rollback reference is required for high-risk mutation", requestId: request.requestId };
-
-    const decision: LegacyPolicyDecision["decision"] = request.risk === "R2" ? "REVIEW" : "ALLOW";
-    return { decision, reason: "Policy prerequisites satisfied", requestId: request.requestId };
-  } catch (error) {
-    return { decision: "BLOCK", reason: error instanceof Error ? error.message : "Invalid policy request", requestId: "unknown" };
+    if (request.capability !== capability.name) {
+      return deny(requestId, stepId, "request_capability_mismatch");
+    }
+    if (step.capability !== capability.name) {
+      return deny(requestId, stepId, "step_capability_mismatch");
+    }
+    if (
+      !capability.allowedOperations.includes(request.operation) ||
+      !capability.allowedOperations.includes(step.operation)
+    ) {
+      return deny(requestId, stepId, "operation_not_allowed");
+    }
+    const missingPermission = capability.requiredPermissions.find(
+      (permission) => !request.actor.permissions.includes(permission),
+    );
+    if (missingPermission) {
+      return deny(requestId, stepId, "missing_permission");
+    }
+    if (capability.requiresEvidence && step.evidence.length === 0) {
+      return deny(requestId, stepId, "missing_evidence");
+    }
+    if (!request.actor.authenticated && capability.risk !== "R0") {
+      return deny(requestId, stepId, "authentication_required");
+    }
+    if (request.actor.authStrength < capability.minimumAuthStrength) {
+      return deny(requestId, stepId, "strong_auth_required");
+    }
+    if (capability.requiresRollback && !step.rollbackReference) {
+      return deny(requestId, stepId, "rollback_required");
+    }
+    if (capability.confirmation === "always" && !step.approvalReference) {
+      return {
+        requestId,
+        stepId,
+        decision: "REQUIRE_CONFIRMATION",
+        reason: "approval_required",
+      };
+    }
+    if (
+      capability.confirmation === "risk-default" &&
+      (capability.risk === "R2" || capability.risk === "R3") &&
+      !step.approvalReference
+    ) {
+      return {
+        requestId,
+        stepId,
+        decision: "REQUIRE_CONFIRMATION",
+        reason: "approval_required",
+      };
+    }
+    if (capability.risk === "R0") {
+      return {
+        requestId,
+        stepId,
+        decision: "ALLOW",
+        reason: "policy_prerequisites_satisfied",
+      };
+    }
+    if (capability.risk === "R1") {
+      return {
+        requestId,
+        stepId,
+        decision: "ALLOW_NOTIFY",
+        reason: "policy_prerequisites_satisfied",
+      };
+    }
+    return {
+      requestId,
+      stepId,
+      decision: "ALLOW",
+      reason: "policy_prerequisites_satisfied",
+    };
+  } catch {
+    return deny(requestId, stepId, "invalid_policy_request");
   }
 }
