@@ -25,6 +25,7 @@ export const ActorContext = z.object({
   sessionId: z.string().min(1),
   authenticated: z.boolean(),
   authStrength: z.number().int().min(0).max(3),
+  permissions: z.array(z.string().min(1)),
 });
 
 export const ExecutionRequest = z.object({
