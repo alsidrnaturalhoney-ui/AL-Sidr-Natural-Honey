@@ -1,4 +1,4 @@
-import { ActionRequest, Decision, PolicyDecision } from "./contracts";
+import { ActionRequest, Decision, PolicyDecision } from "./contracts.js";
 
 const rank: Record<ActionRequest["risk"], number> = { R0: 0, R1: 1, R2: 2, R3: 3, R4: 4, R5: 5 };
 
@@ -7,9 +7,10 @@ export function evaluatePolicy(input: ActionRequest): PolicyDecision {
     const request = ActionRequest.parse(input);
     const missingPermission = request.risk !== "R0" && request.permissions.length === 0;
     const missingEvidence = request.risk !== "R0" && request.evidence.length === 0;
-    const highRisk = rank[request.risk] >= 3;
+    const riskRank = rank[request.risk]!;
+    const highRisk = riskRank >= 3;
     const missingApproval = highRisk && !request.approvalReference;
-    const missingRollback = rank[request.risk] >= 3 && !request.rollbackReference;
+    const missingRollback = riskRank >= 3 && !request.rollbackReference;
 
     if (missingPermission) return { decision: "BLOCK", reason: "Missing permission", requestId: request.requestId };
     if (missingEvidence) return { decision: "REVIEW", reason: "Required evidence is missing", requestId: request.requestId };
