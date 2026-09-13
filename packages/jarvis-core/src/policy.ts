@@ -1,4 +1,4 @@
-import { ActionRequest, Decision, PolicyDecision } from "./contracts.js";
+import { ActionRequest, PolicyDecision } from "./contracts.js";
 
 const rank: Record<ActionRequest["risk"], number> = { R0: 0, R1: 1, R2: 2, R3: 3, R4: 4, R5: 5 };
 
@@ -17,7 +17,7 @@ export function evaluatePolicy(input: ActionRequest): PolicyDecision {
     if (missingApproval) return { decision: "REVIEW", reason: "Explicit approval is required", requestId: request.requestId };
     if (missingRollback) return { decision: "BLOCK", reason: "Rollback reference is required for high-risk mutation", requestId: request.requestId };
 
-    const decision: Decision = request.risk === "R2" ? "REVIEW" : "ALLOW";
+    const decision: PolicyDecision["decision"] = request.risk === "R2" ? "REVIEW" : "ALLOW";
     return { decision, reason: "Policy prerequisites satisfied", requestId: request.requestId };
   } catch (error) {
     return { decision: "BLOCK", reason: error instanceof Error ? error.message : "Invalid policy request", requestId: "unknown" };
