@@ -39,15 +39,24 @@ export function createGovernedConnectorAdapter(input: {
         throw new Error(gate.reason);
       }
 
+      const idempotencyKey = input.idempotencyKey?.(context.request);
+      const metadata = idempotencyKey
+        ? {
+            requestId: context.request.requestId,
+            correlationId: context.request.correlationId,
+            target: context.step.target,
+            idempotencyKey,
+          }
+        : {
+            requestId: context.request.requestId,
+            correlationId: context.request.correlationId,
+            target: context.step.target,
+          };
+
       return input.client.invoke(
         context.step.operation,
         context.step.arguments,
-        {
-          requestId: context.request.requestId,
-          correlationId: context.request.correlationId,
-          target: context.step.target,
-          idempotencyKey: input.idempotencyKey?.(context.request),
-        },
+        metadata,
       );
     },
   };
