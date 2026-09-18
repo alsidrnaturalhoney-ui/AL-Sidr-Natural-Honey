@@ -1,0 +1,1262 @@
+[
+  {
+    "id": "intent-route",
+    "version": "1.0.0",
+    "purpose": "Route requests to the correct authority, agent and capability.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "system.health.read",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "evidence-gate",
+    "version": "1.0.0",
+    "purpose": "Require evidence and provenance before consequential execution.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "knowledge.read",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "authority-resolve",
+    "version": "1.0.0",
+    "purpose": "Resolve the canonical source of truth for each field/domain.",
+    "ownerAgent": "agent.governance",
+    "capability": "knowledge.read",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "risk-classify",
+    "version": "1.0.0",
+    "purpose": "Classify requested actions R0-R3 and select approval policy.",
+    "ownerAgent": "agent.governance",
+    "capability": "knowledge.read",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "claim-check",
+    "version": "1.0.0",
+    "purpose": "Validate marketing/product claims against governed evidence.",
+    "ownerAgent": "agent.governance",
+    "capability": "knowledge.read",
+    "authorityDomain": "compliance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "catalog-audit",
+    "version": "1.0.0",
+    "purpose": "Audit products, variants, metadata, images and merchandising gaps.",
+    "ownerAgent": "agent.commerce",
+    "capability": "knowledge.read",
+    "authorityDomain": "commerce",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "product-page-optimize",
+    "version": "1.0.0",
+    "purpose": "Generate CRO/SEO improvements for product pages.",
+    "ownerAgent": "agent.commerce",
+    "capability": "internal.task.create",
+    "authorityDomain": "commerce",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "structured-data",
+    "version": "1.0.0",
+    "purpose": "Generate and validate Product/FAQ/Organization structured data.",
+    "ownerAgent": "agent.seo",
+    "capability": "internal.task.create",
+    "authorityDomain": "seo",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "technical-seo",
+    "version": "1.0.0",
+    "purpose": "Audit crawlability, metadata, hreflang, speed and indexability.",
+    "ownerAgent": "agent.seo",
+    "capability": "knowledge.read",
+    "authorityDomain": "seo",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "entity-optimize",
+    "version": "1.0.0",
+    "purpose": "Strengthen UAE entity graph and answer-engine signals.",
+    "ownerAgent": "agent.seo",
+    "capability": "internal.task.create",
+    "authorityDomain": "seo",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "bilingual-copy",
+    "version": "1.0.0",
+    "purpose": "Generate governed English/Arabic commercial content.",
+    "ownerAgent": "agent.content",
+    "capability": "internal.task.create",
+    "authorityDomain": "content",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "faq-generate",
+    "version": "1.0.0",
+    "purpose": "Build concise FAQs from verified customer/search questions.",
+    "ownerAgent": "agent.content",
+    "capability": "internal.task.create",
+    "authorityDomain": "content",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "art-direction",
+    "version": "1.0.0",
+    "purpose": "Create premium visual briefs aligned with the AL SIDR design system.",
+    "ownerAgent": "agent.visual",
+    "capability": "internal.task.create",
+    "authorityDomain": "design",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "visual-qa",
+    "version": "1.0.0",
+    "purpose": "Check creative assets against packaging, brand and authenticity rules.",
+    "ownerAgent": "agent.visual",
+    "capability": "knowledge.read",
+    "authorityDomain": "design",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "social-calendar",
+    "version": "1.0.0",
+    "purpose": "Plan cross-platform content and social commerce sequences.",
+    "ownerAgent": "agent.social",
+    "capability": "internal.task.create",
+    "authorityDomain": "social",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "publish-approval",
+    "version": "1.0.0",
+    "purpose": "Prepare publish actions but require explicit approval before external posting.",
+    "ownerAgent": "agent.social",
+    "capability": "external.content.publish",
+    "authorityDomain": "social",
+    "risk": "R2",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "always",
+    "rollback": "required",
+    "enabled": true
+  },
+  {
+    "id": "segment-design",
+    "version": "1.0.0",
+    "purpose": "Design CRM segments from governed customer and commerce data.",
+    "ownerAgent": "agent.crm",
+    "capability": "internal.task.create",
+    "authorityDomain": "crm",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "flow-audit",
+    "version": "1.0.0",
+    "purpose": "Audit abandoned cart, win-back and post-purchase lifecycle flows.",
+    "ownerAgent": "agent.crm",
+    "capability": "knowledge.read",
+    "authorityDomain": "crm",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "faq-answer",
+    "version": "1.0.0",
+    "purpose": "Answer customers from approved product, shipping and policy facts.",
+    "ownerAgent": "agent.cx",
+    "capability": "knowledge.read",
+    "authorityDomain": "customer-service",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "b2b-qualify",
+    "version": "1.0.0",
+    "purpose": "Qualify wholesale/HORECA/corporate inquiries and route next actions.",
+    "ownerAgent": "agent.retail",
+    "capability": "internal.task.create",
+    "authorityDomain": "b2b",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "proposal-compose",
+    "version": "1.0.0",
+    "purpose": "Create procurement-ready B2B proposals from governed facts.",
+    "ownerAgent": "agent.retail",
+    "capability": "internal.task.create",
+    "authorityDomain": "b2b",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "supplier-check",
+    "version": "1.0.0",
+    "purpose": "Verify procurement entities, portals, requirements and suspicious requests.",
+    "ownerAgent": "agent.procurement",
+    "capability": "knowledge.read",
+    "authorityDomain": "procurement",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "kpi-brief",
+    "version": "1.0.0",
+    "purpose": "Produce CEO KPI briefs with source, period and uncertainty.",
+    "ownerAgent": "agent.analytics",
+    "capability": "knowledge.read",
+    "authorityDomain": "analytics",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "anomaly-detect",
+    "version": "1.0.0",
+    "purpose": "Detect material KPI anomalies and create review work items.",
+    "ownerAgent": "agent.analytics",
+    "capability": "internal.task.create",
+    "authorityDomain": "analytics",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "knowledge-ingest",
+    "version": "1.0.0",
+    "purpose": "Normalize knowledge with provenance, authority and freshness metadata.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "internal.task.create",
+    "authorityDomain": "knowledge",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "deduplicate",
+    "version": "1.0.0",
+    "purpose": "Merge duplicate facts and preserve aliases/history without losing provenance.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "internal.task.create",
+    "authorityDomain": "knowledge",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "workflow-design",
+    "version": "1.0.0",
+    "purpose": "Generate idempotent automations with retry, DLQ and rollback contracts.",
+    "ownerAgent": "agent.automation",
+    "capability": "internal.task.create",
+    "authorityDomain": "automation",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "webhook-verify",
+    "version": "1.0.0",
+    "purpose": "Validate webhook signatures, event ids, timestamps and replay handling.",
+    "ownerAgent": "agent.automation",
+    "capability": "knowledge.read",
+    "authorityDomain": "automation",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "code-build",
+    "version": "1.0.0",
+    "purpose": "Implement typed, testable code on governed branches.",
+    "ownerAgent": "agent.engineering",
+    "capability": "internal.task.create",
+    "authorityDomain": "engineering",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "release-plan",
+    "version": "1.0.0",
+    "purpose": "Prepare release, rollback and verification plans for deployments.",
+    "ownerAgent": "agent.engineering",
+    "capability": "critical.security.change",
+    "authorityDomain": "engineering",
+    "risk": "R3",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "always",
+    "rollback": "required",
+    "enabled": true
+  },
+  {
+    "id": "security-review",
+    "version": "1.0.0",
+    "purpose": "Review auth, RLS, secrets, injection, privacy and permissions.",
+    "ownerAgent": "agent.security",
+    "capability": "knowledge.read",
+    "authorityDomain": "security",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "rls-audit",
+    "version": "1.0.0",
+    "purpose": "Verify exposed database objects are least-privilege and RLS protected.",
+    "ownerAgent": "agent.security",
+    "capability": "critical.security.change",
+    "authorityDomain": "security",
+    "risk": "R3",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "always",
+    "rollback": "required",
+    "enabled": true
+  },
+  {
+    "id": "independent-verify",
+    "version": "1.0.0",
+    "purpose": "Verify post-action state through a separate read path.",
+    "ownerAgent": "agent.security",
+    "capability": "audit.read",
+    "authorityDomain": "security",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "stock-risk",
+    "version": "1.0.0",
+    "purpose": "Detect inventory risk and prepare replenishment/rebalancing proposals.",
+    "ownerAgent": "agent.inventory",
+    "capability": "knowledge.read",
+    "authorityDomain": "inventory",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "opportunity-scan",
+    "version": "1.0.0",
+    "purpose": "Find evidence-backed growth and capability opportunities.",
+    "ownerAgent": "agent.opportunity",
+    "capability": "knowledge.read",
+    "authorityDomain": "research",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "work-item-create",
+    "version": "1.0.0",
+    "purpose": "Convert verified findings into governed Asana/Linear tasks.",
+    "ownerAgent": "agent.opportunity",
+    "capability": "internal.task.create",
+    "authorityDomain": "execution",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "noon-listing",
+    "version": "1.0.0",
+    "purpose": "Generate Noon-compliant product listing fields from canonical catalog facts.",
+    "ownerAgent": "agent.marketplaces",
+    "capability": "internal.task.create",
+    "authorityDomain": "marketplaces",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "amazon-listing",
+    "version": "1.0.0",
+    "purpose": "Generate Amazon UAE listing mappings from canonical catalog facts.",
+    "ownerAgent": "agent.marketplaces",
+    "capability": "internal.task.create",
+    "authorityDomain": "marketplaces",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "feed-normalize",
+    "version": "1.0.0",
+    "purpose": "Normalize marketplace/feed fields without mutating canonical Shopify data.",
+    "ownerAgent": "agent.marketplaces",
+    "capability": "internal.task.create",
+    "authorityDomain": "marketplaces",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "claim-sanitize",
+    "version": "1.0.0",
+    "purpose": "Remove or rewrite unverified medical/curative claims before syndication.",
+    "ownerAgent": "agent.marketplaces",
+    "capability": "knowledge.read",
+    "authorityDomain": "compliance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "plan-compose",
+    "version": "1.0.0",
+    "purpose": "Compose deterministic executable plans from governed intent and context.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "internal.task.create",
+    "authorityDomain": "governance",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "approval-route",
+    "version": "1.0.0",
+    "purpose": "Route gated steps to the correct approval boundary without executing them.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "knowledge.read",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "policy-evaluate",
+    "version": "1.0.0",
+    "purpose": "Evaluate risk, permission, evidence and approval policy.",
+    "ownerAgent": "agent.governance",
+    "capability": "knowledge.read",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "cro-audit",
+    "version": "1.0.0",
+    "purpose": "Audit storefront conversion friction, trust and merchandising gaps.",
+    "ownerAgent": "agent.commerce",
+    "capability": "knowledge.read",
+    "authorityDomain": "commerce",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "shipping-policy-check",
+    "version": "1.0.0",
+    "purpose": "Validate shipping copy and checkout rules against canonical policy.",
+    "ownerAgent": "agent.commerce",
+    "capability": "knowledge.read",
+    "authorityDomain": "commerce",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "keyword-map",
+    "version": "1.0.0",
+    "purpose": "Map verified search intents to pages, collections and content.",
+    "ownerAgent": "agent.seo",
+    "capability": "internal.task.create",
+    "authorityDomain": "seo",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "schema-audit",
+    "version": "1.0.0",
+    "purpose": "Audit structured data completeness and conflicts.",
+    "ownerAgent": "agent.seo",
+    "capability": "knowledge.read",
+    "authorityDomain": "seo",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "internal-linking",
+    "version": "1.0.0",
+    "purpose": "Design internal-link changes from entity and intent relationships.",
+    "ownerAgent": "agent.seo",
+    "capability": "internal.task.create",
+    "authorityDomain": "seo",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "hreflang-check",
+    "version": "1.0.0",
+    "purpose": "Validate bilingual locale/hreflang coverage.",
+    "ownerAgent": "agent.seo",
+    "capability": "knowledge.read",
+    "authorityDomain": "seo",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "content-calendar",
+    "version": "1.0.0",
+    "purpose": "Build governed channel calendars from approved campaigns and assets.",
+    "ownerAgent": "agent.content",
+    "capability": "internal.task.create",
+    "authorityDomain": "content",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "product-story",
+    "version": "1.0.0",
+    "purpose": "Draft product storytelling from verified origin, taste and usage facts.",
+    "ownerAgent": "agent.content",
+    "capability": "internal.task.create",
+    "authorityDomain": "content",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "storyboard",
+    "version": "1.0.0",
+    "purpose": "Create production-ready visual/video storyboards.",
+    "ownerAgent": "agent.visual",
+    "capability": "internal.task.create",
+    "authorityDomain": "design",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "asset-spec",
+    "version": "1.0.0",
+    "purpose": "Specify dimensions, copy zones, packaging fidelity and channel requirements.",
+    "ownerAgent": "agent.visual",
+    "capability": "internal.task.create",
+    "authorityDomain": "design",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "channel-adapt",
+    "version": "1.0.0",
+    "purpose": "Adapt approved content to platform constraints without changing claims.",
+    "ownerAgent": "agent.social",
+    "capability": "internal.task.create",
+    "authorityDomain": "social",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "caption-generate",
+    "version": "1.0.0",
+    "purpose": "Generate bilingual channel-ready captions from approved facts.",
+    "ownerAgent": "agent.social",
+    "capability": "internal.task.create",
+    "authorityDomain": "social",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "utm-plan",
+    "version": "1.0.0",
+    "purpose": "Generate consistent campaign tracking parameters and naming.",
+    "ownerAgent": "agent.social",
+    "capability": "internal.task.create",
+    "authorityDomain": "social",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "email-copy",
+    "version": "1.0.0",
+    "purpose": "Draft lifecycle email copy without sending.",
+    "ownerAgent": "agent.crm",
+    "capability": "internal.task.create",
+    "authorityDomain": "crm",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "retention-analysis",
+    "version": "1.0.0",
+    "purpose": "Analyze retention, cohort and lifecycle performance.",
+    "ownerAgent": "agent.crm",
+    "capability": "knowledge.read",
+    "authorityDomain": "crm",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "product-guide",
+    "version": "1.0.0",
+    "purpose": "Guide product discovery from verified catalog facts.",
+    "ownerAgent": "agent.cx",
+    "capability": "knowledge.read",
+    "authorityDomain": "customer-service",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "order-triage",
+    "version": "1.0.0",
+    "purpose": "Classify order/support issues and route them without unauthorized order mutation.",
+    "ownerAgent": "agent.cx",
+    "capability": "internal.task.create",
+    "authorityDomain": "customer-service",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "lead-qualify",
+    "version": "1.0.0",
+    "purpose": "Qualify B2B leads from verified need, volume, channel and fit.",
+    "ownerAgent": "agent.retail",
+    "capability": "internal.task.create",
+    "authorityDomain": "retail",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "coverage-gap",
+    "version": "1.0.0",
+    "purpose": "Identify geographic/account coverage gaps.",
+    "ownerAgent": "agent.retail",
+    "capability": "internal.task.create",
+    "authorityDomain": "retail",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "account-plan",
+    "version": "1.0.0",
+    "purpose": "Build evidence-backed retail/B2B account plans.",
+    "ownerAgent": "agent.retail",
+    "capability": "internal.task.create",
+    "authorityDomain": "retail",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "portal-verify",
+    "version": "1.0.0",
+    "purpose": "Verify official procurement portals and organizational identity.",
+    "ownerAgent": "agent.procurement",
+    "capability": "knowledge.read",
+    "authorityDomain": "procurement",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "document-gap",
+    "version": "1.0.0",
+    "purpose": "Compare procurement requirements with available controlled documents.",
+    "ownerAgent": "agent.procurement",
+    "capability": "knowledge.read",
+    "authorityDomain": "procurement",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "fraud-signal",
+    "version": "1.0.0",
+    "purpose": "Flag suspicious procurement/payment patterns for human review.",
+    "ownerAgent": "agent.procurement",
+    "capability": "knowledge.read",
+    "authorityDomain": "procurement",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "funnel-analysis",
+    "version": "1.0.0",
+    "purpose": "Analyze acquisition-to-purchase funnel performance.",
+    "ownerAgent": "agent.analytics",
+    "capability": "knowledge.read",
+    "authorityDomain": "analytics",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "forecast-input",
+    "version": "1.0.0",
+    "purpose": "Prepare source-labeled forecasting inputs without inventing future outcomes.",
+    "ownerAgent": "agent.analytics",
+    "capability": "knowledge.read",
+    "authorityDomain": "analytics",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "source-rank",
+    "version": "1.0.0",
+    "purpose": "Rank knowledge sources by authority, recency and verification.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "knowledge.read",
+    "authorityDomain": "knowledge",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "rag-retrieve",
+    "version": "1.0.0",
+    "purpose": "Retrieve provenance-preserving context from approved knowledge.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "knowledge.read",
+    "authorityDomain": "knowledge",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "staleness-check",
+    "version": "1.0.0",
+    "purpose": "Detect stale or conflicting knowledge before use.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "knowledge.read",
+    "authorityDomain": "knowledge",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "idempotency",
+    "version": "1.0.0",
+    "purpose": "Validate mutation/event idempotency strategy.",
+    "ownerAgent": "agent.automation",
+    "capability": "knowledge.read",
+    "authorityDomain": "automation",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "retry-dlq",
+    "version": "1.0.0",
+    "purpose": "Design bounded retry and dead-letter handling for workflows.",
+    "ownerAgent": "agent.automation",
+    "capability": "internal.task.create",
+    "authorityDomain": "automation",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "sync-plan",
+    "version": "1.0.0",
+    "purpose": "Design one-way or governed sync contracts between systems.",
+    "ownerAgent": "agent.automation",
+    "capability": "internal.task.create",
+    "authorityDomain": "automation",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "test-gate",
+    "version": "1.0.0",
+    "purpose": "Evaluate test evidence before release progression.",
+    "ownerAgent": "agent.engineering",
+    "capability": "knowledge.read",
+    "authorityDomain": "engineering",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ci-review",
+    "version": "1.0.0",
+    "purpose": "Review CI results, failures and release blockers.",
+    "ownerAgent": "agent.engineering",
+    "capability": "knowledge.read",
+    "authorityDomain": "engineering",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "migration-plan",
+    "version": "1.0.0",
+    "purpose": "Prepare reversible database migration and verification plans.",
+    "ownerAgent": "agent.engineering",
+    "capability": "internal.task.create",
+    "authorityDomain": "engineering",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "secret-scan",
+    "version": "1.0.0",
+    "purpose": "Check code/config changes for credential or secret exposure.",
+    "ownerAgent": "agent.security",
+    "capability": "knowledge.read",
+    "authorityDomain": "security",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "privacy-check",
+    "version": "1.0.0",
+    "purpose": "Check data flows and outputs for privacy/least-privilege violations.",
+    "ownerAgent": "agent.security",
+    "capability": "knowledge.read",
+    "authorityDomain": "security",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "reorder-signal",
+    "version": "1.0.0",
+    "purpose": "Generate replenishment signals from verified stock and policy thresholds.",
+    "ownerAgent": "agent.inventory",
+    "capability": "internal.task.create",
+    "authorityDomain": "inventory",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "allocation-plan",
+    "version": "1.0.0",
+    "purpose": "Prepare non-executing stock allocation/rebalancing plans.",
+    "ownerAgent": "agent.inventory",
+    "capability": "internal.task.create",
+    "authorityDomain": "inventory",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "supplier-gap",
+    "version": "1.0.0",
+    "purpose": "Identify supply, lead-time and sourcing evidence gaps.",
+    "ownerAgent": "agent.inventory",
+    "capability": "knowledge.read",
+    "authorityDomain": "inventory",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "competitor-research",
+    "version": "1.0.0",
+    "purpose": "Collect and summarize public competitive evidence.",
+    "ownerAgent": "agent.opportunity",
+    "capability": "knowledge.read",
+    "authorityDomain": "research",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "gap-analysis",
+    "version": "1.0.0",
+    "purpose": "Compare current capability/state with target requirements.",
+    "ownerAgent": "agent.opportunity",
+    "capability": "knowledge.read",
+    "authorityDomain": "research",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  }
+]
