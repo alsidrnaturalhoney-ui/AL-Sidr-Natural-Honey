@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import { createAuthorityRegistryFromConfig } from "../src/authority.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "../../..");
@@ -33,6 +34,7 @@ const agents = readJson<Agent[]>("ai-os/agents/master-registry.json");
 const skills = readJson<Skill[]>("ai-os/skills/master-registry.json");
 const connectors = readJson<Connector[]>("config/connectors-registry.json");
 const capabilities = readJson<Capability[]>("ai-os/capabilities/runtime-registry.json");
+const authorityConfig = readJson<unknown>("config/authority-registry.json");
 const riskRank = { R0: 0, R1: 1, R2: 2, R3: 3 } as const;
 
 describe("master registry referential integrity", () => {
@@ -72,6 +74,13 @@ describe("master registry referential integrity", () => {
         skill.id + " risk ceiling",
       ).toBe(true);
     }
+  });
+
+  it("parses the canonical authority registry as executable configuration", () => {
+    const registry = createAuthorityRegistryFromConfig(authorityConfig);
+    expect(registry.get("commerce")?.authority).toBe("shopify");
+    expect(registry.get("engineering")?.authority).toBe("github");
+    expect(registry.get("data")?.authority).toBe("supabase");
   });
 
   it("never enables unverified connectors for unrestricted writes", () => {
