@@ -10,3 +10,8 @@ export * from "./verifier.js";
 export * from "./audit.js";
 export * from "./manifests.js";
 export * from "./runtime.js";
+export * from "./authority.js";
+export * from "./context.js";
+export * from "./events.js";
+export * from "./approval.js";
+export * from "./connector-gate.js";
