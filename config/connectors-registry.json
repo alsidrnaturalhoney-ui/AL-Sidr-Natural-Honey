@@ -519,5 +519,32 @@
     "secretPolicy": "managed-connector",
     "maxRisk": "R3",
     "writePolicy": "approval-required"
+  },
+  {
+    "id": "semrush",
+    "platform": "Semrush",
+    "authorityDomain": "seo",
+    "mode": "observer",
+    "status": "blocked",
+    "allowedOperations": [
+      "read"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R0",
+    "writePolicy": "disabled"
+  },
+  {
+    "id": "creative-claw",
+    "platform": "Creative Claw",
+    "authorityDomain": "creative-production",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "create-draft"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R1",
+    "writePolicy": "approval-required"
   }
 ]
