@@ -15,3 +15,8 @@ export * from "./context.js";
 export * from "./events.js";
 export * from "./approval.js";
 export * from "./connector-gate.js";
+export * from "./drift.js";
+export * from "./sync.js";
+export * from "./retry.js";
+export * from "./observability.js";
+export * from "./connector-adapter.js";
