@@ -141,6 +141,7 @@ export const LegacyPolicyDecision = z.object({
 
 export type RiskClass = z.infer<typeof RiskClass>;
 export type PolicyDecisionType = z.infer<typeof PolicyDecisionType>;
+export type ExecutionStatus = z.infer<typeof ExecutionStatus>;
 export type ActorContext = z.infer<typeof ActorContext>;
 export type ExecutionRequest = z.infer<typeof ExecutionRequest>;
 export type CapabilityManifest = z.infer<typeof CapabilityManifest>;
