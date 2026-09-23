@@ -1,0 +1,71 @@
+version: 1
+mission: select the minimum external plugin set that improves AL SIDR execution without duplicating authority or expanding permissions unnecessarily
+
+selection_rules:
+  - reuse_connected_or_native_capability_before_installing_another_provider
+  - prefer_official_first_party_connectors_for_systems_of_record
+  - installed_does_not_mean_connected_or_authorized
+  - verify_account_identity_and_scope_before_use
+  - start_read_only_when_write_access_is_not_required
+  - one_primary_authority_per_business_domain
+  - no_plugin_may_become_a_secret_store
+  - consequential_writes_follow_agent_registry_approval_policy
+
+business_capability_slots:
+  commerce:
+    primary_authority: shopify
+    useful_extensions: [marketplace-connectors, profitability-analytics]
+  procurement:
+    primary_authority: internal-procurement-records
+    useful_extensions: [gmail, google-drive, document-tools, project-management]
+  documents:
+    primary_authority: google-drive
+    useful_extensions: [acrobat, permission-audit, e-signature-if-approved]
+  crm:
+    primary_authority: klaviyo_when_connected
+    useful_extensions: [email, approved-messaging-channels]
+  analytics:
+    primary_authority: governed-data-layer
+    useful_extensions: [ga4, search-console, marketing-analytics, shopify-analytics]
+  seo:
+    primary_authority: search-console_plus_live-site
+    useful_extensions: [semrush, conductor, ubersuggest]
+  creative:
+    primary_authority: approved-brand-system
+    useful_extensions: [adobe, figma, canva, video-generation]
+  engineering:
+    primary_authority: github
+    useful_extensions: [supabase, deployment-platform, code-review]
+  automation:
+    primary_authority: n8n_when_deployed
+    useful_extensions: [webhooks, mcp, scheduling]
+  collaboration:
+    primary_authority: asana_for_execution
+    useful_extensions: [slack, calendar, meeting-notes]
+
+permission_tiers:
+  T0: public_or_non_sensitive_read
+  T1: authenticated_business_read
+  T2: draft_or_reversible_write
+  T3: material_business_write
+  T4: financial_legal_contractual_or_bulk_customer_action
+  T5: destructive_irreversible_or_security_sensitive
+
+approval:
+  T0: automatic
+  T1: automatic_when_authorized
+  T2: verify_after_write
+  T3: approval_required
+  T4: explicit_approval_required
+  T5: explicit_approval_required_and_recovery_plan
+
+lifecycle:
+  - discover_capability_gap
+  - check_existing_tools_and_connectors
+  - search_plugin_directory_if_gap_remains
+  - verify_provider_and_required_scopes
+  - connect_with_minimum_permissions
+  - run_read_probe
+  - enable_write_scope_only_if_needed
+  - record_owner_authority_and_recovery
+  - review_usage_and_remove_duplicates

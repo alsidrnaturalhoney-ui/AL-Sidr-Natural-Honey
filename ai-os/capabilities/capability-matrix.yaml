@@ -1,31 +1,52 @@
-version: 1
+version: 2
 capabilities:
   knowledge:
-    abilities: [retrieve, synthesize, deduplicate, tag, version]
+    abilities: [retrieve, synthesize, deduplicate, tag, version, freshness-score, resolve-conflicts]
   agents:
-    abilities: [delegate, handoff, parallelize, supervise, verify]
-  mcp:
-    abilities: [discover, inspect, allowlist, invoke, health-check]
-  engineering:
-    abilities: [inspect-code, edit, test, review, release]
+    abilities: [route, delegate, handoff, parallelize, supervise, verify, escalate]
+  procurement:
+    abilities: [prequalify, tender-map, document-matrix, fee-risk-screen, deadline-track, draft-response]
+  compliance:
+    abilities: [claim-classify, evidence-gate, adafsa-name-check, bilingual-claim-qa, approval-gate]
+  traceability:
+    abilities: [sku-resolve, batch-link, supplier-link, lab-link, certification-link, channel-map]
+  laboratory:
+    abilities: [extract-results, normalize-units, compare-verified-spec, flag-exception, link-evidence]
+  documents:
+    abilities: [classify, extract-fields, detect-expiry, detect-conflict, map-requirement, sensitivity-label]
   commerce:
-    abilities: [catalog, storefront, shipping, checkout, order-workflows]
+    abilities: [catalog, storefront, shipping, checkout, order-workflows, marketplace-syndication]
   growth:
-    abilities: [technical-seo, bilingual-content, analytics, experiments]
+    abilities: [technical-seo, bilingual-content, entity-seo, local-seo, analytics, experiments]
+  crm:
+    abilities: [segment, lifecycle-flow, consent-check, replenishment, winback, clv-prioritize]
+  profitability:
+    abilities: [unit-economics, gross-margin, contribution-margin, break-even, channel-economics, scenario-test]
+  automation:
+    abilities: [workflow-design, webhook-map, idempotency, bounded-retry, dead-letter, verify-write, rollback]
+  mcp:
+    abilities: [discover, inspect, allowlist, invoke, health-check, permission-map]
+  engineering:
+    abilities: [inspect-code, edit, test, review, release, schema-design, migration-plan]
   creative:
-    abilities: [image-generation, asset-briefing, brand-consistency, media-QA]
+    abilities: [image-generation, asset-briefing, brand-consistency, media-QA, bilingual-layout-brief]
   security:
-    abilities: [secret-hygiene, least-privilege, permission-review, audit]
+    abilities: [secret-hygiene, least-privilege, permission-review, pii-minimize, audit]
   executive:
-    abilities: [prioritize, summarize, score-risk, track-KPI, recommend]
+    abilities: [prioritize, summarize, score-risk, track-KPI, recommend, detect-bottleneck]
   self-healing:
-    abilities: [detect-regression, isolate-failure, retry-safe-action, verify-fix]
+    abilities: [detect-regression, isolate-failure, retry-safe-action, verify-fix, record-postmortem]
 
 superpowers:
   - cross-system context fusion
+  - evidence-weighted decision making
   - autonomous gap hunting
   - duplicate prevention
+  - source-of-truth conflict resolution
+  - knowledge freshness scoring
+  - claim-risk classification
   - verification-first execution
   - reversible-change preference
   - failure-aware orchestration
+  - bilingual semantic consistency
   - CEO-ready reporting
