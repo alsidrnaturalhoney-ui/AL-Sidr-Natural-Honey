@@ -76,6 +76,9 @@ create table if not exists public.jarvis_plans (
   created_at timestamptz not null default now()
 );
 
+create index if not exists jarvis_plans_request_idx
+  on public.jarvis_plans (request_id);
+
 create table if not exists public.jarvis_plan_steps (
   plan_id text not null references public.jarvis_plans(plan_id) on delete cascade,
   step_id text not null,
@@ -117,6 +120,9 @@ create table if not exists public.jarvis_action_results (
   executed_at timestamptz not null default now()
 );
 
+create index if not exists jarvis_action_results_request_idx
+  on public.jarvis_action_results (request_id, executed_at desc);
+
 create table if not exists public.jarvis_verifications (
   verification_id uuid primary key default gen_random_uuid(),
   request_id text not null references public.jarvis_execution_requests(request_id) on delete restrict,
@@ -127,6 +133,9 @@ create table if not exists public.jarvis_verifications (
   verifier_id text not null,
   verified_at timestamptz not null default now()
 );
+
+create index if not exists jarvis_verifications_request_idx
+  on public.jarvis_verifications (request_id, verified_at desc);
 
 create table if not exists public.jarvis_audit_events (
   event_id uuid primary key default gen_random_uuid(),
@@ -175,6 +184,9 @@ create table if not exists public.jarvis_truth_edges (
   unique (from_node_id, to_node_id, relation)
 );
 
+create index if not exists jarvis_truth_edges_to_node_idx
+  on public.jarvis_truth_edges (to_node_id);
+
 create table if not exists public.jarvis_sync_state (
   sync_key text primary key,
   source_system text not null,
@@ -218,16 +230,16 @@ alter table public.jarvis_sync_state enable row level security;
 
 -- Fail closed for browser/client roles. Server/service-role access is managed
 -- outside these client roles and remains subject to the JARVIS capability gate.
-revoke all on table public.jarvis_agents from anon, authenticated;
-revoke all on table public.jarvis_skills from anon, authenticated;
-revoke all on table public.jarvis_connectors from anon, authenticated;
-revoke all on table public.jarvis_execution_requests from anon, authenticated;
-revoke all on table public.jarvis_plans from anon, authenticated;
-revoke all on table public.jarvis_plan_steps from anon, authenticated;
-revoke all on table public.jarvis_approvals from anon, authenticated;
-revoke all on table public.jarvis_action_results from anon, authenticated;
-revoke all on table public.jarvis_verifications from anon, authenticated;
-revoke all on table public.jarvis_audit_events from anon, authenticated;
-revoke all on table public.jarvis_truth_nodes from anon, authenticated;
-revoke all on table public.jarvis_truth_edges from anon, authenticated;
-revoke all on table public.jarvis_sync_state from anon, authenticated;
+revoke all on table public.jarvis_agents from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_skills from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_connectors from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_execution_requests from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_plans from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_plan_steps from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_approvals from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_action_results from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_verifications from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_audit_events from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_truth_nodes from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_truth_edges from PUBLIC, anon, authenticated;
+revoke all on table public.jarvis_sync_state from PUBLIC, anon, authenticated;
