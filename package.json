@@ -1,0 +1,16 @@
+{
+  "name": "al-sidr-jarvis-workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "npm run test --workspace @alsidr/jarvis-core",
+    "typecheck": "npm run typecheck --workspace @alsidr/jarvis-core",
+    "build": "npm run build --workspace @alsidr/jarvis-core"
+  },
+  "engines": {
+    "node": ">=22 <23"
+  }
+}
