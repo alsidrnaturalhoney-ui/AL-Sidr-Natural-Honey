@@ -1,0 +1,550 @@
+[
+  {
+    "id": "github",
+    "platform": "GitHub",
+    "authorityDomain": "engineering",
+    "mode": "authority",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "read",
+      "branch",
+      "commit",
+      "pr",
+      "issue"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "supabase",
+    "platform": "Supabase",
+    "authorityDomain": "application-data",
+    "mode": "authority",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "read",
+      "sql",
+      "migration",
+      "edge-function"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "notion",
+    "platform": "Notion",
+    "authorityDomain": "knowledge-governance",
+    "mode": "authority",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "search",
+      "read",
+      "create-page",
+      "update-page"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "airtable",
+    "platform": "Airtable",
+    "authorityDomain": "operations",
+    "mode": "authority",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "read",
+      "create",
+      "update",
+      "automation"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "asana",
+    "platform": "Asana",
+    "authorityDomain": "execution",
+    "mode": "authority",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "read",
+      "create-task",
+      "update-task",
+      "project"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "linear",
+    "platform": "Linear",
+    "authorityDomain": "engineering-planning",
+    "mode": "authority",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "read",
+      "issue",
+      "project",
+      "document"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "vercel",
+    "platform": "Vercel",
+    "authorityDomain": "deployment",
+    "mode": "adapter",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "read",
+      "deploy",
+      "logs"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "gmail",
+    "platform": "Gmail",
+    "authorityDomain": "communications",
+    "mode": "adapter",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "search",
+      "read",
+      "draft",
+      "send",
+      "label"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "google-calendar",
+    "platform": "Google Calendar",
+    "authorityDomain": "scheduling",
+    "mode": "adapter",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "read",
+      "availability",
+      "create",
+      "update",
+      "delete"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "google-drive",
+    "platform": "Google Drive",
+    "authorityDomain": "documents",
+    "mode": "adapter",
+    "status": "verified-connected",
+    "allowedOperations": [
+      "search",
+      "read",
+      "create",
+      "edit",
+      "organize"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "shopify",
+    "platform": "Shopify",
+    "authorityDomain": "commerce",
+    "mode": "authority",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read-products",
+      "read-orders",
+      "write-theme",
+      "write-product"
+    ],
+    "secretPolicy": "env-only",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "gitbook",
+    "platform": "GitBook",
+    "authorityDomain": "knowledge-docs",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "change-request",
+      "merge"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "descope",
+    "platform": "Descope",
+    "authorityDomain": "identity-rbac",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "write-access-control",
+      "audit"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "n8n",
+    "platform": "n8n",
+    "authorityDomain": "automation",
+    "mode": "orchestrator",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "build-workflow",
+      "activate-workflow"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "figma",
+    "platform": "Figma",
+    "authorityDomain": "design",
+    "mode": "authority",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "create",
+      "update"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "canva",
+    "platform": "Canva",
+    "authorityDomain": "creative-production",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "create",
+      "update"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "adobe",
+    "platform": "Adobe",
+    "authorityDomain": "creative-documents",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "create",
+      "edit"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "klaviyo",
+    "platform": "Klaviyo",
+    "authorityDomain": "crm-retention",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft-flow",
+      "activate-flow",
+      "campaign"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "meta",
+    "platform": "Meta",
+    "authorityDomain": "social-commerce",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft",
+      "publish",
+      "ads"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "instagram",
+    "platform": "Instagram",
+    "authorityDomain": "social",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft",
+      "publish"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "tiktok",
+    "platform": "TikTok",
+    "authorityDomain": "social-commerce",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft",
+      "publish",
+      "shop"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "youtube",
+    "platform": "YouTube",
+    "authorityDomain": "video",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "upload",
+      "update"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "x",
+    "platform": "X",
+    "authorityDomain": "social",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft",
+      "publish"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "pinterest",
+    "platform": "Pinterest",
+    "authorityDomain": "social-commerce",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft",
+      "publish",
+      "catalog"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "google-analytics",
+    "platform": "Google Analytics",
+    "authorityDomain": "analytics",
+    "mode": "observer",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R0",
+    "writePolicy": "disabled"
+  },
+  {
+    "id": "google-search-console",
+    "platform": "Google Search Console",
+    "authorityDomain": "seo",
+    "mode": "observer",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R0",
+    "writePolicy": "disabled"
+  },
+  {
+    "id": "google-ads",
+    "platform": "Google Ads",
+    "authorityDomain": "advertising",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft-change",
+      "apply-change"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "google-merchant",
+    "platform": "Google Merchant Center",
+    "authorityDomain": "shopping-feed",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "feed-diagnose",
+      "feed-update"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "supermetrics",
+    "platform": "Supermetrics",
+    "authorityDomain": "analytics",
+    "mode": "observer",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R0",
+    "writePolicy": "disabled"
+  },
+  {
+    "id": "noon",
+    "platform": "Noon",
+    "authorityDomain": "marketplaces",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "catalog-read",
+      "listing-draft",
+      "listing-write"
+    ],
+    "secretPolicy": "env-only",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "amazon-uae",
+    "platform": "Amazon UAE",
+    "authorityDomain": "marketplaces",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "catalog-read",
+      "listing-draft",
+      "listing-write"
+    ],
+    "secretPolicy": "env-only",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "whatsapp",
+    "platform": "WhatsApp",
+    "authorityDomain": "customer-service",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft",
+      "send"
+    ],
+    "secretPolicy": "env-only",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "slack",
+    "platform": "Slack",
+    "authorityDomain": "coordination",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft",
+      "send"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "consentlayer",
+    "platform": "ConsentLayer",
+    "authorityDomain": "privacy",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "configure"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "semrush",
+    "platform": "Semrush",
+    "authorityDomain": "seo",
+    "mode": "observer",
+    "status": "blocked",
+    "allowedOperations": [
+      "read"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R0",
+    "writePolicy": "disabled"
+  },
+  {
+    "id": "creative-claw",
+    "platform": "Creative Claw",
+    "authorityDomain": "creative-production",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "create-draft"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R1",
+    "writePolicy": "approval-required"
+  }
+]

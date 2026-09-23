@@ -1,0 +1,567 @@
+[
+  {
+    "id": "jarvis.prime",
+    "name": "JARVIS PRIME",
+    "version": "1.0.0",
+    "purpose": "Executive router, evidence checker and governed orchestration brain.",
+    "authorityDomains": [
+      "governance",
+      "execution"
+    ],
+    "skills": [
+      "intent-route",
+      "evidence-gate",
+      "plan-compose",
+      "approval-route"
+    ],
+    "tools": [
+      "github",
+      "supabase",
+      "notion",
+      "asana",
+      "linear"
+    ],
+    "maxRisk": "R3",
+    "memoryScope": [
+      "governance",
+      "run-state",
+      "audit"
+    ],
+    "escalationTarget": "human.owner",
+    "enabled": true
+  },
+  {
+    "id": "agent.governance",
+    "name": "Governance & Policy Guardian",
+    "version": "1.0.0",
+    "purpose": "Enforce source-of-truth, permissions, claims, risk and approval rules.",
+    "authorityDomains": [
+      "governance",
+      "compliance"
+    ],
+    "skills": [
+      "policy-evaluate",
+      "authority-resolve",
+      "claim-check",
+      "risk-classify"
+    ],
+    "tools": [
+      "notion",
+      "github",
+      "supabase"
+    ],
+    "maxRisk": "R3",
+    "memoryScope": [
+      "policies",
+      "approvals",
+      "compliance"
+    ],
+    "escalationTarget": "human.owner",
+    "enabled": true
+  },
+  {
+    "id": "agent.commerce",
+    "name": "Shopify Commerce Intelligence",
+    "version": "1.0.0",
+    "purpose": "Optimize catalog, merchandising, CRO, storefront and commerce operations without replacing Shopify authority.",
+    "authorityDomains": [
+      "commerce"
+    ],
+    "skills": [
+      "catalog-audit",
+      "product-page-optimize",
+      "cro-audit",
+      "structured-data",
+      "shipping-policy-check"
+    ],
+    "tools": [
+      "shopify",
+      "github",
+      "supabase"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "catalog-projections",
+      "commerce-analysis"
+    ],
+    "escalationTarget": "jarvis.prime",
+    "enabled": true
+  },
+  {
+    "id": "agent.marketplaces",
+    "name": "Marketplace Catalog Intelligence",
+    "version": "1.0.0",
+    "purpose": "Generate governed marketplace listings and catalog mappings for Noon, Amazon and delivery channels.",
+    "authorityDomains": [
+      "marketplaces",
+      "commerce"
+    ],
+    "skills": [
+      "noon-listing",
+      "amazon-listing",
+      "feed-normalize",
+      "claim-sanitize"
+    ],
+    "tools": [
+      "shopify",
+      "noon",
+      "amazon-uae"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "marketplace-mappings",
+      "listing-evidence"
+    ],
+    "escalationTarget": "agent.commerce",
+    "enabled": true
+  },
+  {
+    "id": "agent.seo",
+    "name": "SEO / AEO / GEO Commander",
+    "version": "1.0.0",
+    "purpose": "Improve organic search, answer-engine and entity visibility with verified facts.",
+    "authorityDomains": [
+      "seo",
+      "content"
+    ],
+    "skills": [
+      "keyword-map",
+      "technical-seo",
+      "schema-audit",
+      "internal-linking",
+      "entity-optimize",
+      "hreflang-check"
+    ],
+    "tools": [
+      "google-search-console",
+      "google-analytics",
+      "github",
+      "shopify",
+      "semrush"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "seo-findings",
+      "query-map",
+      "entity-graph"
+    ],
+    "escalationTarget": "jarvis.prime",
+    "enabled": true
+  },
+  {
+    "id": "agent.content",
+    "name": "Content Factory",
+    "version": "1.0.0",
+    "purpose": "Create bilingual premium content from governed brand and product facts.",
+    "authorityDomains": [
+      "content",
+      "brand"
+    ],
+    "skills": [
+      "bilingual-copy",
+      "content-calendar",
+      "product-story",
+      "faq-generate",
+      "claim-sanitize"
+    ],
+    "tools": [
+      "notion",
+      "google-drive",
+      "canva",
+      "adobe"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "approved-content",
+      "brand-voice",
+      "campaign-context"
+    ],
+    "escalationTarget": "agent.governance",
+    "enabled": true
+  },
+  {
+    "id": "agent.visual",
+    "name": "Legendary Visual Intelligence",
+    "version": "1.0.0",
+    "purpose": "Direct luxury editorial visual systems, product imagery, video and creative QA.",
+    "authorityDomains": [
+      "design",
+      "brand"
+    ],
+    "skills": [
+      "art-direction",
+      "visual-qa",
+      "storyboard",
+      "asset-spec"
+    ],
+    "tools": [
+      "figma",
+      "canva",
+      "adobe",
+      "creative-claw"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "design-tokens",
+      "visual-rules"
+    ],
+    "escalationTarget": "agent.content",
+    "enabled": true
+  },
+  {
+    "id": "agent.social",
+    "name": "Social Commerce Orchestrator",
+    "version": "1.0.0",
+    "purpose": "Plan and govern cross-platform social publishing and commerce journeys.",
+    "authorityDomains": [
+      "social",
+      "content"
+    ],
+    "skills": [
+      "channel-adapt",
+      "caption-generate",
+      "social-calendar",
+      "utm-plan",
+      "publish-approval"
+    ],
+    "tools": [
+      "meta",
+      "instagram",
+      "tiktok",
+      "youtube",
+      "x",
+      "pinterest"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "content-plan",
+      "channel-performance"
+    ],
+    "escalationTarget": "agent.content",
+    "enabled": true
+  },
+  {
+    "id": "agent.crm",
+    "name": "CRM & Retention Intelligence",
+    "version": "1.0.0",
+    "purpose": "Design lifecycle, abandoned-cart, win-back and post-purchase journeys.",
+    "authorityDomains": [
+      "crm",
+      "retention"
+    ],
+    "skills": [
+      "segment-design",
+      "flow-audit",
+      "email-copy",
+      "retention-analysis"
+    ],
+    "tools": [
+      "klaviyo",
+      "gmail",
+      "shopify"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "segments",
+      "flow-design",
+      "retention-metrics"
+    ],
+    "escalationTarget": "jarvis.prime",
+    "enabled": true
+  },
+  {
+    "id": "agent.cx",
+    "name": "Bilingual Honey Concierge",
+    "version": "1.0.0",
+    "purpose": "Answer customer questions using verified pricing, stock, order and product facts only.",
+    "authorityDomains": [
+      "customer-service",
+      "commerce"
+    ],
+    "skills": [
+      "faq-answer",
+      "product-guide",
+      "order-triage",
+      "b2b-qualify"
+    ],
+    "tools": [
+      "shopify",
+      "gmail",
+      "whatsapp"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "conversation-context",
+      "approved-faq"
+    ],
+    "escalationTarget": "human.customer-service",
+    "enabled": true
+  },
+  {
+    "id": "agent.retail",
+    "name": "Retail / B2B / HORECA Growth",
+    "version": "1.0.0",
+    "purpose": "Qualify retail, distributor, HORECA and corporate opportunities.",
+    "authorityDomains": [
+      "retail",
+      "b2b",
+      "sales"
+    ],
+    "skills": [
+      "lead-qualify",
+      "proposal-compose",
+      "coverage-gap",
+      "account-plan"
+    ],
+    "tools": [
+      "airtable",
+      "asana",
+      "gmail",
+      "google-drive"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "accounts",
+      "pipeline",
+      "proposals"
+    ],
+    "escalationTarget": "human.sales",
+    "enabled": true
+  },
+  {
+    "id": "agent.procurement",
+    "name": "Procurement & Fraud Sentinel",
+    "version": "1.0.0",
+    "purpose": "Research supplier portals, validate procurement requirements and flag suspicious fees or requests.",
+    "authorityDomains": [
+      "procurement",
+      "compliance"
+    ],
+    "skills": [
+      "supplier-check",
+      "portal-verify",
+      "document-gap",
+      "fraud-signal"
+    ],
+    "tools": [
+      "notion",
+      "google-drive",
+      "gmail"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "procurement-evidence",
+      "vendor-records"
+    ],
+    "escalationTarget": "human.owner",
+    "enabled": true
+  },
+  {
+    "id": "agent.analytics",
+    "name": "Analytics & CEO Intelligence",
+    "version": "1.0.0",
+    "purpose": "Unify governed KPI analysis and executive decision support.",
+    "authorityDomains": [
+      "analytics",
+      "executive"
+    ],
+    "skills": [
+      "kpi-brief",
+      "funnel-analysis",
+      "anomaly-detect",
+      "forecast-input"
+    ],
+    "tools": [
+      "google-analytics",
+      "supermetrics",
+      "supabase",
+      "airtable"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "kpis",
+      "anomalies",
+      "decision-history"
+    ],
+    "escalationTarget": "jarvis.prime",
+    "enabled": true
+  },
+  {
+    "id": "agent.knowledge",
+    "name": "Knowledge Curator & RAG",
+    "version": "1.0.0",
+    "purpose": "Deduplicate, classify, reconcile and retrieve governed AL SIDR knowledge.",
+    "authorityDomains": [
+      "knowledge"
+    ],
+    "skills": [
+      "knowledge-ingest",
+      "deduplicate",
+      "source-rank",
+      "rag-retrieve",
+      "staleness-check"
+    ],
+    "tools": [
+      "notion",
+      "gitbook",
+      "google-drive",
+      "supabase",
+      "github"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "canonical-facts",
+      "provenance",
+      "staleness"
+    ],
+    "escalationTarget": "agent.governance",
+    "enabled": true
+  },
+  {
+    "id": "agent.automation",
+    "name": "Automation Orchestrator",
+    "version": "1.0.0",
+    "purpose": "Design deterministic workflows and approved cross-system automation.",
+    "authorityDomains": [
+      "automation"
+    ],
+    "skills": [
+      "workflow-design",
+      "webhook-verify",
+      "idempotency",
+      "retry-dlq",
+      "sync-plan"
+    ],
+    "tools": [
+      "n8n",
+      "supabase",
+      "github",
+      "asana"
+    ],
+    "maxRisk": "R3",
+    "memoryScope": [
+      "workflow-state",
+      "sync-state"
+    ],
+    "escalationTarget": "agent.security",
+    "enabled": true
+  },
+  {
+    "id": "agent.engineering",
+    "name": "Engineering & Release Agent",
+    "version": "1.0.0",
+    "purpose": "Build, test, review and release governed code and integration changes.",
+    "authorityDomains": [
+      "engineering"
+    ],
+    "skills": [
+      "code-build",
+      "test-gate",
+      "ci-review",
+      "migration-plan",
+      "release-plan"
+    ],
+    "tools": [
+      "github",
+      "vercel",
+      "supabase",
+      "linear"
+    ],
+    "maxRisk": "R3",
+    "memoryScope": [
+      "code-context",
+      "release-state",
+      "test-evidence"
+    ],
+    "escalationTarget": "human.owner",
+    "enabled": true
+  },
+  {
+    "id": "agent.security",
+    "name": "Security / Privacy / Compliance QA",
+    "version": "1.0.0",
+    "purpose": "Enforce least privilege, RLS, secret hygiene, privacy and independent verification.",
+    "authorityDomains": [
+      "security",
+      "privacy",
+      "compliance"
+    ],
+    "skills": [
+      "security-review",
+      "rls-audit",
+      "secret-scan",
+      "privacy-check",
+      "independent-verify"
+    ],
+    "tools": [
+      "supabase",
+      "github",
+      "descope",
+      "consentlayer"
+    ],
+    "maxRisk": "R3",
+    "memoryScope": [
+      "security-findings",
+      "audit-evidence"
+    ],
+    "escalationTarget": "human.owner",
+    "enabled": true
+  },
+  {
+    "id": "agent.inventory",
+    "name": "Inventory & Supply Intelligence",
+    "version": "1.0.0",
+    "purpose": "Detect stock risks and propose rebalancing without silently changing live inventory.",
+    "authorityDomains": [
+      "inventory",
+      "operations"
+    ],
+    "skills": [
+      "stock-risk",
+      "reorder-signal",
+      "allocation-plan",
+      "supplier-gap"
+    ],
+    "tools": [
+      "shopify",
+      "airtable",
+      "supabase"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "inventory-projections",
+      "supply-signals"
+    ],
+    "escalationTarget": "human.operations",
+    "enabled": true
+  },
+  {
+    "id": "agent.opportunity",
+    "name": "Opportunity Scout",
+    "version": "1.0.0",
+    "purpose": "Find growth, partnership, platform and capability opportunities, then convert evidence into governed work items.",
+    "authorityDomains": [
+      "research",
+      "strategy"
+    ],
+    "skills": [
+      "opportunity-scan",
+      "competitor-research",
+      "gap-analysis",
+      "work-item-create"
+    ],
+    "tools": [
+      "notion",
+      "asana",
+      "linear",
+      "airtable"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "research-evidence",
+      "opportunity-backlog"
+    ],
+    "escalationTarget": "jarvis.prime",
+    "enabled": true
+  }
+]
