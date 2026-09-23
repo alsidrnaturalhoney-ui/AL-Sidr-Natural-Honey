@@ -1,0 +1,129 @@
+version: 1
+principle: prefer deterministic tools for calculations, validation and policy gates; use AI for synthesis and judgment
+
+tools:
+  - id: source-authority-resolver
+    owner: knowledge-engineer
+    type: deterministic-policy
+    inputs: [candidate_sources, field, entity]
+    outputs: [canonical_source, conflict_status, rationale]
+    risk: low
+
+  - id: knowledge-freshness-scorer
+    owner: knowledge-engineer
+    type: deterministic-policy
+    inputs: [source_class, retrieved_at, effective_at, expires_at, domain]
+    outputs: [freshness_status, review_due]
+    risk: low
+
+  - id: duplicate-record-detector
+    owner: knowledge-engineer
+    type: hybrid
+    inputs: [records, stable_identifiers, normalized_names]
+    outputs: [candidate_duplicates, confidence, merge_blockers]
+    risk: medium
+
+  - id: supplier-fee-risk-checker
+    owner: procurement-agent
+    type: hybrid
+    inputs: [buyer, domain, fee_request, payment_instruction, procurement_evidence]
+    outputs: [risk_level, red_flags, verification_steps]
+    risk: high
+
+  - id: procurement-requirement-matrix
+    owner: procurement-agent
+    type: deterministic-transform
+    inputs: [buyer_requirements, company_documents]
+    outputs: [ready, missing, expired, verify, not_applicable]
+    risk: medium
+
+  - id: claim-evidence-gate
+    owner: security-agent
+    type: policy-engine
+    inputs: [claim, sku, batch, evidence, target_surface]
+    outputs: [pass_rewrite_block, evidence_class, approved_wording]
+    risk: high
+
+  - id: lab-result-normalizer
+    owner: security-agent
+    type: deterministic-transform
+    inputs: [report_fields, analytes, units, verified_spec]
+    outputs: [normalized_results, exceptions, scope]
+    risk: high
+
+  - id: product-traceability-resolver
+    owner: knowledge-engineer
+    type: hybrid
+    inputs: [sku, variant, batch, supplier, reports, channel_ids]
+    outputs: [traceability_chain, conflicts, missing_links]
+    risk: medium
+
+  - id: catalog-diff-engine
+    owner: shopify-operator
+    type: deterministic-diff
+    inputs: [canonical_catalog, channel_catalog]
+    outputs: [adds, changes, stale, conflicts, dry_run]
+    risk: high
+
+  - id: profitability-calculator
+    owner: analytics-agent
+    type: deterministic-calculator
+    inputs: [price, cogs, packaging, freight, fees, discount, fulfillment]
+    outputs: [gross_margin, contribution_margin, break_even, missing_inputs]
+    risk: high
+
+  - id: kpi-anomaly-detector
+    owner: analytics-agent
+    type: statistical
+    inputs: [metric_series, baseline, data_quality, target]
+    outputs: [magnitude, priority, hypotheses, verification_plan]
+    risk: medium
+
+  - id: crm-eligibility-gate
+    owner: analytics-agent
+    type: deterministic-policy
+    inputs: [profile, consent, channel, suppression, trigger]
+    outputs: [eligible, reason, allowed_channels]
+    risk: high
+
+  - id: bilingual-terminology-checker
+    owner: content-agent
+    type: hybrid
+    inputs: [english, arabic, approved_terminology, target_surface]
+    outputs: [consistency_issues, corrected_copy]
+    risk: low
+
+  - id: content-repurpose-router
+    owner: content-agent
+    type: hybrid
+    inputs: [approved_source_asset, platforms, campaign_goal]
+    outputs: [platform_variants, metadata, creative_briefs]
+    risk: medium
+
+  - id: automation-idempotency-checker
+    owner: mcp-governor
+    type: deterministic-policy
+    inputs: [workflow_id, event_id, target_id, prior_runs]
+    outputs: [execute_skip_review, idempotency_key]
+    risk: high
+
+  - id: connector-health-checker
+    owner: mcp-governor
+    type: deterministic
+    inputs: [connector, auth_state, read_probe, write_scope_if_needed]
+    outputs: [status, missing_scope, degraded_reason]
+    risk: medium
+
+  - id: verified-completion-checker
+    owner: ceo-command
+    type: policy-engine
+    inputs: [requested_outcome, actions, success_criteria, verification_evidence, regressions]
+    outputs: [completed, blockers, next_action]
+    risk: low
+
+tool_rules:
+  never_return_secret_values: true
+  write_tools_require_permission_check: true
+  material_writes_require_post_write_verification: true
+  calculations_must_show_missing_inputs: true
+  ai_tools_must_label_inference: true

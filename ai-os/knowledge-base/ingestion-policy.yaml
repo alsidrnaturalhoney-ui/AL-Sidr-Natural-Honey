@@ -1,0 +1,62 @@
+version: 1
+mission: one trusted business memory with provenance, freshness and conflict handling
+
+source_priority:
+  - rank: 1
+    class: current_primary_evidence
+    examples: [trade-licence, vat, adafsa, current-lab-report, bank-letter, award-certificate, trademark, icv]
+  - rank: 2
+    class: current_live_system
+    examples: [shopify, approved-procurement-record, current-partner-record, runtime-database]
+  - rank: 3
+    class: approved_master_knowledge
+  - rank: 4
+    class: corroborated_government_or_media
+  - rank: 5
+    class: company_profile_or_brochure
+  - rank: 6
+    class: historical_or_draft
+
+rules:
+  lower_priority_never_silently_overrides_higher: true
+  preserve_original_source: true
+  record_retrieval_date: true
+  record_effective_or_expiry_date_when_known: true
+  record_entity_links: true
+  record_confidence: true
+  secrets_and_credentials: reject
+  destructive_deduplication: forbidden_without_canonical_replacement
+
+fact_status:
+  - VERIFIED_CURRENT
+  - VERIFIED_LIMITED
+  - STALE
+  - CONFLICTED
+  - UNVERIFIED
+  - QUARANTINED
+
+freshness_profiles:
+  legal_and_certification: expiry_driven
+  catalog_price_inventory: live_system_required
+  partner_status: verify_before_external_use
+  contact_data: live_operational_fact
+  lab_and_batch: batch_scoped
+  brand_heritage: stable_unless_primary_evidence_changes
+  marketing_strategy: review_quarterly
+
+conflict_resolution:
+  steps:
+    - identify_exact_field_and_entity
+    - compare_source_rank
+    - compare_effective_date_and_scope
+    - preserve_both_sources
+    - select_canonical_value_or_mark_conflicted
+    - record_reason_and_reviewer
+    - queue_primary_evidence_if_unresolved
+
+claim_gate:
+  prohibited_patterns: [cure, treatment, diagnostic, guaranteed-health-outcome, unsupported-superiority]
+  evidence_required_for: [origin, raw, unfiltered, unpasteurized, organic, monofloral, lab-tested, purity, certification, award, active-retailer]
+
+chunk_metadata_required:
+  [document_id, source_class, source_uri_or_ref, entity_type, entity_id, topic, language, status, retrieved_at, effective_at, expires_at, confidence]
