@@ -1,0 +1,33 @@
+-- AL SIDR JARVIS runtime rollback runbook (review-only)
+-- This file is NOT a forward migration and must never be executed automatically.
+-- Use only after a deliberate production rollback decision and a verified backup.
+--
+-- Pre-rollback gates:
+-- 1. Confirm the forward migration version was applied.
+-- 2. Export/backup every jarvis_* table.
+-- 3. Confirm there are no execution/audit records that must be retained.
+-- 4. Stop all JARVIS writers and readers.
+-- 5. Obtain explicit R3 production approval.
+--
+-- Drop order is dependency-safe. The audit table is intentionally included last
+-- among request/result records because its contents may be required for evidence.
+--
+-- BEGIN;
+-- drop table if exists public.jarvis_sync_state;
+-- drop table if exists public.jarvis_truth_edges;
+-- drop table if exists public.jarvis_truth_nodes;
+-- drop trigger if exists jarvis_audit_events_immutable on public.jarvis_audit_events;
+-- drop table if exists public.jarvis_audit_events;
+-- drop function if exists public.jarvis_block_audit_mutation();
+-- drop table if exists public.jarvis_verifications;
+-- drop table if exists public.jarvis_action_results;
+-- drop table if exists public.jarvis_approvals;
+-- drop table if exists public.jarvis_plan_steps;
+-- drop table if exists public.jarvis_plans;
+-- drop table if exists public.jarvis_execution_requests;
+-- drop table if exists public.jarvis_connectors;
+-- drop table if exists public.jarvis_skills;
+-- drop table if exists public.jarvis_agents;
+-- COMMIT;
+--
+-- After rollback: rerun Supabase security/performance advisors and verify API health.
