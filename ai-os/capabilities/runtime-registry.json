@@ -5,14 +5,21 @@
     "provider": "internal",
     "risk": "R0",
     "mode": "read",
-    "allowedOperations": ["read"],
+    "allowedOperations": [
+      "read"
+    ],
     "requiredPermissions": [],
     "confirmation": "never",
     "requiresEvidence": false,
     "requiresRollback": false,
     "minimumAuthStrength": 0,
     "verificationStrategy": "compare returned health schema",
-    "enabledEnvironments": ["test", "development", "staging", "production"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   },
   {
     "name": "knowledge.read",
@@ -20,14 +27,22 @@
     "provider": "governed-knowledge",
     "risk": "R0",
     "mode": "read",
-    "allowedOperations": ["search", "read"],
+    "allowedOperations": [
+      "search",
+      "read"
+    ],
     "requiredPermissions": [],
     "confirmation": "never",
     "requiresEvidence": false,
     "requiresRollback": false,
     "minimumAuthStrength": 0,
     "verificationStrategy": "return provenance and freshness metadata",
-    "enabledEnvironments": ["test", "development", "staging", "production"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   },
   {
     "name": "audit.read",
@@ -35,14 +50,23 @@
     "provider": "supabase",
     "risk": "R0",
     "mode": "read",
-    "allowedOperations": ["read"],
-    "requiredPermissions": ["audit:read"],
+    "allowedOperations": [
+      "read"
+    ],
+    "requiredPermissions": [
+      "audit:read"
+    ],
     "confirmation": "never",
     "requiresEvidence": false,
     "requiresRollback": false,
     "minimumAuthStrength": 1,
     "verificationStrategy": "read audit event by immutable event id",
-    "enabledEnvironments": ["test", "development", "staging", "production"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   },
   {
     "name": "internal.task.create",
@@ -50,14 +74,22 @@
     "provider": "internal-test-adapter",
     "risk": "R1",
     "mode": "write",
-    "allowedOperations": ["create"],
-    "requiredPermissions": ["tasks:write"],
+    "allowedOperations": [
+      "create"
+    ],
+    "requiredPermissions": [
+      "tasks:write"
+    ],
     "confirmation": "never",
     "requiresEvidence": true,
     "requiresRollback": false,
     "minimumAuthStrength": 1,
     "verificationStrategy": "read created test record by id",
-    "enabledEnvironments": ["test", "development", "staging"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging"
+    ]
   },
   {
     "name": "external.content.publish",
@@ -65,14 +97,20 @@
     "provider": "policy-fixture-disabled",
     "risk": "R2",
     "mode": "write",
-    "allowedOperations": ["publish"],
-    "requiredPermissions": ["content:publish"],
+    "allowedOperations": [
+      "publish"
+    ],
+    "requiredPermissions": [
+      "content:publish"
+    ],
     "confirmation": "always",
     "requiresEvidence": true,
     "requiresRollback": true,
     "minimumAuthStrength": 1,
     "verificationStrategy": "independent provider read after publish",
-    "enabledEnvironments": ["test"]
+    "enabledEnvironments": [
+      "test"
+    ]
   },
   {
     "name": "critical.security.change",
@@ -80,13 +118,239 @@
     "provider": "policy-fixture-disabled",
     "risk": "R3",
     "mode": "write",
-    "allowedOperations": ["change"],
-    "requiredPermissions": ["security:admin"],
+    "allowedOperations": [
+      "change"
+    ],
+    "requiredPermissions": [
+      "security:admin"
+    ],
     "confirmation": "always",
     "requiresEvidence": true,
     "requiresRollback": true,
     "minimumAuthStrength": 2,
     "verificationStrategy": "independent security-state read and rollback proof",
-    "enabledEnvironments": ["test"]
+    "enabledEnvironments": [
+      "test"
+    ]
+  },
+  {
+    "name": "retail.po.reconcile",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "read",
+    "allowedOperations": [
+      "parse",
+      "reconcile",
+      "draft-task"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "compare extracted PO fields to source document",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "compliance.expiry.monitor",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "extract-deadline",
+      "classify"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "return source, exact date and affected system",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "payments.continuity.check",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "diagnose",
+      "draft-remediation"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "cross-check provider notice against current commerce state",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "finance.reconcile.read",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "reconcile",
+      "flag-exception"
+    ],
+    "requiredPermissions": [
+      "finance:read"
+    ],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "recompute totals from cited source records",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "reputation.local.read",
+    "version": "1.0.0",
+    "provider": "managed-connector",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "audit",
+      "draft-response"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "return provider identity and timestamp",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "data.consistency.audit",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "compare",
+      "deduplicate",
+      "staleness-check"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "report field-level authority and conflicting values",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "experiment.plan",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "write",
+    "allowedOperations": [
+      "plan",
+      "prioritize",
+      "readout"
+    ],
+    "requiredPermissions": [
+      "experiments:write"
+    ],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "persist hypothesis, metric, guardrail and decision rule",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "credential.requirements.read",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "map-scopes",
+      "rotation-plan"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "no secret values returned or persisted",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "plugin.capability.discovery",
+    "version": "1.0.0",
+    "provider": "plugin-directory",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "search",
+      "compare",
+      "recommend"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "return plugin id, install state and capability gap",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   }
 ]
