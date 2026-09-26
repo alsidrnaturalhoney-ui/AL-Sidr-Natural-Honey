@@ -1,0 +1,85 @@
+{
+  "version": "1.0.0",
+  "date": "2026-09-26",
+  "rule": "Logical MCP service profiles extend the canonical AL SIDR AI OS; deploy only when a unique integration boundary is justified.",
+  "servers": [
+    {
+      "id": "alsidr-retail-ops-mcp",
+      "status": "specified",
+      "purpose": "PO/LPO, retailer deadlines, store merchandising and document-requirement normalization.",
+      "tools": [
+        "retail.po.parse",
+        "retail.deadline.extract",
+        "retail.requirements.reconcile"
+      ],
+      "auth": "provider-managed connectors",
+      "risk": "R2",
+      "writes": "internal draft/task only by default"
+    },
+    {
+      "id": "alsidr-marketplace-exception-mcp",
+      "status": "specified",
+      "purpose": "Normalize Noon/Amazon listing, return, stranded-inventory and exception evidence.",
+      "tools": [
+        "marketplace.exception.parse",
+        "marketplace.case.reconcile",
+        "marketplace.support.draft"
+      ],
+      "auth": "OAuth/API credentials in secret store",
+      "risk": "R3",
+      "writes": "approval-required"
+    },
+    {
+      "id": "alsidr-finance-reconciliation-mcp",
+      "status": "specified",
+      "purpose": "Read-only reconciliation of Shopify, merchant and marketplace settlement evidence.",
+      "tools": [
+        "finance.statement.parse",
+        "finance.settlement.reconcile",
+        "finance.exception.flag"
+      ],
+      "auth": "read-only managed connector or encrypted secret",
+      "risk": "R2",
+      "writes": "no money movement"
+    },
+    {
+      "id": "alsidr-compliance-evidence-mcp",
+      "status": "specified",
+      "purpose": "Track licences, certificates, lab evidence, approved claims and expiries.",
+      "tools": [
+        "compliance.evidence.lookup",
+        "compliance.expiry.check",
+        "claims.wording.validate"
+      ],
+      "auth": "governed knowledge connectors",
+      "risk": "R1",
+      "writes": "canonical metadata only"
+    },
+    {
+      "id": "alsidr-reputation-mcp",
+      "status": "specified",
+      "purpose": "Google Business Profile/local listing reads, review triage and approved response/post drafting.",
+      "tools": [
+        "local.profile.audit",
+        "review.triage",
+        "local.post.draft"
+      ],
+      "auth": "Google OAuth managed connector",
+      "risk": "R2",
+      "writes": "approval-required"
+    },
+    {
+      "id": "alsidr-credential-governor-mcp",
+      "status": "specified",
+      "purpose": "Expose credential requirements and connection health without exposing secret values.",
+      "tools": [
+        "credential.requirements.list",
+        "connector.scope.audit",
+        "credential.rotation.status"
+      ],
+      "auth": "no secret values returned",
+      "risk": "R3",
+      "writes": "provider setup only with explicit approval"
+    }
+  ]
+}
