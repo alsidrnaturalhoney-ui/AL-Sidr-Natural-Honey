@@ -563,5 +563,175 @@
     ],
     "escalationTarget": "jarvis.prime",
     "enabled": true
+  },
+  {
+    "id": "agent.retailops",
+    "name": "Retail PO & Merchandising Operations",
+    "version": "1.0.0",
+    "purpose": "Turn retailer POs, stocktakes, shelf-support requests and merchandising notices into verified execution work without duplicating Asana.",
+    "authorityDomains": [
+      "retail",
+      "operations"
+    ],
+    "skills": [
+      "retail-po-parse",
+      "retail-deadline-track",
+      "merchandising-gap-detect"
+    ],
+    "tools": [
+      "gmail",
+      "google-drive",
+      "asana",
+      "airtable"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "retail-orders",
+      "deadlines",
+      "merchandising-evidence"
+    ],
+    "escalationTarget": "human.operations",
+    "enabled": true
+  },
+  {
+    "id": "agent.payments",
+    "name": "Payments & Partner Continuity",
+    "version": "1.0.0",
+    "purpose": "Monitor payment-provider readiness, licence/verification expiries and checkout-partner continuity while keeping financial actions approval-gated.",
+    "authorityDomains": [
+      "payments",
+      "commerce"
+    ],
+    "skills": [
+      "payment-partner-health",
+      "licence-expiry-monitor",
+      "checkout-partner-risk"
+    ],
+    "tools": [
+      "shopify",
+      "gmail",
+      "tabby"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "provider-status",
+      "verification-deadlines",
+      "checkout-risk"
+    ],
+    "escalationTarget": "human.owner",
+    "enabled": true
+  },
+  {
+    "id": "agent.financeops",
+    "name": "Finance Reconciliation Intelligence",
+    "version": "1.0.0",
+    "purpose": "Reconcile sales, merchant statements, settlements, fees and channel totals for management reporting without moving funds.",
+    "authorityDomains": [
+      "finance",
+      "analytics"
+    ],
+    "skills": [
+      "merchant-statement-reconcile",
+      "channel-settlement-check",
+      "cashflow-exception-detect"
+    ],
+    "tools": [
+      "shopify",
+      "gmail",
+      "google-drive",
+      "airtable"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "reconciliation-evidence",
+      "settlement-exceptions"
+    ],
+    "escalationTarget": "human.finance",
+    "enabled": true
+  },
+  {
+    "id": "agent.reputation",
+    "name": "Local Reputation & Business Profile",
+    "version": "1.0.0",
+    "purpose": "Audit Google Business Profile, local reviews, listings and reputation signals, producing governed reply/post drafts.",
+    "authorityDomains": [
+      "local-seo",
+      "reputation"
+    ],
+    "skills": [
+      "local-profile-audit",
+      "review-signal-triage",
+      "local-post-plan"
+    ],
+    "tools": [
+      "google-business-profile",
+      "google-search-console",
+      "notion"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "review-themes",
+      "local-profile-state"
+    ],
+    "escalationTarget": "agent.seo",
+    "enabled": true
+  },
+  {
+    "id": "agent.dataquality",
+    "name": "Cross-System Data Quality Guardian",
+    "version": "1.0.0",
+    "purpose": "Detect inconsistent product, price, stock, promotion, status and authority facts across canonical systems.",
+    "authorityDomains": [
+      "data-quality",
+      "governance"
+    ],
+    "skills": [
+      "cross-system-reconcile",
+      "stale-fact-detect",
+      "duplicate-entity-detect"
+    ],
+    "tools": [
+      "shopify",
+      "airtable",
+      "supabase",
+      "notion",
+      "github"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "conflicts",
+      "reconciliation-evidence",
+      "staleness"
+    ],
+    "escalationTarget": "agent.governance",
+    "enabled": true
+  },
+  {
+    "id": "agent.experiments",
+    "name": "Growth Experiment Designer",
+    "version": "1.0.0",
+    "purpose": "Convert funnel evidence into measurable CRO, AOV, retention and merchandising experiments with guardrails and stop criteria.",
+    "authorityDomains": [
+      "growth",
+      "analytics"
+    ],
+    "skills": [
+      "experiment-design",
+      "experiment-prioritize",
+      "experiment-readout"
+    ],
+    "tools": [
+      "shopify",
+      "airtable",
+      "supabase",
+      "asana"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "hypotheses",
+      "experiment-results"
+    ],
+    "escalationTarget": "agent.analytics",
+    "enabled": true
   }
 ]
