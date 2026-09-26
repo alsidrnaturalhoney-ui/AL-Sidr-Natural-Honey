@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "date": "2026-09-26",
+  "policy": "Prefer installed canonical connectors. Add a plugin only for a material capability gap; avoid duplicate CRMs, task managers and website builders.",
+  "installedCore": [
+    "Shopify",
+    "Gmail",
+    "Google Drive",
+    "Google Calendar",
+    "Airtable",
+    "Klaviyo",
+    "GSC Wizard",
+    "HYPD AI - Paid Ads & Analytics",
+    "Windsor.ai",
+    "Supermetrics",
+    "Semrush",
+    "Ubersuggest",
+    "vidIQ",
+    "Zoho CRM",
+    "Apollo.io",
+    "Runway",
+    "Higgsfield"
+  ],
+  "recommendedCandidates": [
+    {
+      "name": "Ahrefs",
+      "purpose": "Backlink, competitor, AI-search visibility and share-of-voice evidence.",
+      "status": "suggest-connect"
+    },
+    {
+      "name": "Otter.ai",
+      "purpose": "Meeting transcript/decision retrieval where Read AI production ingestion is not verified.",
+      "status": "suggest-connect"
+    }
+  ],
+  "rejectedByDefault": [
+    {
+      "category": "parallel CRM",
+      "reason": "Zoho CRM is already installed; do not add HubSpot/HighLevel/Attio without a migration decision."
+    },
+    {
+      "category": "parallel project management",
+      "reason": "Asana + Linear are canonical."
+    },
+    {
+      "category": "parallel website platform",
+      "reason": "Shopify is commerce authority; extra site builders are not canonical."
+    }
+  ]
+}
