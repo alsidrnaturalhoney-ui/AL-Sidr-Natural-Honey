@@ -1258,5 +1258,305 @@
     "approvalPolicy": "never",
     "rollback": "not-required",
     "enabled": true
+  },
+  {
+    "id": "retail-po-parse",
+    "version": "1.0.0",
+    "purpose": "Parse retailer PO/LPO lines, quantities, prices, VAT, delivery terms and invoice requirements.",
+    "ownerAgent": "agent.retailops",
+    "capability": "retail.po.reconcile",
+    "authorityDomain": "retail",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "retail-deadline-track",
+    "version": "1.0.0",
+    "purpose": "Extract and track retail delivery, stocktake and documentation deadlines from verified communications.",
+    "ownerAgent": "agent.retailops",
+    "capability": "compliance.expiry.monitor",
+    "authorityDomain": "retail",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "merchandising-gap-detect",
+    "version": "1.0.0",
+    "purpose": "Convert shelf-support and stock-display requests into store-level execution gaps.",
+    "ownerAgent": "agent.retailops",
+    "capability": "retail.po.reconcile",
+    "authorityDomain": "retail",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "payment-partner-health",
+    "version": "1.0.0",
+    "purpose": "Assess payment-provider operational readiness, account verification and checkout continuity.",
+    "ownerAgent": "agent.payments",
+    "capability": "payments.continuity.check",
+    "authorityDomain": "payments",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "licence-expiry-monitor",
+    "version": "1.0.0",
+    "purpose": "Monitor licence, registration and verification expiries that can interrupt commerce partners.",
+    "ownerAgent": "agent.payments",
+    "capability": "compliance.expiry.monitor",
+    "authorityDomain": "compliance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "checkout-partner-risk",
+    "version": "1.0.0",
+    "purpose": "Identify payment-provider blockers that may affect checkout or settlement.",
+    "ownerAgent": "agent.payments",
+    "capability": "payments.continuity.check",
+    "authorityDomain": "payments",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "merchant-statement-reconcile",
+    "version": "1.0.0",
+    "purpose": "Reconcile merchant statement totals against commerce and settlement evidence.",
+    "ownerAgent": "agent.financeops",
+    "capability": "finance.reconcile.read",
+    "authorityDomain": "finance",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "channel-settlement-check",
+    "version": "1.0.0",
+    "purpose": "Compare marketplace, payment and Shopify settlement evidence and surface mismatches.",
+    "ownerAgent": "agent.financeops",
+    "capability": "finance.reconcile.read",
+    "authorityDomain": "finance",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "cashflow-exception-detect",
+    "version": "1.0.0",
+    "purpose": "Flag missing, delayed or anomalous settlement records without initiating financial action.",
+    "ownerAgent": "agent.financeops",
+    "capability": "finance.reconcile.read",
+    "authorityDomain": "finance",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "local-profile-audit",
+    "version": "1.0.0",
+    "purpose": "Audit business-profile identity, categories, hours, links, posts and listing consistency.",
+    "ownerAgent": "agent.reputation",
+    "capability": "reputation.local.read",
+    "authorityDomain": "local-seo",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "review-signal-triage",
+    "version": "1.0.0",
+    "purpose": "Classify review themes, urgency and response needs without fabricating customer facts.",
+    "ownerAgent": "agent.reputation",
+    "capability": "reputation.local.read",
+    "authorityDomain": "reputation",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "local-post-plan",
+    "version": "1.0.0",
+    "purpose": "Create compliant bilingual local-profile post plans from approved products and offers.",
+    "ownerAgent": "agent.reputation",
+    "capability": "internal.task.create",
+    "authorityDomain": "local-seo",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "cross-system-reconcile",
+    "version": "1.0.0",
+    "purpose": "Compare authoritative fields across Shopify, Airtable, Supabase, Notion and GitHub and report conflicts.",
+    "ownerAgent": "agent.dataquality",
+    "capability": "data.consistency.audit",
+    "authorityDomain": "data-quality",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "stale-fact-detect",
+    "version": "1.0.0",
+    "purpose": "Identify stale mutable business facts using freshness rules and authority precedence.",
+    "ownerAgent": "agent.dataquality",
+    "capability": "data.consistency.audit",
+    "authorityDomain": "data-quality",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "duplicate-entity-detect",
+    "version": "1.0.0",
+    "purpose": "Find duplicate products, systems, tasks, files or knowledge entities without deleting them.",
+    "ownerAgent": "agent.dataquality",
+    "capability": "data.consistency.audit",
+    "authorityDomain": "data-quality",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "experiment-design",
+    "version": "1.0.0",
+    "purpose": "Turn a verified business problem into a testable hypothesis, guardrails and success metrics.",
+    "ownerAgent": "agent.experiments",
+    "capability": "experiment.plan",
+    "authorityDomain": "growth",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "experiment-prioritize",
+    "version": "1.0.0",
+    "purpose": "Rank experiments by evidence, effort, expected impact and operational risk.",
+    "ownerAgent": "agent.experiments",
+    "capability": "experiment.plan",
+    "authorityDomain": "growth",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "experiment-readout",
+    "version": "1.0.0",
+    "purpose": "Evaluate experiment results against predeclared metrics without post-hoc winner invention.",
+    "ownerAgent": "agent.experiments",
+    "capability": "experiment.plan",
+    "authorityDomain": "analytics",
+    "risk": "R1",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "credential-requirements-map",
+    "version": "1.0.0",
+    "purpose": "Map required provider credentials, scopes, secret store and rotation policy without storing secret values.",
+    "ownerAgent": "agent.security",
+    "capability": "credential.requirements.read",
+    "authorityDomain": "security",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "plugin-gap-discovery",
+    "version": "1.0.0",
+    "purpose": "Identify missing plugin capabilities versus connected systems and business workflows.",
+    "ownerAgent": "agent.opportunity",
+    "capability": "plugin.capability.discovery",
+    "authorityDomain": "research",
+    "risk": "R0",
+    "requiredEvidence": [
+      "canonical-source-or-runtime-evidence"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
   }
 ]
