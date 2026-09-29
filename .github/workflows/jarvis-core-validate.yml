@@ -4,22 +4,41 @@ on:
   push:
     paths:
       - 'packages/jarvis-core/**'
+      - 'package.json'
+      - 'tsconfig.base.json'
       - '.github/workflows/jarvis-core-validate.yml'
   pull_request:
     paths:
       - 'packages/jarvis-core/**'
+      - 'package.json'
+      - 'tsconfig.base.json'
       - '.github/workflows/jarvis-core-validate.yml'
 
+permissions:
+  contents: read
+
+timeout-minutes: 10
+
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/jarvis-core
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --ignore-scripts --no-package-lock
+          cache: npm
+      # The repository does not currently contain a package-lock.json, so npm ci
+      # cannot be used until the lockfile is committed.
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npm run typecheck
       - run: npm test
+      - run: npm run build
+      - name: Reject obvious committed secrets
+        shell: bash
+        run: |
+          if grep -RInE '(sk-[A-Za-z0-9_-]{20,}|service_role[^[:space:]]*[=:][^[:space:]]+|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY)' \
+            packages ai-os supabase --exclude='*.md' --exclude-dir=node_modules; then
+            echo 'Potential secret material detected'
+            exit 1
+          fi
