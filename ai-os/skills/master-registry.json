@@ -1558,5 +1558,320 @@
     "approvalPolicy": "never",
     "rollback": "not-required",
     "enabled": true
+  },
+  {
+    "id": "ai-chat-generate",
+    "version": "1.0.0",
+    "purpose": "Generate governed conversational responses using the selected AI model profile.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "ai.chat.generate",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "model-profile-and-request-trace"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-model-route",
+    "version": "1.0.0",
+    "purpose": "Select and fail over between verified AI model profiles using hard capability, data, quality and cost constraints.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "ai.model.route",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "model-profile-and-routing-trace"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-reason-plan",
+    "version": "1.0.0",
+    "purpose": "Produce grounded execution plans without exposing private chain-of-thought.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "ai.reason.plan",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "grounded-inputs-and-plan-trace"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-structured-output",
+    "version": "1.0.0",
+    "purpose": "Generate schema-validated structured outputs for downstream workflows.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "ai.structured.generate",
+    "authorityDomain": "governance",
+    "risk": "R0",
+    "requiredEvidence": [
+      "declared-output-schema"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-agent-delegate",
+    "version": "1.0.0",
+    "purpose": "Delegate bounded work to specialist agents while preserving parent request scope and audit lineage.",
+    "ownerAgent": "jarvis.prime",
+    "capability": "ai.agent.delegate",
+    "authorityDomain": "execution",
+    "risk": "R1",
+    "requiredEvidence": [
+      "parent-request-and-delegated-scope"
+    ],
+    "approvalPolicy": "risk-default",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-multimodal-understand",
+    "version": "1.0.0",
+    "purpose": "Understand approved images, audio, video and files with source provenance.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "ai.multimodal.understand",
+    "authorityDomain": "knowledge",
+    "risk": "R0",
+    "requiredEvidence": [
+      "source-reference-and-modality-metadata"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-embedding-create",
+    "version": "1.0.0",
+    "purpose": "Create embeddings for governed knowledge retrieval with model and content-hash provenance.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "ai.embedding.create",
+    "authorityDomain": "knowledge",
+    "risk": "R0",
+    "requiredEvidence": [
+      "content-hash-and-embedding-model"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-rerank",
+    "version": "1.0.0",
+    "purpose": "Rerank retrieved evidence while preserving source identifiers.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "ai.rerank",
+    "authorityDomain": "knowledge",
+    "risk": "R0",
+    "requiredEvidence": [
+      "ranked-source-identifiers"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-memory-read",
+    "version": "1.0.0",
+    "purpose": "Retrieve scoped JARVIS memory with freshness and source metadata.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "ai.memory.read",
+    "authorityDomain": "knowledge",
+    "risk": "R0",
+    "requiredEvidence": [
+      "memory-scope-source-and-freshness"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-memory-write",
+    "version": "1.0.0",
+    "purpose": "Store governed session or approved long-term memory with versioned rollback support.",
+    "ownerAgent": "agent.knowledge",
+    "capability": "ai.memory.write",
+    "authorityDomain": "knowledge",
+    "risk": "R1",
+    "requiredEvidence": [
+      "memory-source-and-approval-when-required"
+    ],
+    "approvalPolicy": "risk-default",
+    "rollback": "required",
+    "enabled": true
+  },
+  {
+    "id": "ai-web-research",
+    "version": "1.0.0",
+    "purpose": "Collect current public evidence and synthesize it with citations and timestamps.",
+    "ownerAgent": "agent.opportunity",
+    "capability": "ai.web.research",
+    "authorityDomain": "research",
+    "risk": "R0",
+    "requiredEvidence": [
+      "source-url-and-retrieval-time"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-image-generate",
+    "version": "1.0.0",
+    "purpose": "Generate or edit governed visual assets from approved creative direction.",
+    "ownerAgent": "agent.visual",
+    "capability": "ai.image.generate",
+    "authorityDomain": "design",
+    "risk": "R0",
+    "requiredEvidence": [
+      "generation-request-and-asset-reference"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-video-generate",
+    "version": "1.0.0",
+    "purpose": "Generate or animate governed video assets from approved creative direction.",
+    "ownerAgent": "agent.visual",
+    "capability": "ai.video.generate",
+    "authorityDomain": "design",
+    "risk": "R0",
+    "requiredEvidence": [
+      "generation-request-and-video-reference"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-audio-transcribe",
+    "version": "1.0.0",
+    "purpose": "Transcribe approved audio with source-linked provenance.",
+    "ownerAgent": "agent.content",
+    "capability": "ai.audio.transcribe",
+    "authorityDomain": "content",
+    "risk": "R0",
+    "requiredEvidence": [
+      "source-audio-reference"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-audio-generate",
+    "version": "1.0.0",
+    "purpose": "Generate governed audio or speech assets from approved content.",
+    "ownerAgent": "agent.content",
+    "capability": "ai.audio.generate",
+    "authorityDomain": "content",
+    "risk": "R0",
+    "requiredEvidence": [
+      "generation-request-and-audio-reference"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-realtime-voice",
+    "version": "1.0.0",
+    "purpose": "Run governed realtime voice sessions for customer and operator interaction.",
+    "ownerAgent": "agent.cx",
+    "capability": "ai.voice.realtime",
+    "authorityDomain": "customer-service",
+    "risk": "R0",
+    "requiredEvidence": [
+      "voice-session-metadata"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-code-execute",
+    "version": "1.0.0",
+    "purpose": "Execute bounded code in an isolated environment with captured inputs, outputs and limits.",
+    "ownerAgent": "agent.engineering",
+    "capability": "ai.code.execute",
+    "authorityDomain": "engineering",
+    "risk": "R1",
+    "requiredEvidence": [
+      "sandbox-trace-and-exit-status"
+    ],
+    "approvalPolicy": "risk-default",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-tool-invoke",
+    "version": "1.0.0",
+    "purpose": "Invoke governed external tools through existing capability, approval and verification gates.",
+    "ownerAgent": "agent.automation",
+    "capability": "ai.tool.invoke",
+    "authorityDomain": "automation",
+    "risk": "R2",
+    "requiredEvidence": [
+      "tool-target-input-hash-and-approval"
+    ],
+    "approvalPolicy": "always",
+    "rollback": "required",
+    "enabled": true
+  },
+  {
+    "id": "ai-computer-use",
+    "version": "1.0.0",
+    "purpose": "Operate approved graphical interfaces with explicit action traces and post-action verification.",
+    "ownerAgent": "agent.automation",
+    "capability": "ai.computer.use",
+    "authorityDomain": "automation",
+    "risk": "R2",
+    "requiredEvidence": [
+      "target-action-trace-approval-and-verification"
+    ],
+    "approvalPolicy": "always",
+    "rollback": "required",
+    "enabled": true
+  },
+  {
+    "id": "ai-evaluate",
+    "version": "1.0.0",
+    "purpose": "Evaluate AI outputs and model behavior against declared datasets, rubrics and regression gates.",
+    "ownerAgent": "agent.analytics",
+    "capability": "ai.evaluate",
+    "authorityDomain": "analytics",
+    "risk": "R0",
+    "requiredEvidence": [
+      "rubric-dataset-and-evaluation-result"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
+  },
+  {
+    "id": "ai-safety-inspect",
+    "version": "1.0.0",
+    "purpose": "Apply safety, privacy, redaction and policy checks to AI inputs, outputs and tool plans.",
+    "ownerAgent": "agent.security",
+    "capability": "ai.safety.inspect",
+    "authorityDomain": "security",
+    "risk": "R0",
+    "requiredEvidence": [
+      "policy-version-and-finding-codes"
+    ],
+    "approvalPolicy": "never",
+    "rollback": "not-required",
+    "enabled": true
   }
 ]
