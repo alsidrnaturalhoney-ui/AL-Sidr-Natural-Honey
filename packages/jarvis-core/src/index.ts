@@ -21,3 +21,4 @@ export * from "./retry.js";
 export * from "./observability.js";
 export * from "./connector-adapter.js";
 export * from "./business-routing.js";
+export * from "./ai-orchestrator.js";
