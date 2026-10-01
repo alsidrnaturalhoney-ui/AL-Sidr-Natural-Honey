@@ -546,5 +546,50 @@
     "secretPolicy": "managed-connector",
     "maxRisk": "R1",
     "writePolicy": "approval-required"
+  },
+  {
+    "id": "tabby",
+    "platform": "Tabby",
+    "authorityDomain": "payments",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read-status",
+      "verification-diagnose",
+      "draft-support"
+    ],
+    "secretPolicy": "managed-connector-or-provider-oauth",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "google-business-profile",
+    "platform": "Google Business Profile",
+    "authorityDomain": "local-seo",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "read",
+      "draft-post",
+      "draft-review-reply",
+      "publish"
+    ],
+    "secretPolicy": "managed-connector",
+    "maxRisk": "R2",
+    "writePolicy": "approval-required"
+  },
+  {
+    "id": "openai-platform",
+    "platform": "OpenAI Platform",
+    "authorityDomain": "ai-runtime",
+    "mode": "adapter",
+    "status": "registered-unverified",
+    "allowedOperations": [
+      "project-read",
+      "api-key-provision"
+    ],
+    "secretPolicy": "provider-secure-setup-only",
+    "maxRisk": "R3",
+    "writePolicy": "approval-required"
   }
 ]
