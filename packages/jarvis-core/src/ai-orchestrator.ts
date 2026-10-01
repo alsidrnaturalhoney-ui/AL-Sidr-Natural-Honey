@@ -159,6 +159,25 @@ export function selectAIModels(
     });
 }
 
+const canonicalAgentIds = {
+  "ceo-command": "jarvis.prime",
+  "procurement-agent": "agent.procurement",
+  "shopify-operator": "agent.commerce",
+  "seo-growth": "agent.seo",
+  "content-agent": "agent.content",
+  "analytics-agent": "agent.analytics",
+  "mcp-governor": "agent.automation",
+  "engineering-agent": "agent.engineering",
+  "security-agent": "agent.security",
+  "knowledge-engineer": "agent.knowledge",
+} as const;
+
+export function canonicalAgentId(
+  agent: keyof typeof canonicalAgentIds,
+): (typeof canonicalAgentIds)[keyof typeof canonicalAgentIds] {
+  return canonicalAgentIds[agent];
+}
+
 export function buildAIExecutionPlan(
   inputRequest: AIRequest,
   registry: AIModelRegistry,
@@ -176,7 +195,7 @@ export function buildAIExecutionPlan(
   return AIExecutionPlan.parse({
     requestId: request.requestId,
     goal: request.goal,
-    agent: route.agent,
+    agent: canonicalAgentId(route.agent),
     skills: route.skills,
     routeReason: route.reason,
     primaryModel: primary.id,
