@@ -127,7 +127,7 @@ describe("AI orchestration", () => {
 
     const plan = buildAIExecutionPlan(request(), registry);
 
-    expect(plan.agent).toBe("procurement-agent");
+    expect(plan.agent).toBe("agent.procurement");
     expect(plan.primaryModel).toBe("multimodal-reasoner");
     expect(plan.fallbackModels).toEqual(["backup-reasoner"]);
     expect(plan.controls).toEqual({
