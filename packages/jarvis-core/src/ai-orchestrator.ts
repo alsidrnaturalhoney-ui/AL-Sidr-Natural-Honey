@@ -190,3 +190,83 @@ export function buildAIExecutionPlan(
     },
   });
 }
+
+
+export type AIModelInvocation = Readonly<{
+  request: AIRequest;
+  plan: AIExecutionPlan;
+  model: AIModelProfile;
+}>;
+
+export type AIModelInvocationResult =
+  | Readonly<{
+      ok: true;
+      output: Record<string, unknown>;
+      citations?: readonly string[];
+      usage?: Readonly<Record<string, number>>;
+    }>
+  | Readonly<{
+      ok: false;
+      code: string;
+      retryable: boolean;
+    }>;
+
+export interface AIModelAdapter {
+  modelId: string;
+  invoke(input: AIModelInvocation): Promise<AIModelInvocationResult>;
+}
+
+export type AIExecutionResult = Readonly<{
+  plan: AIExecutionPlan;
+  modelId: string;
+  attemptedModels: readonly string[];
+  output: Record<string, unknown>;
+  citations: readonly string[];
+  usage: Readonly<Record<string, number>>;
+}>;
+
+export async function executeAIRequest(
+  inputRequest: AIRequest,
+  dependencies: {
+    models: AIModelRegistry;
+    adapters: ReadonlyMap<string, AIModelAdapter>;
+  },
+): Promise<AIExecutionResult> {
+  const request = AIRequest.parse(inputRequest);
+  const plan = buildAIExecutionPlan(request, dependencies.models);
+  const modelIds = [plan.primaryModel, ...plan.fallbackModels];
+  const attemptedModels: string[] = [];
+
+  for (const modelId of modelIds) {
+    attemptedModels.push(modelId);
+    const model = dependencies.models.get(modelId);
+    const adapter = dependencies.adapters.get(modelId);
+
+    if (!model || !adapter) {
+      continue;
+    }
+
+    if (adapter.modelId !== modelId) {
+      throw new Error("ai_adapter_model_mismatch");
+    }
+
+    const result = await adapter.invoke({ request, plan, model });
+
+    if (result.ok) {
+      return {
+        plan,
+        modelId,
+        attemptedModels: Object.freeze([...attemptedModels]),
+        output: result.output,
+        citations: Object.freeze([...(result.citations ?? [])]),
+        usage: Object.freeze({ ...(result.usage ?? {}) }),
+      };
+    }
+
+    if (!result.retryable) {
+      throw new Error(`ai_model_failed:${result.code}`);
+    }
+  }
+
+  throw new Error("no_available_ai_model");
+}
