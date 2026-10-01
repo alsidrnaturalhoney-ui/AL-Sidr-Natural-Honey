@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   buildAIExecutionPlan,
   createAIModelRegistry,
+  executeAIRequest,
   selectAIModels,
+  type AIModelAdapter,
   type AIModelProfile,
   type AIRequest,
 } from "../src/ai-orchestrator.js";
@@ -133,6 +135,70 @@ describe("AI orchestration", () => {
       memory: "session",
       toolAccess: "read-only",
     });
+  });
+
+  it("falls back to the next compatible model only for retryable provider failures", async () => {
+    const registry = createAIModelRegistry([
+      ...profiles,
+      {
+        id: "backup-reasoner",
+        provider: "provider-d",
+        abilities: [
+          "text-generation",
+          "reasoning",
+          "structured-output",
+          "file-understanding",
+        ],
+        qualityTier: 4,
+        speedTier: 2,
+        costTier: 2,
+        dataClasses: ["public", "internal", "confidential"],
+        enabled: true,
+      },
+    ]);
+
+    const adapters = new Map<string, AIModelAdapter>([
+      [
+        "multimodal-reasoner",
+        {
+          modelId: "multimodal-reasoner",
+          async invoke() {
+            return {
+              ok: false,
+              code: "provider_temporarily_unavailable",
+              retryable: true,
+            };
+          },
+        },
+      ],
+      [
+        "backup-reasoner",
+        {
+          modelId: "backup-reasoner",
+          async invoke(input) {
+            return {
+              ok: true,
+              output: { answer: "grounded result", requestId: input.request.requestId },
+              citations: ["source:1"],
+              usage: { inputUnits: 10, outputUnits: 5 },
+            };
+          },
+        },
+      ],
+    ]);
+
+    const result = await executeAIRequest(request(), { models: registry, adapters });
+
+    expect(result.modelId).toBe("backup-reasoner");
+    expect(result.attemptedModels).toEqual([
+      "multimodal-reasoner",
+      "backup-reasoner",
+    ]);
+    expect(result.output).toEqual({
+      answer: "grounded result",
+      requestId: "req-ai-1",
+    });
+    expect(result.citations).toEqual(["source:1"]);
   });
 
   it("fails closed when no compatible model exists", () => {
