@@ -36,6 +36,20 @@ export const AIGroundingMode = z.enum(["optional", "required"]);
 export const AIMemoryMode = z.enum(["none", "session", "long-term"]);
 export const AIToolAccess = z.enum(["disabled", "read-only", "approval-gated"]);
 
+export const AIOutputValueType = z.enum([
+  "string",
+  "number",
+  "boolean",
+  "object",
+  "array",
+]);
+
+export const AIStructuredOutputSchema = z.object({
+  required: z.array(z.string().min(1)).min(1),
+  properties: z.record(AIOutputValueType),
+  allowAdditionalProperties: z.boolean().default(true),
+});
+
 export const AIModelProfile = z.object({
   id: z.string().min(1),
   provider: z.string().min(1),
@@ -59,6 +73,18 @@ export const AIRequest = z.object({
   grounding: AIGroundingMode,
   memory: AIMemoryMode,
   toolAccess: AIToolAccess,
+  outputSchema: AIStructuredOutputSchema.optional(),
+}).superRefine((request, context) => {
+  if (
+    request.requiredAbilities.includes("structured-output") &&
+    !request.outputSchema
+  ) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["outputSchema"],
+      message: "structured-output requests require outputSchema",
+    });
+  }
 });
 
 export const AIExecutionPlan = z.object({
@@ -83,6 +109,8 @@ export type AIDataClassification = z.infer<typeof AIDataClassification>;
 export type AIGroundingMode = z.infer<typeof AIGroundingMode>;
 export type AIMemoryMode = z.infer<typeof AIMemoryMode>;
 export type AIToolAccess = z.infer<typeof AIToolAccess>;
+export type AIOutputValueType = z.infer<typeof AIOutputValueType>;
+export type AIStructuredOutputSchema = z.infer<typeof AIStructuredOutputSchema>;
 export type AIModelProfile = z.infer<typeof AIModelProfile>;
 export type AIRequest = z.infer<typeof AIRequest>;
 export type AIExecutionPlan = z.infer<typeof AIExecutionPlan>;
@@ -244,6 +272,53 @@ export type AIExecutionResult = Readonly<{
   usage: Readonly<Record<string, number>>;
 }>;
 
+
+function matchesOutputValueType(value: unknown, expected: AIOutputValueType): boolean {
+  switch (expected) {
+    case "string":
+      return typeof value === "string";
+    case "number":
+      return typeof value === "number" && Number.isFinite(value);
+    case "boolean":
+      return typeof value === "boolean";
+    case "array":
+      return Array.isArray(value);
+    case "object":
+      return typeof value === "object" && value !== null && !Array.isArray(value);
+  }
+}
+
+function satisfiesDeclaredOutputSchema(
+  request: AIRequest,
+  output: Record<string, unknown>,
+): boolean {
+  const schema = request.outputSchema;
+  if (!schema) {
+    return !request.requiredAbilities.includes("structured-output");
+  }
+
+  for (const key of schema.required) {
+    if (!(key in output)) {
+      return false;
+    }
+  }
+
+  for (const [key, expected] of Object.entries(schema.properties)) {
+    if (key in output && !matchesOutputValueType(output[key], expected)) {
+      return false;
+    }
+  }
+
+  if (!schema.allowAdditionalProperties) {
+    const allowed = new Set(Object.keys(schema.properties));
+    if (Object.keys(output).some((key) => !allowed.has(key))) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 export async function executeAIRequest(
   inputRequest: AIRequest,
   dependencies: {
@@ -269,15 +344,32 @@ export async function executeAIRequest(
       throw new Error("ai_adapter_model_mismatch");
     }
 
-    const result = await adapter.invoke({ request, plan, model });
+    let result: AIModelInvocationResult;
+    try {
+      result = await adapter.invoke({ request, plan, model });
+    } catch {
+      continue;
+    }
 
     if (result.ok) {
+      const citations = (result.citations ?? []).filter(
+        (citation) => citation.trim().length > 0,
+      );
+
+      if (request.grounding === "required" && citations.length === 0) {
+        continue;
+      }
+
+      if (!satisfiesDeclaredOutputSchema(request, result.output)) {
+        continue;
+      }
+
       return {
         plan,
         modelId,
         attemptedModels: Object.freeze([...attemptedModels]),
         output: result.output,
-        citations: Object.freeze([...(result.citations ?? [])]),
+        citations: Object.freeze([...citations]),
         usage: Object.freeze({ ...(result.usage ?? {}) }),
       };
     }
