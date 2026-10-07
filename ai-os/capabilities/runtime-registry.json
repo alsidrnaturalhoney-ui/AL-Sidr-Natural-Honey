@@ -5,14 +5,21 @@
     "provider": "internal",
     "risk": "R0",
     "mode": "read",
-    "allowedOperations": ["read"],
+    "allowedOperations": [
+      "read"
+    ],
     "requiredPermissions": [],
     "confirmation": "never",
     "requiresEvidence": false,
     "requiresRollback": false,
     "minimumAuthStrength": 0,
     "verificationStrategy": "compare returned health schema",
-    "enabledEnvironments": ["test", "development", "staging", "production"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   },
   {
     "name": "knowledge.read",
@@ -20,14 +27,22 @@
     "provider": "governed-knowledge",
     "risk": "R0",
     "mode": "read",
-    "allowedOperations": ["search", "read"],
+    "allowedOperations": [
+      "search",
+      "read"
+    ],
     "requiredPermissions": [],
     "confirmation": "never",
     "requiresEvidence": false,
     "requiresRollback": false,
     "minimumAuthStrength": 0,
     "verificationStrategy": "return provenance and freshness metadata",
-    "enabledEnvironments": ["test", "development", "staging", "production"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   },
   {
     "name": "audit.read",
@@ -35,14 +50,23 @@
     "provider": "supabase",
     "risk": "R0",
     "mode": "read",
-    "allowedOperations": ["read"],
-    "requiredPermissions": ["audit:read"],
+    "allowedOperations": [
+      "read"
+    ],
+    "requiredPermissions": [
+      "audit:read"
+    ],
     "confirmation": "never",
     "requiresEvidence": false,
     "requiresRollback": false,
     "minimumAuthStrength": 1,
     "verificationStrategy": "read audit event by immutable event id",
-    "enabledEnvironments": ["test", "development", "staging", "production"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   },
   {
     "name": "internal.task.create",
@@ -50,14 +74,22 @@
     "provider": "internal-test-adapter",
     "risk": "R1",
     "mode": "write",
-    "allowedOperations": ["create"],
-    "requiredPermissions": ["tasks:write"],
+    "allowedOperations": [
+      "create"
+    ],
+    "requiredPermissions": [
+      "tasks:write"
+    ],
     "confirmation": "never",
     "requiresEvidence": true,
     "requiresRollback": false,
     "minimumAuthStrength": 1,
     "verificationStrategy": "read created test record by id",
-    "enabledEnvironments": ["test", "development", "staging"]
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging"
+    ]
   },
   {
     "name": "external.content.publish",
@@ -65,14 +97,20 @@
     "provider": "policy-fixture-disabled",
     "risk": "R2",
     "mode": "write",
-    "allowedOperations": ["publish"],
-    "requiredPermissions": ["content:publish"],
+    "allowedOperations": [
+      "publish"
+    ],
+    "requiredPermissions": [
+      "content:publish"
+    ],
     "confirmation": "always",
     "requiresEvidence": true,
     "requiresRollback": true,
     "minimumAuthStrength": 1,
     "verificationStrategy": "independent provider read after publish",
-    "enabledEnvironments": ["test"]
+    "enabledEnvironments": [
+      "test"
+    ]
   },
   {
     "name": "critical.security.change",
@@ -80,13 +118,734 @@
     "provider": "policy-fixture-disabled",
     "risk": "R3",
     "mode": "write",
-    "allowedOperations": ["change"],
-    "requiredPermissions": ["security:admin"],
+    "allowedOperations": [
+      "change"
+    ],
+    "requiredPermissions": [
+      "security:admin"
+    ],
     "confirmation": "always",
     "requiresEvidence": true,
     "requiresRollback": true,
     "minimumAuthStrength": 2,
     "verificationStrategy": "independent security-state read and rollback proof",
-    "enabledEnvironments": ["test"]
+    "enabledEnvironments": [
+      "test"
+    ]
+  },
+  {
+    "name": "retail.po.reconcile",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "read",
+    "allowedOperations": [
+      "parse",
+      "reconcile",
+      "draft-task"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "compare extracted PO fields to source document",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "compliance.expiry.monitor",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "extract-deadline",
+      "classify"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "return source, exact date and affected system",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "payments.continuity.check",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "diagnose",
+      "draft-remediation"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "cross-check provider notice against current commerce state",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "finance.reconcile.read",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "reconcile",
+      "flag-exception"
+    ],
+    "requiredPermissions": [
+      "finance:read"
+    ],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "recompute totals from cited source records",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "reputation.local.read",
+    "version": "1.0.0",
+    "provider": "managed-connector",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "audit",
+      "draft-response"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "return provider identity and timestamp",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "data.consistency.audit",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "compare",
+      "deduplicate",
+      "staleness-check"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "report field-level authority and conflicting values",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "experiment.plan",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R1",
+    "mode": "write",
+    "allowedOperations": [
+      "plan",
+      "prioritize",
+      "readout"
+    ],
+    "requiredPermissions": [
+      "experiments:write"
+    ],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "persist hypothesis, metric, guardrail and decision rule",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "credential.requirements.read",
+    "version": "1.0.0",
+    "provider": "internal",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "read",
+      "map-scopes",
+      "rotation-plan"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "no secret values returned or persisted",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "plugin.capability.discovery",
+    "version": "1.0.0",
+    "provider": "plugin-directory",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "search",
+      "compare",
+      "recommend"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "return plugin id, install state and capability gap",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.model.route",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "select",
+      "fallback"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record selected model profile, hard constraints and fallback order",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.chat.generate",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "generate"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "validate response envelope and trace metadata",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.reason.plan",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "reason",
+      "plan"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record grounded inputs, route and plan output without exposing private chain-of-thought",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.structured.generate",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "generate-json",
+      "extract"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "validate generated output against declared schema",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.multimodal.understand",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "analyze-image",
+      "analyze-audio",
+      "analyze-video",
+      "analyze-file"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "retain source references and modality metadata",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.image.generate",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "generate",
+      "edit"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record generation request and resulting asset reference",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.audio.transcribe",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "transcribe"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "link transcript spans to source audio reference",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.audio.generate",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "generate",
+      "synthesize-speech"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record generation request and resulting audio reference",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.voice.realtime",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "session",
+      "transcribe",
+      "speak"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record session metadata and enabled capabilities",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.video.generate",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "generate",
+      "animate"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record generation request and resulting video reference",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.embedding.create",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "embed"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": false,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record model profile and source content hash",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.rerank",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "rerank"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "return ranked references with deterministic input identifiers",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.web.research",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "search",
+      "synthesize"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "return source URLs, timestamps and citations",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.code.execute",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R1",
+    "mode": "write",
+    "allowedOperations": [
+      "execute-sandboxed"
+    ],
+    "requiredPermissions": [
+      "ai:code-execute"
+    ],
+    "confirmation": "risk-default",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "capture sandbox inputs, outputs, exit status and resource limits",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.memory.read",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "retrieve"
+    ],
+    "requiredPermissions": [
+      "memory:read"
+    ],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "return memory scope, source and freshness metadata",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.memory.write",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R1",
+    "mode": "write",
+    "allowedOperations": [
+      "store",
+      "update"
+    ],
+    "requiredPermissions": [
+      "memory:write"
+    ],
+    "confirmation": "risk-default",
+    "requiresEvidence": true,
+    "requiresRollback": true,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "read back stored memory and preserve previous version for rollback",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.agent.delegate",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R1",
+    "mode": "write",
+    "allowedOperations": [
+      "delegate",
+      "handoff"
+    ],
+    "requiredPermissions": [
+      "ai:delegate"
+    ],
+    "confirmation": "risk-default",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "record parent request, child agent, delegated scope and result",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.tool.invoke",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R2",
+    "mode": "write",
+    "allowedOperations": [
+      "invoke"
+    ],
+    "requiredPermissions": [
+      "tools:execute"
+    ],
+    "confirmation": "always",
+    "requiresEvidence": true,
+    "requiresRollback": true,
+    "minimumAuthStrength": 1,
+    "verificationStrategy": "route through underlying capability policy and independently verify side effects",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.computer.use",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R2",
+    "mode": "write",
+    "allowedOperations": [
+      "navigate",
+      "click",
+      "type",
+      "submit"
+    ],
+    "requiredPermissions": [
+      "computer:use"
+    ],
+    "confirmation": "always",
+    "requiresEvidence": true,
+    "requiresRollback": true,
+    "minimumAuthStrength": 2,
+    "verificationStrategy": "capture target, action sequence, approval and post-action state",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.evaluate",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "score",
+      "compare",
+      "regression"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "persist rubric, dataset identifiers and evaluation result",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
+  },
+  {
+    "name": "ai.safety.inspect",
+    "version": "1.0.0",
+    "provider": "jarvis-ai-router",
+    "risk": "R0",
+    "mode": "read",
+    "allowedOperations": [
+      "classify",
+      "redact",
+      "policy-check"
+    ],
+    "requiredPermissions": [],
+    "confirmation": "never",
+    "requiresEvidence": true,
+    "requiresRollback": false,
+    "minimumAuthStrength": 0,
+    "verificationStrategy": "record applied policy version and finding codes",
+    "enabledEnvironments": [
+      "test",
+      "development",
+      "staging",
+      "production"
+    ]
   }
 ]

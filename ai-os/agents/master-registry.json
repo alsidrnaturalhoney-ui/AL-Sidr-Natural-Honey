@@ -12,7 +12,12 @@
       "intent-route",
       "evidence-gate",
       "plan-compose",
-      "approval-route"
+      "approval-route",
+      "ai-chat-generate",
+      "ai-model-route",
+      "ai-reason-plan",
+      "ai-structured-output",
+      "ai-agent-delegate"
     ],
     "tools": [
       "github",
@@ -162,7 +167,9 @@
       "content-calendar",
       "product-story",
       "faq-generate",
-      "claim-sanitize"
+      "claim-sanitize",
+      "ai-audio-transcribe",
+      "ai-audio-generate"
     ],
     "tools": [
       "notion",
@@ -192,7 +199,9 @@
       "art-direction",
       "visual-qa",
       "storyboard",
-      "asset-spec"
+      "asset-spec",
+      "ai-image-generate",
+      "ai-video-generate"
     ],
     "tools": [
       "figma",
@@ -282,7 +291,8 @@
       "faq-answer",
       "product-guide",
       "order-triage",
-      "b2b-qualify"
+      "b2b-qualify",
+      "ai-realtime-voice"
     ],
     "tools": [
       "shopify",
@@ -369,7 +379,8 @@
       "kpi-brief",
       "funnel-analysis",
       "anomaly-detect",
-      "forecast-input"
+      "forecast-input",
+      "ai-evaluate"
     ],
     "tools": [
       "google-analytics",
@@ -399,7 +410,12 @@
       "deduplicate",
       "source-rank",
       "rag-retrieve",
-      "staleness-check"
+      "staleness-check",
+      "ai-multimodal-understand",
+      "ai-embedding-create",
+      "ai-rerank",
+      "ai-memory-read",
+      "ai-memory-write"
     ],
     "tools": [
       "notion",
@@ -430,7 +446,9 @@
       "webhook-verify",
       "idempotency",
       "retry-dlq",
-      "sync-plan"
+      "sync-plan",
+      "ai-tool-invoke",
+      "ai-computer-use"
     ],
     "tools": [
       "n8n",
@@ -459,7 +477,8 @@
       "test-gate",
       "ci-review",
       "migration-plan",
-      "release-plan"
+      "release-plan",
+      "ai-code-execute"
     ],
     "tools": [
       "github",
@@ -491,7 +510,8 @@
       "rls-audit",
       "secret-scan",
       "privacy-check",
-      "independent-verify"
+      "independent-verify",
+      "ai-safety-inspect"
     ],
     "tools": [
       "supabase",
@@ -548,7 +568,8 @@
       "opportunity-scan",
       "competitor-research",
       "gap-analysis",
-      "work-item-create"
+      "work-item-create",
+      "ai-web-research"
     ],
     "tools": [
       "notion",
@@ -562,6 +583,176 @@
       "opportunity-backlog"
     ],
     "escalationTarget": "jarvis.prime",
+    "enabled": true
+  },
+  {
+    "id": "agent.retailops",
+    "name": "Retail PO & Merchandising Operations",
+    "version": "1.0.0",
+    "purpose": "Turn retailer POs, stocktakes, shelf-support requests and merchandising notices into verified execution work without duplicating Asana.",
+    "authorityDomains": [
+      "retail",
+      "operations"
+    ],
+    "skills": [
+      "retail-po-parse",
+      "retail-deadline-track",
+      "merchandising-gap-detect"
+    ],
+    "tools": [
+      "gmail",
+      "google-drive",
+      "asana",
+      "airtable"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "retail-orders",
+      "deadlines",
+      "merchandising-evidence"
+    ],
+    "escalationTarget": "human.operations",
+    "enabled": true
+  },
+  {
+    "id": "agent.payments",
+    "name": "Payments & Partner Continuity",
+    "version": "1.0.0",
+    "purpose": "Monitor payment-provider readiness, licence/verification expiries and checkout-partner continuity while keeping financial actions approval-gated.",
+    "authorityDomains": [
+      "payments",
+      "commerce"
+    ],
+    "skills": [
+      "payment-partner-health",
+      "licence-expiry-monitor",
+      "checkout-partner-risk"
+    ],
+    "tools": [
+      "shopify",
+      "gmail",
+      "tabby"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "provider-status",
+      "verification-deadlines",
+      "checkout-risk"
+    ],
+    "escalationTarget": "human.owner",
+    "enabled": true
+  },
+  {
+    "id": "agent.financeops",
+    "name": "Finance Reconciliation Intelligence",
+    "version": "1.0.0",
+    "purpose": "Reconcile sales, merchant statements, settlements, fees and channel totals for management reporting without moving funds.",
+    "authorityDomains": [
+      "finance",
+      "analytics"
+    ],
+    "skills": [
+      "merchant-statement-reconcile",
+      "channel-settlement-check",
+      "cashflow-exception-detect"
+    ],
+    "tools": [
+      "shopify",
+      "gmail",
+      "google-drive",
+      "airtable"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "reconciliation-evidence",
+      "settlement-exceptions"
+    ],
+    "escalationTarget": "human.finance",
+    "enabled": true
+  },
+  {
+    "id": "agent.reputation",
+    "name": "Local Reputation & Business Profile",
+    "version": "1.0.0",
+    "purpose": "Audit Google Business Profile, local reviews, listings and reputation signals, producing governed reply/post drafts.",
+    "authorityDomains": [
+      "local-seo",
+      "reputation"
+    ],
+    "skills": [
+      "local-profile-audit",
+      "review-signal-triage",
+      "local-post-plan"
+    ],
+    "tools": [
+      "google-business-profile",
+      "google-search-console",
+      "notion"
+    ],
+    "maxRisk": "R2",
+    "memoryScope": [
+      "review-themes",
+      "local-profile-state"
+    ],
+    "escalationTarget": "agent.seo",
+    "enabled": true
+  },
+  {
+    "id": "agent.dataquality",
+    "name": "Cross-System Data Quality Guardian",
+    "version": "1.0.0",
+    "purpose": "Detect inconsistent product, price, stock, promotion, status and authority facts across canonical systems.",
+    "authorityDomains": [
+      "data-quality",
+      "governance"
+    ],
+    "skills": [
+      "cross-system-reconcile",
+      "stale-fact-detect",
+      "duplicate-entity-detect"
+    ],
+    "tools": [
+      "shopify",
+      "airtable",
+      "supabase",
+      "notion",
+      "github"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "conflicts",
+      "reconciliation-evidence",
+      "staleness"
+    ],
+    "escalationTarget": "agent.governance",
+    "enabled": true
+  },
+  {
+    "id": "agent.experiments",
+    "name": "Growth Experiment Designer",
+    "version": "1.0.0",
+    "purpose": "Convert funnel evidence into measurable CRO, AOV, retention and merchandising experiments with guardrails and stop criteria.",
+    "authorityDomains": [
+      "growth",
+      "analytics"
+    ],
+    "skills": [
+      "experiment-design",
+      "experiment-prioritize",
+      "experiment-readout"
+    ],
+    "tools": [
+      "shopify",
+      "airtable",
+      "supabase",
+      "asana"
+    ],
+    "maxRisk": "R1",
+    "memoryScope": [
+      "hypotheses",
+      "experiment-results"
+    ],
+    "escalationTarget": "agent.analytics",
     "enabled": true
   }
 ]
