@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   createAgentRegistry,
@@ -38,6 +39,17 @@ describe("agent, skill and connector manifests", () => {
       enabled: true,
     };
     expect(() => createSkillRegistry([skill, skill])).toThrow(/duplicate_skill/);
+  });
+
+  it("loads the governed connector registry without schema violations", () => {
+    const connectorConfig = JSON.parse(
+      readFileSync(
+        new URL("../../../config/connectors-registry.json", import.meta.url),
+        "utf8",
+      ),
+    ) as unknown[];
+
+    expect(() => createConnectorRegistry(connectorConfig)).not.toThrow();
   });
 
   it("requires explicit connector write policy", () => {
