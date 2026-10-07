@@ -8,7 +8,9 @@ export type AgentId =
   | "mcp-governor"
   | "engineering-agent"
   | "security-agent"
-  | "knowledge-engineer";
+  | "knowledge-engineer"
+  | "retail-operations-agent"
+  | "finance-operations-agent";
 
 export type Route = {
   agent: AgentId;
@@ -19,6 +21,18 @@ export type Route = {
 type Rule = Route & { patterns: RegExp[] };
 
 const rules: Rule[] = [
+  {
+    agent: "retail-operations-agent",
+    skills: ["retail-po-parse", "retail-deadline-track", "merchandising-gap-detect"],
+    reason: "retail purchase-order, deadline or merchandising operations intent",
+    patterns: [/purchase order/i, /\bpo\b/i, /\blpo\b/i, /stocktake/i, /merchandis/i, /delivery deadline/i],
+  },
+  {
+    agent: "finance-operations-agent",
+    skills: ["merchant-statement-reconcile", "channel-settlement-check", "cashflow-exception-detect"],
+    reason: "merchant statement, settlement or finance reconciliation intent",
+    patterns: [/merchant statement/i, /settlement fee/i, /channel settlement/i, /cashflow mismatch/i, /settlement reconciliation/i],
+  },
   {
     agent: "procurement-agent",
     skills: ["al-sidr-procurement-command-center"],
