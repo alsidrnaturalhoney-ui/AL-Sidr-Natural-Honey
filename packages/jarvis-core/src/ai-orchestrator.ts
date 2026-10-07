@@ -198,6 +198,8 @@ const canonicalAgentIds = {
   "engineering-agent": "agent.engineering",
   "security-agent": "agent.security",
   "knowledge-engineer": "agent.knowledge",
+  "retail-operations-agent": "agent.retailops",
+  "finance-operations-agent": "agent.financeops",
 } as const;
 
 export function canonicalAgentId(
