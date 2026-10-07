@@ -558,7 +558,7 @@
       "verification-diagnose",
       "draft-support"
     ],
-    "secretPolicy": "managed-connector-or-provider-oauth",
+    "secretPolicy": "managed-connector",
     "maxRisk": "R2",
     "writePolicy": "approval-required"
   },
