@@ -77,6 +77,14 @@ function request(overrides: Partial<AIRequest> = {}): AIRequest {
     grounding: "required",
     memory: "session",
     toolAccess: "read-only",
+    outputSchema: {
+      required: ["answer", "requestId"],
+      properties: {
+        answer: "string",
+        requestId: "string",
+      },
+      allowAdditionalProperties: true,
+    },
     ...overrides,
   };
 }
@@ -199,6 +207,182 @@ describe("AI orchestration", () => {
       requestId: "req-ai-1",
     });
     expect(result.citations).toEqual(["source:1"]);
+  });
+
+
+  it("falls back when structured output does not satisfy the declared schema", async () => {
+    const registry = createAIModelRegistry([
+      ...profiles,
+      {
+        id: "backup-reasoner",
+        provider: "provider-d",
+        abilities: [
+          "text-generation",
+          "reasoning",
+          "structured-output",
+          "file-understanding",
+        ],
+        qualityTier: 4,
+        speedTier: 2,
+        costTier: 2,
+        dataClasses: ["public", "internal", "confidential"],
+        enabled: true,
+      },
+    ]);
+
+    const adapters = new Map<string, AIModelAdapter>([
+      [
+        "multimodal-reasoner",
+        {
+          modelId: "multimodal-reasoner",
+          async invoke(input) {
+            return {
+              ok: true,
+              output: { answer: 42, requestId: input.request.requestId },
+              citations: ["source:1"],
+            };
+          },
+        },
+      ],
+      [
+        "backup-reasoner",
+        {
+          modelId: "backup-reasoner",
+          async invoke(input) {
+            return {
+              ok: true,
+              output: {
+                answer: "validated fallback",
+                requestId: input.request.requestId,
+              },
+              citations: ["source:2"],
+            };
+          },
+        },
+      ],
+    ]);
+
+    const result = await executeAIRequest(request(), { models: registry, adapters });
+
+    expect(result.modelId).toBe("backup-reasoner");
+    expect(result.output.answer).toBe("validated fallback");
+  });
+
+  it("falls back when grounding is required and a model returns no citations", async () => {
+    const registry = createAIModelRegistry([
+      ...profiles,
+      {
+        id: "backup-reasoner",
+        provider: "provider-d",
+        abilities: [
+          "text-generation",
+          "reasoning",
+          "structured-output",
+          "file-understanding",
+        ],
+        qualityTier: 4,
+        speedTier: 2,
+        costTier: 2,
+        dataClasses: ["public", "internal", "confidential"],
+        enabled: true,
+      },
+    ]);
+
+    const adapters = new Map<string, AIModelAdapter>([
+      [
+        "multimodal-reasoner",
+        {
+          modelId: "multimodal-reasoner",
+          async invoke(input) {
+            return {
+              ok: true,
+              output: {
+                answer: "unsupported",
+                requestId: input.request.requestId,
+              },
+            };
+          },
+        },
+      ],
+      [
+        "backup-reasoner",
+        {
+          modelId: "backup-reasoner",
+          async invoke(input) {
+            return {
+              ok: true,
+              output: {
+                answer: "grounded fallback",
+                requestId: input.request.requestId,
+              },
+              citations: ["source:grounded"],
+            };
+          },
+        },
+      ],
+    ]);
+
+    const result = await executeAIRequest(request(), { models: registry, adapters });
+
+    expect(result.modelId).toBe("backup-reasoner");
+    expect(result.citations).toEqual(["source:grounded"]);
+  });
+
+  it("falls back when an adapter rejects with a provider or network error", async () => {
+    const registry = createAIModelRegistry([
+      ...profiles,
+      {
+        id: "backup-reasoner",
+        provider: "provider-d",
+        abilities: [
+          "text-generation",
+          "reasoning",
+          "structured-output",
+          "file-understanding",
+        ],
+        qualityTier: 4,
+        speedTier: 2,
+        costTier: 2,
+        dataClasses: ["public", "internal", "confidential"],
+        enabled: true,
+      },
+    ]);
+
+    const adapters = new Map<string, AIModelAdapter>([
+      [
+        "multimodal-reasoner",
+        {
+          modelId: "multimodal-reasoner",
+          async invoke() {
+            throw new Error("provider_connection_reset");
+          },
+        },
+      ],
+      [
+        "backup-reasoner",
+        {
+          modelId: "backup-reasoner",
+          async invoke(input) {
+            return {
+              ok: true,
+              output: {
+                answer: "recovered",
+                requestId: input.request.requestId,
+              },
+              citations: ["source:recovered"],
+            };
+          },
+        },
+      ],
+    ]);
+
+    const result = await executeAIRequest(request(), { models: registry, adapters });
+
+    expect(result.modelId).toBe("backup-reasoner");
+    expect(result.attemptedModels).toEqual([
+      "multimodal-reasoner",
+      "backup-reasoner",
+    ]);
   });
 
   it("fails closed when no compatible model exists", () => {

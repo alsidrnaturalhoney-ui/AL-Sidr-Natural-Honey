@@ -41,7 +41,13 @@ export const ConnectorManifest = z.object({
     "blocked",
   ]),
   allowedOperations: z.array(z.string().min(1)),
-  secretPolicy: z.enum(["env-only", "managed-connector", "none"]),
+  secretPolicy: z.enum([
+    "env-only",
+    "managed-connector",
+    "managed-connector-or-provider-oauth",
+    "provider-secure-setup-only",
+    "none",
+  ]),
   maxRisk: RiskClass,
   writePolicy: z.enum(["disabled", "approval-required", "allowed"]),
 });

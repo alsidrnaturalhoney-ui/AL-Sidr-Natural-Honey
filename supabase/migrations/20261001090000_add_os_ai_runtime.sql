@@ -7,6 +7,65 @@
 
 create extension if not exists vector with schema extensions;
 
+-- Reproduce the canonical control-plane dependencies required by this migration
+-- when bootstrapping a fresh database. Existing production tables are preserved
+-- because every definition is idempotent.
+create table if not exists public.os_approval_requests (
+  id uuid primary key default gen_random_uuid(),
+  correlation_id uuid not null,
+  requested_by text not null,
+  actor_id text not null,
+  action_type text not null,
+  target_system text not null,
+  environment text not null default 'prod',
+  risk_level text not null
+    check (risk_level in ('R0','R1','R2','R3')),
+  scope jsonb not null default '{}'::jsonb,
+  payload_hash text not null,
+  status text not null default 'PENDING'
+    check (status in ('PENDING','APPROVED','REJECTED','EXPIRED','CANCELLED','CONSUMED')),
+  expires_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.os_execution_runs (
+  id uuid primary key default gen_random_uuid(),
+  correlation_id uuid not null,
+  plan_id text,
+  actor_id text,
+  status text not null default 'PLANNED'
+    check (status in ('PLANNED','RUNNING','SUCCEEDED','FAILED','PARTIAL','CANCELLED')),
+  started_at timestamptz,
+  ended_at timestamptz,
+  error jsonb,
+  rollback jsonb,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.os_ai_tools (
+  tool_id text primary key,
+  version text not null,
+  domain text not null,
+  risk_level text not null
+    check (risk_level in ('R0','R1','R2','R3')),
+  approval_rule text not null,
+  owner text not null,
+  purpose text not null,
+  status text not null default 'ACTIVE'
+    check (status in ('ACTIVE','PLANNED','DISABLED')),
+  definition jsonb not null default '{}'::jsonb,
+  last_verified_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table public.os_approval_requests enable row level security;
+alter table public.os_execution_runs enable row level security;
+alter table public.os_ai_tools enable row level security;
+
+revoke all on table public.os_approval_requests from PUBLIC, anon, authenticated;
+revoke all on table public.os_execution_runs from PUBLIC, anon, authenticated;
+revoke all on table public.os_ai_tools from PUBLIC, anon, authenticated;
+
 create table if not exists public.os_ai_model_profiles (
   model_profile_id text primary key,
   provider text not null,
@@ -99,6 +158,38 @@ create index if not exists os_ai_memory_subject_idx
   on public.os_ai_memory (subject_type, subject_id, status);
 create index if not exists os_ai_memory_session_idx
   on public.os_ai_memory (session_id, created_at desc);
+
+create or replace function public.enforce_os_ai_memory_approved_write()
+returns trigger
+language plpgsql
+set search_path = pg_catalog, public
+as $
+begin
+  if new.scope = 'long-term' then
+    if new.approval_request_id is null
+       or not exists (
+         select 1
+         from public.os_approval_requests approval
+         where approval.id = new.approval_request_id
+           and approval.status = 'APPROVED'
+           and (approval.expires_at is null or approval.expires_at > now())
+       )
+    then
+      raise exception 'long-term AI memory requires an active APPROVED approval request'
+        using errcode = '23514';
+    end if;
+  end if;
+
+  return new;
+end;
+$;
+
+drop trigger if exists os_ai_memory_require_approved_write on public.os_ai_memory;
+create trigger os_ai_memory_require_approved_write
+before insert or update of scope, approval_request_id, content
+on public.os_ai_memory
+for each row
+execute function public.enforce_os_ai_memory_approved_write();
 
 create table if not exists public.os_ai_documents (
   id uuid primary key default gen_random_uuid(),

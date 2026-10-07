@@ -25,6 +25,19 @@ describe("routeBusinessIntent", () => {
     expect(route.skills).toContain("al-sidr-automation-architect");
   });
 
+
+  it("routes retailer PO and merchandising operations to the retail operations specialist", () => {
+    const route = routeBusinessIntent("Parse the LuLu PO and track its delivery deadline and merchandising gaps");
+    expect(route.agent).toBe("retail-operations-agent");
+    expect(route.skills).toContain("retail-po-parse");
+  });
+
+  it("routes merchant settlement reconciliation to the finance operations specialist", () => {
+    const route = routeBusinessIntent("Reconcile the merchant statement, settlement fees and cashflow mismatch");
+    expect(route.agent).toBe("finance-operations-agent");
+    expect(route.skills).toContain("merchant-statement-reconcile");
+  });
+
   it("falls back to command routing", () => {
     const route = routeBusinessIntent("What is the next highest value task?");
     expect(route.agent).toBe("ceo-command");
