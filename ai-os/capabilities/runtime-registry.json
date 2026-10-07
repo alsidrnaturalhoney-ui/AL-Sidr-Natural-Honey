@@ -703,7 +703,7 @@
     "name": "ai.memory.write",
     "version": "1.0.0",
     "provider": "jarvis-ai-router",
-    "risk": "R1",
+    "risk": "R2",
     "mode": "write",
     "allowedOperations": [
       "store",
@@ -712,7 +712,7 @@
     "requiredPermissions": [
       "memory:write"
     ],
-    "confirmation": "risk-default",
+    "confirmation": "always",
     "requiresEvidence": true,
     "requiresRollback": true,
     "minimumAuthStrength": 1,
