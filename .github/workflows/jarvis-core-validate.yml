@@ -27,8 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      # No package-lock.json is present, so install from package manifests.
-      - run: npm install --ignore-scripts --no-audit --no-fund
+      # Use the committed lockfile for reproducible installs.
+      - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm run typecheck
       - run: npm test
       - run: npm run build

@@ -44,8 +44,8 @@ server.tool('instagram_get_profile', 'Read the connected Instagram Business/Crea
   if (!configured) throw new Error(`Instagram not configured. Missing: ${missing.join(', ')}`);
   const id = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID!;
   const token = process.env.META_ACCESS_TOKEN!;
-  const url = `https://graph.facebook.com/v23.0/${id}?fields=id,username,name,biography,website,followers_count,follows_count,media_count&access_token=${encodeURIComponent(token)}`;
-  return { content: [{ type: 'text', text: JSON.stringify(await jsonFetch(url), null, 2) }] };
+  const url = `https://graph.facebook.com/v23.0/${encodeURIComponent(id)}?fields=id,username,name,biography,website,followers_count,follows_count,media_count`;
+  return { content: [{ type: 'text', text: JSON.stringify(await jsonFetch(url, { headers: { Authorization: `Bearer ${token}` } }), null, 2) }] };
 });
 
 server.tool('facebook_get_page', 'Read the connected Facebook Page profile.', {}, async () => {
@@ -53,8 +53,8 @@ server.tool('facebook_get_page', 'Read the connected Facebook Page profile.', {}
   if (!configured) throw new Error(`Facebook not configured. Missing: ${missing.join(', ')}`);
   const id = process.env.FACEBOOK_PAGE_ID!;
   const token = process.env.META_ACCESS_TOKEN!;
-  const url = `https://graph.facebook.com/v23.0/${id}?fields=id,name,about,link,fan_count,followers_count&access_token=${encodeURIComponent(token)}`;
-  return { content: [{ type: 'text', text: JSON.stringify(await jsonFetch(url), null, 2) }] };
+  const url = `https://graph.facebook.com/v23.0/${encodeURIComponent(id)}?fields=id,name,about,link,fan_count,followers_count`;
+  return { content: [{ type: 'text', text: JSON.stringify(await jsonFetch(url, { headers: { Authorization: `Bearer ${token}` } }), null, 2) }] };
 });
 
 server.tool('telegram_send_message', 'Send a message to the configured Telegram chat/channel using the Bot API.', {
@@ -91,8 +91,8 @@ server.tool('threads_get_profile', 'Read the connected Threads profile.', {}, as
   if (!configured) throw new Error(`Threads not configured. Missing: ${missing.join(', ')}`);
   const id = process.env.THREADS_USER_ID!;
   const token = process.env.THREADS_ACCESS_TOKEN!;
-  const url = `https://graph.threads.net/v1.0/${id}?fields=id,username,name,threads_profile_picture_url,threads_biography&access_token=${encodeURIComponent(token)}`;
-  return { content: [{ type: 'text', text: JSON.stringify(await jsonFetch(url), null, 2) }] };
+  const url = `https://graph.threads.net/v1.0/${encodeURIComponent(id)}?fields=id,username,name,threads_profile_picture_url,threads_biography`;
+  return { content: [{ type: 'text', text: JSON.stringify(await jsonFetch(url, { headers: { Authorization: `Bearer ${token}` } }), null, 2) }] };
 });
 
 server.tool('social_publish_text', 'Publish text where the platform API supports a direct text endpoint. Writes are explicit and platform-scoped.', {
