@@ -1,57 +1,125 @@
-[Documentation Home](README.md)
+# 📚 AL-Sidr-Natural-Honey Documentation
+
+Welcome to the complete documentation for this repository. This documentation is automatically generated and maintained by Woden Docbot.
+
+![Files Documented: 1](https://img.shields.io/badge/Files_Documented-1-blue) ![Coverage: 9%](https://img.shields.io/badge/Coverage-9%-orange) ![Last Updated: 2026-10-20](https://img.shields.io/badge/Last_Updated-2026--10--20-gray)
+
+## 🔗 Quick Links
+
+[📂 social-mcp](./social-mcp/README.md)
+[📋 Dependencies](./DEPENDENCIES.md)
+
 
 ---
 
-# 📁 _docs
-
-> **Purpose:** Documentation and directory-level index describing the repository's documentation and developer-facing overview for the project's components and subdirectories.
-> 
-
-![Organization: Hierarchical](https://img.shields.io/badge/Organization-Hierarchical-blue)
-
-## 📑 Table of Contents
+> Official Al Sidr Natural Honey theme and e-commerce codebase with front-end assets and a TypeScript-based server integration for MCP components.
 
 
-- [Overview](#overview)
-- [Subdirectories](#subdirectories)
-- [Architecture Notes](#architecture-notes)
+
+## 📖 Overview
+
+This repository contains the codebase for Al Sidr Natural Honey's official theme and e-commerce site, alongside server-side wiring for Model Context Protocol (MCP) components. The project includes storefront assets and a dedicated integration for social-MCP services.
+
+The social-mcp directory holds the server-side implementation surface: source files live under social-mcp/src and a single TypeScript module (server.ts) composes the MCP server stack and exports utilities for other server code. The codebase also includes front-end files (HTML, CSS, JavaScript) and is developed with Node.js/TypeScript tooling; project files indicate use of npm, Docker, Python, and SQL in the repository.
+
+
+### 🧩 Key Components
+
+| Component | Purpose | Technologies |
+| --- | --- | --- |
+| **social-mcp** | Houses the server-side implementation and wiring for the project's Model Context Protocol (MCP) components. | `TypeScript`, `Node.js` |
+| **social-mcp/src/server.ts** | Single TypeScript module that composes the MCP server stack and exposes utilities consumed by the server application. | `TypeScript`, `Node.js` |
+
+
+
+
+**Component Architecture:**
+
+```mermaid
+graph TD
+    C0[social-mcp]
+    C1[social-mcp/src/server.ts]
+    C0 --> C1
+```
+
+### 🏗️ Architecture
+
+Front-end theme and assets (HTML/CSS/JavaScript) alongside a server-side integration under social-mcp/src/server.ts implemented in TypeScript and wired for MCP consumption.
+
+### 💡 Use Cases
+
+- ✦ E-commerce theme and storefront codebase for Al Sidr Natural Honey
+- ✦ Server-side MCP integration and utilities for social features (social-mcp)
+
+
+
+### 🔧 Technologies
+
+
+**Languages:** ![JavaScript: ](https://img.shields.io/badge/JavaScript--blue) ![Python: ](https://img.shields.io/badge/Python--blue) ![TypeScript: ](https://img.shields.io/badge/TypeScript--blue)
+
+**Databases:** ![SQL: ](https://img.shields.io/badge/SQL--blue)
+![CSS: ](https://img.shields.io/badge/CSS--blue) ![Docker: ](https://img.shields.io/badge/Docker--blue) ![HTML: ](https://img.shields.io/badge/HTML--blue) ![Node.js: ](https://img.shields.io/badge/Node.js--blue) ![npm: ](https://img.shields.io/badge/npm--blue)
+
+### 📦 External Dependencies
+
+The following external packages are used across the project:
+
+- `@modelcontextprotocol/sdk`
+- `@types/node`
+- `tsx`
+- `typescript`
+- `zod`
+
+
 
 ---
 
-## Overview
+## 📑 Documentation Sections
 
-This directory is intended to hold high-level documentation and an index for the repository. At the repository root level there are no source files inside _docs itself; instead, _docs organizes information about other parts of the project. The documentation here is meant to point developers to the server-side MCP implementation and any other component-level documentation that explains how pieces fit together.
+### [social-mcp](./social-mcp/README.md)
+Houses server-side wiring and utilities for the Model Context Protocol (MCP) components used by the social-mcp project.
 
-The primary substantive subdirectory referenced here is social-mcp/, which houses the server-side wiring and utilities for the Model Context Protocol (MCP) components used by the social-mcp project. The social-mcp area contains its implementation surface under a src/ subdirectory (no top-level source files are present at the social-mcp top level). Together, the _docs directory and its subdirectories provide navigational context: _docs explains what each subdirectory contains, where the main TypeScript module(s) and server-side utilities live, and how developers should locate server-side code within social-mcp/src. This README acts as the entry point for developers to discover where implementation, tests, and further documentation live elsewhere in the repository.
 
-
-### File Organization
-
-Documentation is organized at the directory level with separate subdirectories for each major component. Root of _docs contains no source files; component-level code (for example server-side MCP implementation) is located under the social-mcp/src/ path as noted in the subdirectory description. This keeps docs and developer guidance separate from implementation code.
-
-## 📂 Subdirectories
-
-This directory contains the following subdirectories:
-
-### [📁 social-mcp](./social-mcp/README.md)
-
-**Purpose:** Houses server-side wiring and utilities for the Model Context Protocol (MCP) components used by the social-mcp project; substantive code is organized under social-mcp/src/ and the primary artifact is a TypeScript module.
-
-![Files: 0](https://img.shields.io/badge/Files-0-blue)
-
----
-## Architecture Notes
-
-- Server-side MCP implementation and utilities for the social-mcp project are organized under social-mcp/src/ as a TypeScript module; top-level of social-mcp contains no source files.
-- Documentation is separated from implementation to provide a clear navigation point without mixing code and docs at the same path.
+This directory contains the server-side implementation surface for the social-mcp project's Model Context Protocol (MCP) components.
 
 ---
 
-## Navigation
+## 📊 Documentation Statistics
 
-**↑ Parent Directory:** [Go up](../README.md)
-**🔗 Related:** [social-mcp](./social-mcp/README.md)
+- **Files Documented**: 1
+- **Directories**: 3
+- **Coverage**: 9%
+- **Eligible Source Files**: 11
+- **Last Updated**: 2026-10-20
 
 ---
 
-*Generated by Woden Docbot*
+## 🧭 How to Navigate
+
+> ℹ️ **INFO**
+> Each directory has its own README.md with detailed information about that section. Use the breadcrumb navigation at the top of each page to navigate back to parent directories.
+
+### Navigation Features
+
+- **Breadcrumbs** - At the top of each page, showing your current location
+- **Directory READMEs** - Each folder has a comprehensive overview
+- **File Documentation** - Click through to individual file documentation
+- **Search** - Use GitHub's search or your IDE's search functionality
+
+---
+
+## 🤖 About Woden DocBot
+
+This documentation is automatically generated and kept up-to-date by Woden DocBot, an AI-powered documentation assistant. DocBot analyzes code on every pull request and updates documentation to reflect changes.
+
+### Features
+
+- **Automatic Updates** - Documentation updates on every PR
+- **Comprehensive Coverage** - Files, functions, classes, and directories
+- **Smart Navigation** - Breadcrumbs, related files, and parent links
+- **AI-Powered** - Uses Azure GPT models for intelligent documentation generation
+
+---
+
+*Generated by Woden DocBot for AL-Sidr-Natural-Honey*
