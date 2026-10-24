@@ -1,57 +1,128 @@
-[Documentation Home](README.md)
+# 📚 AL-Sidr-Natural-Honey Documentation
+
+Welcome to the complete documentation for this repository. This documentation is automatically generated and maintained by Woden Docbot.
+
+![Files Documented: 2](https://img.shields.io/badge/Files_Documented-2-blue) ![Coverage: 15%](https://img.shields.io/badge/Coverage-15%-orange) ![Last Updated: 2026-10-24](https://img.shields.io/badge/Last_Updated-2026--10--24-gray)
+
+## 🔗 Quick Links
+
+[📂 ai-os](./ai-os/README.md)
+[📋 Dependencies](./DEPENDENCIES.md)
+
 
 ---
 
-# 📁 _docs
-
-> **Purpose:** Top-level repository root that organizes project subcomponents, notably the ai-os release gate implementation and its deterministic quality gate tests for validating AI OS release artifacts.
-> 
-
-![Organization: Hierarchical](https://img.shields.io/badge/Organization-Hierarchical-blue)
-
-## 📑 Table of Contents
+> Official Al Sidr Natural Honey Shopify theme and e-commerce codebase with release evidence quality gates and local test tooling.
 
 
-- [Overview](#overview)
-- [Subdirectories](#subdirectories)
-- [Architecture Notes](#architecture-notes)
+
+## 📖 Overview
+
+This repository contains the official Al Sidr Natural Honey Shopify theme and e-commerce codebase for the Abu Dhabi–based raw Yemeni honey brand (Est. 1986). The top-level project includes storefront/theme assets and supporting web tooling implemented with common web and build technologies.
+
+A dedicated ai-os directory holds deterministic release and delivery evidence gate logic and unit tests. The ai-os/tools area implements local quality gate checks (notably tools/quality_gates.py) used to verify release/delivery criteria locally before those results are consumed by upstream gate automation. The codebase shows a web stack and developer tooling using CSS, HTML, JavaScript/TypeScript, Node.js/npm, Python and Docker artifacts.
+
+
+### 🧩 Key Components
+
+| Component | Purpose | Technologies |
+| --- | --- | --- |
+| **ai-os** | Houses the AI OS release and delivery evidence gate logic and related deterministic quality gate tests used during the AI OS gate workflow. | `Python` |
+| **ai-os/tools** | Collection of local, deterministic quality gate implementations and their unit tests for reviewing release and delivery evidence prior to automated gate consumption. | `Python` |
+| **ai-os/tools/quality_gates.py** | Implementation of local review gates that determine pass/fail criteria for release and delivery evidence; accompanied by unit tests. | `Python` |
+
+
+
+
+**Component Architecture:**
+
+```mermaid
+graph TD
+    C0[ai-os]
+    C1[ai-os/tools]
+    C2[ai-os/tools/quality_gates.py]
+    C0 --> C1
+    C1 --> C2
+```
+
+### 🏗️ Architecture
+
+Root contains the Shopify theme/e-commerce code and developer tooling; ai-os is a focused subtree providing deterministic quality gate logic and tests (tools/ and quality_gates.py) used for local verification.
+
+### 💡 Use Cases
+
+- ✦ Provide the Shopify storefront/theme and e-commerce codebase for Al Sidr Natural Honey
+- ✦ Run local deterministic release and delivery evidence quality gates and unit tests prior to upstream gate automation
+
+
+
+### 🔧 Technologies
+
+
+**Languages:** ![JavaScript: ](https://img.shields.io/badge/JavaScript--blue) ![Python: ](https://img.shields.io/badge/Python--blue) ![TypeScript: ](https://img.shields.io/badge/TypeScript--blue)
+
+**Databases:** ![SQL: ](https://img.shields.io/badge/SQL--blue)
+![CSS: ](https://img.shields.io/badge/CSS--blue) ![Docker: ](https://img.shields.io/badge/Docker--blue) ![HTML: ](https://img.shields.io/badge/HTML--blue) ![Node.js: ](https://img.shields.io/badge/Node.js--blue) ![npm: ](https://img.shields.io/badge/npm--blue)
+
+### 📦 External Dependencies
+
+The following external packages are used across the project:
+
+- `@modelcontextprotocol/sdk`
+- `@types/node`
+- `tsx`
+- `typescript`
+- `zod`
+
+
 
 ---
 
-## Overview
+## 📑 Documentation Sections
 
-This repository root contains no top-level source files; its primary responsibility is to host and organize subdirectories that implement specific project functionality. The only listed subdirectory is ai-os/, which holds the AI OS release and delivery evidence gate logic along with deterministic quality gate tests used to validate release artifacts during the AI OS gate workflow. At the root level there are no root files to execute or modify directly — all functional code and tests are nested under subdirectories.
+### [ai-os](./ai-os/README.md)
+Holds the AI OS release and delivery evidence gate logic and related deterministic quality gate tests used to validate release artifacts during the AI OS gate workflow.
 
-The ai-os/ subdirectory is described as containing the deterministic quality gate implementation and its unit tests used during AI OS release and delivery evidence review. The functional code and tests are organized under a tools/ subdirectory inside ai-os/. Together, the root directory and its ai-os/ subdirectory form the portion of the repository responsible for validating release artifacts and capturing delivery evidence: ai-os/ contains the gate logic and tests, while the repository root serves as the container and entry point for navigation and higher-level repository coordination.
 
-
-### File Organization
-
-There are no root-level files; functional implementation and unit tests are organized inside subdirectories (ai-os/). Within ai-os/, code and tests are reported to be organized under a tools/ subdirectory. This hierarchical layout groups gate implementation and related tests together to keep release-validation logic isolated from other project components.
-
-## 📂 Subdirectories
-
-This directory contains the following subdirectories:
-
-### [📁 ai-os/](./ai-os//README.md)
-
-**Purpose:** Holds the AI OS release and delivery evidence gate logic and the deterministic quality gate tests used to validate release artifacts during the AI OS gate workflow. Functional code and unit tests are organized under a tools/ subdirectory inside this folder.
-
-![Files: 0](https://img.shields.io/badge/Files-0-blue)
-
----
-## Architecture Notes
-
-- The repository root acts as a container; implementation and tests are organized in a hierarchical subdirectory (ai-os/ -> tools/) to separate release gate logic from other concerns.
-- Deterministic quality gates and unit tests are colocated under ai-os/tools/ to facilitate review and validation during the AI OS release and delivery evidence workflow.
+This directory contains the deterministic quality gate implementation and its unit tests that are used during AI OS release and delivery evidence review.
 
 ---
 
-## Navigation
+## 📊 Documentation Statistics
 
-**↑ Parent Directory:** [Go up](../README.md)
-**🔗 Related:** [ai-os/](./ai-os//README.md)
+- **Files Documented**: 2
+- **Directories**: 3
+- **Coverage**: 15%
+- **Eligible Source Files**: 13
+- **Last Updated**: 2026-10-24
 
 ---
 
-*Generated by Woden Docbot*
+## 🧭 How to Navigate
+
+> ℹ️ **INFO**
+> Each directory has its own README.md with detailed information about that section. Use the breadcrumb navigation at the top of each page to navigate back to parent directories.
+
+### Navigation Features
+
+- **Breadcrumbs** - At the top of each page, showing your current location
+- **Directory READMEs** - Each folder has a comprehensive overview
+- **File Documentation** - Click through to individual file documentation
+- **Search** - Use GitHub's search or your IDE's search functionality
+
+---
+
+## 🤖 About Woden DocBot
+
+This documentation is automatically generated and kept up-to-date by Woden DocBot, an AI-powered documentation assistant. DocBot analyzes code on every pull request and updates documentation to reflect changes.
+
+### Features
+
+- **Automatic Updates** - Documentation updates on every PR
+- **Comprehensive Coverage** - Files, functions, classes, and directories
+- **Smart Navigation** - Breadcrumbs, related files, and parent links
+- **AI-Powered** - Uses Azure GPT models for intelligent documentation generation
+
+---
+
+*Generated by Woden DocBot for AL-Sidr-Natural-Honey*
