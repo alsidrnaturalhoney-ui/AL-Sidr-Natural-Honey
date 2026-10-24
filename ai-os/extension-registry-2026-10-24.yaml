@@ -1,0 +1,47 @@
+version: 1
+status: proposed_for_review
+parent: ai-os/prompts/master-orchestrator.md
+reuses:
+  agents: ai-os/agents/agent-registry.yaml
+  skills: ai-os/skills/skill-registry.yaml
+  tools: ai-os/tools/tool-registry.yaml
+  knowledge: ai-os/knowledge-base/ingestion-policy.yaml
+skills:
+  - id: al-sidr-email-delivery-guardian
+    owner: analytics-agent
+    path: skills/al-sidr-email-delivery-guardian/SKILL.md
+    mode: read-only
+  - id: al-sidr-checkout-release-gate
+    owner: shopify-operator
+    path: skills/al-sidr-checkout-release-gate/SKILL.md
+    mode: staging-review
+  - id: al-sidr-evidence-reconciler
+    owner: knowledge-engineer
+    path: skills/al-sidr-evidence-reconciler/SKILL.md
+    mode: read-and-propose
+agents:
+  - id: email-delivery-specialist
+    parent: analytics-agent
+    path: ai-os/agents/email-delivery-specialist.md
+    status: not_deployed
+  - id: storefront-release-specialist
+    parent: shopify-operator
+    path: ai-os/agents/storefront-release-specialist.md
+    status: not_deployed
+tools:
+  - id: delivery-health-gate
+    owner: analytics-agent
+    implementation: ai-os/tools/quality_gates.py#assess_delivery
+    side_effects: none
+  - id: checkout-release-gate
+    owner: shopify-operator
+    implementation: ai-os/tools/quality_gates.py#check_release
+    side_effects: none
+  - id: evidence-authority-gate
+    owner: knowledge-engineer
+    implementation: ai-os/tools/quality_gates.py#resolve_fact
+    side_effects: none
+knowledge:
+  schema: ai-os/knowledge-base/evidence-schema-2026-10-24.md
+  authority: private_notional_master_and_governed_operational_systems
+instructions: ai-os/prompts/operations-instruction-extension-2026-10-24.md
